@@ -95,7 +95,7 @@
   @keyframes ticker-scroll{0%{transform:translateX(0);}100%{transform:translateX(-50%);}}
 
   /* ===== HERO (home) ===== */
-  .hero{position:relative;overflow:hidden;background-image:linear-gradient(to right,#f4f8fe 0%,rgba(244,248,254,.95) 22%,rgba(244,248,254,.62) 45%,rgba(244,248,254,.15) 68%,rgba(244,248,254,.05) 100%),url("https://i.postimg.cc/jjnWSx5L/755396570-1090962856924916-2670900636473447370-n.png");background-size:cover;background-position:center;background-repeat:no-repeat;}
+  .hero{position:relative;overflow:hidden;background-image:linear-gradient(to right,#f4f8fe 0%,rgba(244,248,254,.95) 22%,rgba(244,248,254,.62) 45%,rgba(244,248,254,.15) 68%,rgba(244,248,254,.05) 100%),url("images/755396570-1090962856924916-2670900636473447370-n.png");background-size:cover;background-position:center;background-repeat:no-repeat;}
   .hero-grid{padding:120px 0 130px;max-width:620px;}
   .hero h1{font-size:44px;font-weight:800;line-height:1.15;margin-bottom:18px;}
   .hero p{color:var(--gray);font-size:15.5px;max-width:460px;margin-bottom:30px;}
@@ -460,6 +460,20 @@
   .official-group-grid .official-card h4{font-size:13px;font-weight:700;margin-bottom:4px;line-height:1.3;}
   .official-group-grid .official-card p{font-size:11.5px;font-weight:600;}
   @media(max-width:900px){.official-group-grid{grid-template-columns:repeat(3,1fr);}.official-featured-top{flex-wrap:wrap;padding:28px;}}
+
+  /* ===== Council layout: sidebar Vice Mayor + district-tabbed councilors ===== */
+  .district-tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:22px;}
+  .district-tabs button{padding:9px 20px;border-radius:20px;border:1.5px solid var(--line);font-size:13px;font-weight:700;color:var(--gray);transition:.2s;}
+  .district-tabs button:hover{border-color:var(--blue);color:var(--blue);}
+  .district-tabs button.active{background:var(--navy-deep);border-color:var(--navy-deep);color:#fff;}
+  .council-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-bottom:34px;}
+  .council-section-label{font-size:12px;font-weight:700;color:var(--gray);text-transform:uppercase;letter-spacing:.8px;margin-bottom:14px;display:block;}
+  .council-subswitch{display:inline-flex;border:1.5px solid var(--line);border-radius:12px;overflow:hidden;margin-bottom:20px;}
+  .council-subswitch button{padding:11px 22px;font-size:13px;font-weight:700;color:var(--gray);background:#fff;transition:.2s;}
+  .council-subswitch button:hover{color:var(--blue);}
+  .council-subswitch button.active{background:var(--sky);color:var(--blue);}
+  @media(max-width:900px){.council-grid{grid-template-columns:repeat(2,1fr);}}
+  @media(max-width:520px){.council-grid{grid-template-columns:repeat(2,1fr);gap:12px;}}
   .officials-select{display:flex;align-items:center;gap:14px;margin-bottom:28px;flex-wrap:wrap;}
   .officials-select label{font-size:13px;font-weight:600;color:var(--gray);}
   .officials-select select{border:1.5px solid var(--line);border-radius:24px;padding:10px 18px;font-size:13.5px;font-weight:600;color:var(--navy);background:#fff;font-family:inherit;cursor:pointer;}
@@ -607,7 +621,6 @@
   @media(max-width:640px){.seal-modal-card{max-height:calc(100vh - 48px);}.seal-modal-header{padding:32px 26px 22px;gap:18px;}.seal-modal-imgwrap{width:76px;height:76px;}.seal-modal-header-text h3{font-size:20px;}.seal-modal-divider{margin:0 26px;}.seal-modal-content{padding:22px 26px 30px;}}
 
   /* ===== Generic seal image lightbox: click any header/footer seal to view it bigger ===== */
-  .seal img{cursor:zoom-in;}
   .img-lightbox{position:fixed;inset:0;background:rgba(8,16,40,.8);display:none;align-items:center;justify-content:center;z-index:600;padding:40px 24px;}
   .img-lightbox.open{display:flex;}
   .img-lightbox-card{position:relative;max-width:480px;width:100%;background:#fff;border-radius:24px;padding:40px 44px 44px;display:flex;flex-direction:column;align-items:center;justify-content:center;box-shadow:0 30px 70px rgba(0,0,0,.45);animation:fadein .25s ease;}
@@ -770,7 +783,7 @@
   <div class="container">
     <div class="brand" onclick="goTo('home')">
 		
-      <div class="seal"><img src="https://i.postimg.cc/jjZ12cn6/Ph-seal-ncr-manila.jpg" alt="Manila logo" onclick="event.stopPropagation();openImgLightbox(this.src,this.alt);"></div>
+      <div class="seal"><img src="images/Ph-seal-ncr-manila.jpg" alt="Manila logo"></div>
       <div class="name"><span>CITY GOVERNMENT OF</span><strong>MANILA</strong></div>
     </div>
     <ul class="navlist" id="navlist">
@@ -829,11 +842,11 @@
     <div class="container">
       <div class="strip-grid">
         <div class="strip-item clickable-card" onclick="goToSeal('npc')">
-          <img src="https://i.postimg.cc/YSr5tSqr/npc.png" alt="NPC Seal">
+          <img src="images/npc.png" alt="NPC Seal">
           <div><h4>National Privacy Commission</h4><p>Registered and committed to protecting personal data.</p><a class="btn btn-sm btn-outline" href="#" onclick="event.stopPropagation();goToSeal('npc');return false;">Learn More</a></div>
         </div>
         <div class="strip-item clickable-card" onclick="goTo('transparency')">
-          <img src="https://i.postimg.cc/43fDX3NN/transparency.png" alt="Transparency Seal">
+          <img src="images/transparency.png" alt="Transparency Seal">
           <div><h4>Philippine Transparency Seal</h4><p>Upholding transparency and good governance.</p><a class="btn btn-sm btn-outline" href="#" onclick="event.stopPropagation();goTo('transparency');return false;">Learn More</a></div>
         </div>
         <div class="quicklinks">
@@ -882,7 +895,7 @@
 
     <div class="subpage active" id="about-mission">
       <div class="about-block">
-        <img src="https://i.postimg.cc/cCpV2C7v/mission.webp" alt="Mission">
+        <img src="images/mission.webp" alt="Mission">
         <div>
           <span class="eyebrow">Our Mission</span>
           <h2 style="font-size:28px;margin-bottom:16px;">Serbisyong Tapat, Manileño Bilang Prayoridad</h2>
@@ -898,7 +911,7 @@
           <h2 style="font-size:28px;margin-bottom:16px;">A World-Class, Livable, and Resilient Manila</h2>
           <p style="color:var(--gray);font-size:15px;">A safe, healthy, and progressive capital city — globally competitive, culturally proud, and environmentally sustainable — where every resident enjoys equal access to opportunities, services, and a dignified quality of life.</p>
         </div>
-        <img src="https://i.postimg.cc/L6r9F64t/vision.jpg" alt="Vision">
+        <img src="images/vision.jpg" alt="Vision">
       </div>
     </div>
 
@@ -985,7 +998,16 @@
             </div>
             <div class="featured-chevron-wrap"><span class="featured-chevron-label">Council Members</span><i class="fa-solid fa-chevron-down featured-chevron" id="vicemayor-chevron"></i></div>
           </div>
-          <div class="official-group-wrap" id="vicemayor-group-grid"></div>
+          <div class="official-group-wrap" id="vicemayor-group-grid">
+            <span class="council-section-label">Councilors by District</span>
+            <div class="district-tabs" id="district-tabs"></div>
+            <div class="council-grid" id="district-grid"></div>
+            <div class="council-subswitch" id="council-subswitch">
+              <button class="active" data-sub="exofficio">Ex-Officio Member</button>
+              <button data-sub="secretariat">Council Secretariat</button>
+            </div>
+            <div class="council-grid" id="subswitch-grid"></div>
+          </div>
         </div>
       </div>
     </div>
@@ -1508,12 +1530,12 @@
       <div>
         <div class="foot-col1-split">
           <div>
-            <div class="foot-brand"><div class="seal" style="width:44px;height:44px;font-size:8px;"><img src="https://i.postimg.cc/jjZ12cn6/Ph-seal-ncr-manila.jpg" alt="Manila logo" onclick="event.stopPropagation();openImgLightbox(this.src,this.alt);"></div><strong>City Government of Manila</strong></div>
+            <div class="foot-brand"><div class="seal" style="width:44px;height:44px;font-size:8px;"><img src="images/Ph-seal-ncr-manila.jpg" alt="Manila logo"></div><strong>City Government of Manila</strong></div>
             <p style="font-size:13px;">Manila City Hall, Padre Burgos Avenue, Ermita, Manila, 1000, Philippines</p>
           </div>
           <div class="foot-col1-right">
             <div class="seal" style="width:200px;height:200px;font-size:7px;flex-shrink:0;">
-              <img src="https://i.postimg.cc/y80K1d41/govph-seal.png" alt="GOVPH Seal" style="width:100%;height:100%;object-fit:contain;" onclick="openImgLightbox(this.src,this.alt);">
+              <img src="images/govph-seal.png" alt="GOVPH Seal" style="width:100%;height:100%;object-fit:contain;" onclick="openImgLightbox(this.src,this.alt);">
             </div>
             <div class="foot-col1-right-text">
               <p style="font-size:13px;color:#fff;font-weight:700;margin:0 0 6px;line-height:1.5;">Republic of the Philippines</p>
@@ -2098,9 +2120,9 @@ function closeOfficeModal(){
 
 /* ---- Transparency: seal cards + preview overlay (img is a placeholder — swap the url per seal when the real artwork is ready) ---- */
 const sealsData = [
-  {key:'transparency', icon:'fa-shield-halved', title:'Philippine Transparency Seal', desc:'Full disclosure of budget and finances.', img:'https://i.postimg.cc/43fDX3NN/transparency.png', details:'<p>The Philippine Transparency Seal is a certification that the City Government of Manila has fully disclosed its budget, finances, and other key documents as required under the General Appropriations Act.</p><p>This includes the Annual Budget, Annual Procurement Plan, and other financial statements, all of which are made available to the public for review.</p>'},
-  {key:'npc', icon:'fa-lock', title:'NPC Seal of Registration', desc:'Compliant with the Data Privacy Act.', img:'https://i.postimg.cc/YSr5tSqr/npc.png', details:'<p>The City Government of Manila is registered with the National Privacy Commission (NPC), affirming its compliance with the Data Privacy Act of 2012.</p><p>This registration confirms that the city has designated a Data Protection Officer and implemented organizational, physical, and technical security measures to protect personal data collected from residents.</p>'},
-  {key:'sglg', icon:'fa-coins', title:'Seal of Good Local Governance', desc:'Recognized for excellence in governance.', img:'https://i.postimg.cc/yN1M7NYs/dilg.png', details:'<p>The Seal of Good Local Governance (SGLG) is awarded by the Department of the Interior and Local Government (DILG) to local government units that demonstrate exemplary performance across core governance areas.</p><p>These areas include financial administration, disaster preparedness, social protection, business-friendliness, environmental management, and peace and order.</p>'},
+  {key:'transparency', icon:'fa-shield-halved', title:'Philippine Transparency Seal', desc:'Full disclosure of budget and finances.', img:'images/transparency.png', details:'<p>The Philippine Transparency Seal is a certification that the City Government of Manila has fully disclosed its budget, finances, and other key documents as required under the General Appropriations Act.</p><p>This includes the Annual Budget, Annual Procurement Plan, and other financial statements, all of which are made available to the public for review.</p>'},
+  {key:'npc', icon:'fa-lock', title:'NPC Seal of Registration', desc:'Compliant with the Data Privacy Act.', img:'images/npc.png', details:'<p>The City Government of Manila is registered with the National Privacy Commission (NPC), affirming its compliance with the Data Privacy Act of 2012.</p><p>This registration confirms that the city has designated a Data Protection Officer and implemented organizational, physical, and technical security measures to protect personal data collected from residents.</p>'},
+  {key:'sglg', icon:'fa-coins', title:'Seal of Good Local Governance', desc:'Recognized for excellence in governance.', img:'images/dilg.png', details:'<p>The Seal of Good Local Governance (SGLG) is awarded by the Department of the Interior and Local Government (DILG) to local government units that demonstrate exemplary performance across core governance areas.</p><p>These areas include financial administration, disaster preparedness, social protection, business-friendliness, environmental management, and peace and order.</p>'},
   {key:'environment', icon:'fa-leaf', title:'Seal of Environmental Sustainability', desc:'Committed to sustainable city planning.', img:'https://placehold.co/400x400/eef4fd/1c56d6?text=Seal+Placeholder', details:'<p>This seal recognizes the City Government of Manila\'s commitment to sustainable urban planning, environmental protection, and climate resilience initiatives.</p>'}
 ];
 function sealCard(s,i){return `<div class="seal-card" id="seal-${s.key}" onclick="openSealModal(${i})"><div class="sealimg"><i class="fa-solid ${s.icon}"></i></div><h4>${s.title}</h4><p>${s.desc}</p><a class="link-arrow" href="#" onclick="event.stopPropagation();openSealModal(${i});return false;">Learn More</a></div>`;}
@@ -2166,7 +2188,7 @@ document.addEventListener('keydown', e=>{
 /* City Officials */
 const officialsData = {
   mayor:[
-    {name:'HON. FRANCISCO “ISKO” DOMAGOSO',pos:'City Mayor, City Government of Manila',bio:'Leads the executive branch of the City Government of Manila, overseeing all departments and citywide programs on public health, social services, infrastructure, and disaster resilience.',term:'Term: 2025–2028',contact:'(02) 8527-0000',img:'https://i.postimg.cc/QtZ6x1wp/mayor.webp'},
+    {name:'HON. FRANCISCO “ISKO” DOMAGOSO',pos:'City Mayor, City Government of Manila',bio:'Leads the executive branch of the City Government of Manila, overseeing all departments and citywide programs on public health, social services, infrastructure, and disaster resilience.',term:'Term: 2025–2028',contact:'(02) 8527-0000',img:'images/mayor.webp'},
     {name:'Dept. Head',pos:'City Health Department',cat:'Health & Social Services',img:'https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=300&q=80'},
     {name:'Dept. Head',pos:'City Social Welfare Dept.',cat:'Health & Social Services',img:'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=300&q=80'},
     {name:'Dept. Head',pos:"City Treasurer's Office",cat:'Finance & Administration',img:'https://images.unsplash.com/photo-1580489944761-15a19d654956?w=300&q=80'},
@@ -2175,15 +2197,68 @@ const officialsData = {
     {name:'Dept. Head',pos:'City Planning & Development Office',cat:'Infrastructure & Planning',img:'https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=300&q=80'},
     {name:'Dept. Head',pos:'City Tourism Department',cat:'Tourism & Culture',img:'https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?w=300&q=80'}
   ],
-  vicemayor:[
-    {name:'HON. ANGELA LEI “CHI” ATIENZA',pos:'City Vice Mayor, Presiding Officer of the Sanggunian Panlungsod',bio:'Presides over the City Council and leads the legislative branch of Manila, working with district councilors on city ordinances, budget review, and legislative oversight.',term:'Term: 2025–2028',contact:'(02) 8527-0100',img:'https://i.postimg.cc/26NH8hM6/vice-mayor.jpg'},
-    {name:'City Councilor',pos:'Sanggunian Panlungsod, 1st District',cat:'District Councilors',img:'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=300&q=80'},
-    {name:'City Councilor',pos:'Sanggunian Panlungsod, 2nd District',cat:'District Councilors',img:'https://images.unsplash.com/photo-1580489944761-15a19d654956?w=300&q=80'},
-    {name:'City Councilor',pos:'Sanggunian Panlungsod, 3rd District',cat:'District Councilors',img:'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=300&q=80'},
-    {name:'City Councilor',pos:'Sanggunian Panlungsod, 4th District',cat:'District Councilors',img:'https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=300&q=80'},
-    {name:'City Councilor',pos:'Sanggunian Panlungsod, 5th District',cat:'District Councilors',img:'https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?w=300&q=80'},
-    {name:'City Councilor',pos:'Sanggunian Panlungsod, 6th District',cat:'District Councilors',img:'https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=300&q=80'},
-    {name:'SK Federation President',pos:'Sanggunian Panlungsod, Ex-Officio',cat:'Ex-Officio Members',img:'https://images.unsplash.com/photo-1560250097-0b93528c311a?w=300&q=80'}
+};
+
+/* Legislative branch: Vice Mayor sidebar + district-tabbed councilor roster */
+const councilData = {
+  vicemayor:{name:'HON. ANGELA LEI “CHI” ATIENZA',pos:'City Vice Mayor, Presiding Officer of the Sanggunian Panlungsod',bio:'Presides over the City Council and leads the legislative branch of Manila, working with district councilors on city ordinances, budget review, and legislative oversight.',term:'Term: 2025–2028',contact:'(02) 8527-0100',img:'images/vice-mayor.jpg'},
+  districts:{
+    'District I':[
+      {name:'HON. JOAQUIN DOMAGOSO',pos:'Councilor, 1st District',img:'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=300&q=80'},
+      {name:'HON. JESUS “TAGA” FAJARDO JR.',pos:'Councilor, 1st District',img:'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=300&q=80'},
+      {name:'HON. ERICK IAN “BANZAI” NIEVA',pos:'Councilor, 1st District',img:'https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?w=300&q=80'},
+      {name:'HON. IRMA ALFONSO-JUSON',pos:'Councilor, 1st District',img:'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=300&q=80'},
+      {name:'HON. ROSALINO “JHUN” IBAY, JR.',pos:'Councilor, 1st District',img:'https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=300&q=80'},
+      {name:'HON. MC BOBBY LIMYUEN',pos:'Councilor, 1st District',img:'https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=300&q=80'}
+    ],
+    'District II':[
+      {name:'City Councilor',pos:'Councilor, 2nd District',img:'https://images.unsplash.com/photo-1580489944761-15a19d654956?w=300&q=80'},
+      {name:'City Councilor',pos:'Councilor, 2nd District',img:'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=300&q=80'},
+      {name:'City Councilor',pos:'Councilor, 2nd District',img:'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=300&q=80'},
+      {name:'City Councilor',pos:'Councilor, 2nd District',img:'https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?w=300&q=80'},
+      {name:'City Councilor',pos:'Councilor, 2nd District',img:'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=300&q=80'},
+      {name:'City Councilor',pos:'Councilor, 2nd District',img:'https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=300&q=80'}
+    ],
+    'District III':[
+      {name:'City Councilor',pos:'Councilor, 3rd District',img:'https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=300&q=80'},
+      {name:'City Councilor',pos:'Councilor, 3rd District',img:'https://images.unsplash.com/photo-1580489944761-15a19d654956?w=300&q=80'},
+      {name:'City Councilor',pos:'Councilor, 3rd District',img:'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=300&q=80'},
+      {name:'City Councilor',pos:'Councilor, 3rd District',img:'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=300&q=80'},
+      {name:'City Councilor',pos:'Councilor, 3rd District',img:'https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?w=300&q=80'},
+      {name:'City Councilor',pos:'Councilor, 3rd District',img:'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=300&q=80'}
+    ],
+    'District IV':[
+      {name:'City Councilor',pos:'Councilor, 4th District',img:'https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=300&q=80'},
+      {name:'City Councilor',pos:'Councilor, 4th District',img:'https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=300&q=80'},
+      {name:'City Councilor',pos:'Councilor, 4th District',img:'https://images.unsplash.com/photo-1580489944761-15a19d654956?w=300&q=80'},
+      {name:'City Councilor',pos:'Councilor, 4th District',img:'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=300&q=80'},
+      {name:'City Councilor',pos:'Councilor, 4th District',img:'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=300&q=80'},
+      {name:'City Councilor',pos:'Councilor, 4th District',img:'https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?w=300&q=80'}
+    ],
+    'District V':[
+      {name:'City Councilor',pos:'Councilor, 5th District',img:'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=300&q=80'},
+      {name:'City Councilor',pos:'Councilor, 5th District',img:'https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=300&q=80'},
+      {name:'City Councilor',pos:'Councilor, 5th District',img:'https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=300&q=80'},
+      {name:'City Councilor',pos:'Councilor, 5th District',img:'https://images.unsplash.com/photo-1580489944761-15a19d654956?w=300&q=80'},
+      {name:'City Councilor',pos:'Councilor, 5th District',img:'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=300&q=80'},
+      {name:'City Councilor',pos:'Councilor, 5th District',img:'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=300&q=80'}
+    ],
+    'District VI':[
+      {name:'HON. SALVADOR “PHILIP” LACUNA',pos:'Councilor, 6th District',img:'https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?w=300&q=80'},
+      {name:'HON. LUCIANO “LOU” VELOSO',pos:'Councilor, 6th District',img:'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=300&q=80'},
+      {name:'HON. BENNY FOG ABANTE III',pos:'Councilor, 6th District',img:'https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=300&q=80'},
+      {name:'HON. ELMER “JOEL” PAR',pos:'Councilor, 6th District',img:'https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=300&q=80'},
+      {name:'City Councilor',pos:'Councilor, 6th District',img:'https://images.unsplash.com/photo-1580489944761-15a19d654956?w=300&q=80'},
+      {name:'City Councilor',pos:'Councilor, 6th District',img:'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=300&q=80'}
+    ]
+  },
+  exOfficio:[
+    {name:'HON. ENRIQUETA “ERIKA” PLATON',pos:'Ex-Officio Member &middot; Liga ng mga Barangay President',img:'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=300&q=80'},
+    {name:'HON. JULIANA RAE “YANYAN” IBAY',pos:'Ex-Officio Member &middot; SK Federation President',img:'https://images.unsplash.com/photo-1560250097-0b93528c311a?w=300&q=80'}
+  ],
+  secretariat:[
+    {name:'Secretary to the City Council',pos:'Council Secretariat',img:'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=300&q=80'},
+    {name:'Assistant Secretary to the City Council',pos:'Council Secretariat &middot; Officer-in-Charge',img:'https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?w=300&q=80'}
   ]
 };
 function officialCard(o){return `<div class="official-card"><img class="photo" src="${o.img}" alt="${o.name}"><div class="info"><h4>${o.name}</h4><p>${o.pos}</p></div></div>`;}
@@ -2235,7 +2310,45 @@ document.addEventListener('click', e=>{
   wrap.querySelectorAll('.official-subpanel').forEach(p=>p.classList.toggle('active', p.dataset.cat===cat));
 });
 renderFeaturedOfficial('mayor');
-renderFeaturedOfficial('vicemayor');
+
+/* Legislative branch: sidebar + district tabs + ex-officio/secretariat sub-switch */
+function councilCard(o){return `<div class="official-card"><img class="photo" src="${o.img}" alt="${o.name}"><div class="info"><h4>${o.name}</h4><p>${o.pos}</p></div></div>`;}
+function renderVicemayorSidebar(){
+  const v = councilData.vicemayor;
+  document.getElementById('vicemayor-photo').src = v.img;
+  document.getElementById('vicemayor-name').textContent = v.name;
+  document.getElementById('vicemayor-pos').textContent = v.pos;
+  document.getElementById('vicemayor-bio').textContent = v.bio;
+  document.getElementById('vicemayor-term').textContent = v.term;
+  document.getElementById('vicemayor-contact').textContent = v.contact;
+}
+function renderDistrictGrid(d){
+  document.getElementById('district-grid').innerHTML = councilData.districts[d].map(councilCard).join('');
+}
+function renderDistrictTabs(){
+  const districts = Object.keys(councilData.districts);
+  document.getElementById('district-tabs').innerHTML = districts.map((d,i)=>`<button class="${i===0?'active':''}" data-district="${d}">${d.replace('District ','District ')}</button>`).join('');
+  renderDistrictGrid(districts[0]);
+}
+document.getElementById('district-tabs').addEventListener('click', e=>{
+  const btn = e.target.closest('button'); if(!btn) return;
+  document.querySelectorAll('#district-tabs button').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  renderDistrictGrid(btn.dataset.district);
+});
+function renderCouncilSubswitch(sub){
+  const data = sub==='exofficio' ? councilData.exOfficio : councilData.secretariat;
+  document.getElementById('subswitch-grid').innerHTML = data.map(councilCard).join('');
+}
+document.getElementById('council-subswitch').addEventListener('click', e=>{
+  const btn = e.target.closest('button'); if(!btn) return;
+  document.querySelectorAll('#council-subswitch button').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  renderCouncilSubswitch(btn.dataset.sub);
+});
+renderVicemayorSidebar();
+renderDistrictTabs();
+renderCouncilSubswitch('exofficio');
 
 /* Offices field data */
 const officeData = {
@@ -2303,19 +2416,19 @@ document.addEventListener('click', e=>{
 
 /* Tourism */
 const tourismData = [
-  {cat:'heritage',title:'Intramuros',img:'https://i.postimg.cc/FFp14rXL/intramuros-uli.jpg',desc:'Historic walled city',details:'The historic walled city of Manila, built by the Spanish in the 16th century. Its cobblestone streets, colonial-era buildings, and centuries-old churches make it one of the most iconic heritage districts in the country.',location:'Intramuros, Manila',hours:'Grounds open 24 hours · Attractions 8:00 AM–5:00 PM',gallery:['https://i.postimg.cc/44PngfR6/intramuros-ulii.jpg', 'https://i.postimg.cc/FFp14rX0/intramuros-ulili.jpg', 'https://i.postimg.cc/44PngfRQ/intramuros-ulilili.jpg']},
-  {cat:'heritage',title:'Rizal Shrine, Fort Santiago',img:'https://i.postimg.cc/jdhSxWhx/rizal-shrine.jpg',desc:'National hero landmark',details:'The site within Fort Santiago where national hero Jose Rizal spent his final days before his execution in 1896. Today it houses a museum showcasing his personal belongings, writings, and the story of his life.',location:'Fort Santiago, Intramuros, Manila',hours:'8:00 AM–5:00 PM, daily',gallery:['https://i.postimg.cc/59HJybh4/rizal-shrine-4.jpg', 'https://i.postimg.cc/yNX4qN3k/rizal-shrine-1.jpg', 'https://i.postimg.cc/d1sMJK8q/rizal-shrine-3.jpg']},
-  {cat:'museums',title:'National Museum of Fine Arts',img:'https://i.postimg.cc/8zBMVPjq/national-musuem-out.jpg',desc:'Art & culture',details:"Housed in the historic Old Legislative Building, this museum holds the country's finest collection of paintings and sculptures, including Juan Luna's monumental Spoliarium.",location:'Padre Burgos Ave, Ermita, Manila',hours:'9:00 AM–5:00 PM, Tue–Sun (closed Mondays)',gallery:['https://i.postimg.cc/5t34Bggj/national-museum.jpg', 'https://i.postimg.cc/25mjLM4Z/national-museum-1.jpg', 'https://i.postimg.cc/ZRX5nRjV/image.png']},
-  {cat:'museums',title:'Bahay Tsinoy Museum',img:'https://i.postimg.cc/y8r4sGLY/bahay-tsinoy-1.jpg',desc:'Chinese-Filipino heritage',details:'A museum dedicated to the history and culture of the Chinese in the Philippines, tracing centuries of Chinese-Filipino heritage, trade, and contribution to Philippine society.',location:'Anda cor. Cabildo St, Intramuros, Manila',hours:'9:00 AM–5:00 PM, Tue–Sun (closed Mondays)',gallery:['https://i.postimg.cc/2SXRrt03/bahay-tsinoy-2.png', 'https://i.postimg.cc/rwYXMHfV/bahay-tsinoy-3.webp', 'https://i.postimg.cc/8zCg8GB9/nahay-tsinoy-2.jpg']},
-  {cat:'parks',title:'Rizal Park (Luneta)',img:'https://i.postimg.cc/fTvRz3fG/rizal-park.webp',desc:'Iconic city park',details:'One of the largest urban parks in Asia, home to the Rizal Monument, open lawns, gardens, and fountains. A favorite gathering place for Manileños for recreation, exercise, and events.',location:'Roxas Blvd, Ermita, Manila',hours:'5:00 AM–9:00 PM, daily',gallery:['https://i.postimg.cc/BnW7nnN0/rizal-park-1.jpg', 'https://i.postimg.cc/L8dQ88DG/rizal-park-2-jph.jpg', 'https://i.postimg.cc/jdHyV0dN/rizal-park-3.jpg']},
-  {cat:'parks',title:'Manila Ocean Park',img:'https://i.postimg.cc/fTvRz3f5/ocean-park-out.png',desc:'Marine theme park',details:'An oceanarium and marine theme park along Manila Bay offering marine life exhibits, interactive shows, and rides for the whole family.',location:'Behind Quirino Grandstand, Manila',hours:'10:00 AM–8:00 PM, daily',gallery:['https://i.postimg.cc/qqMqWYmw/ocean-park-1.jpg', 'https://i.postimg.cc/mk2kKqXG/ocean-park-3.jpg', 'https://i.postimg.cc/Y0q0TVnc/ocean-park-2.jpg']},
-  {cat:'religious',title:'Manila Cathedral',img:'https://i.postimg.cc/X7gYjZk8/manila-cathedral-out.jpg',desc:'Historic basilica',details:'The seat of the Roman Catholic Archdiocese of Manila, rebuilt several times through the centuries. Known for its Romanesque-Byzantine architecture and towering bronze doors.',location:'Beaterio St, Intramuros, Manila',hours:'7:00 AM–6:00 PM, daily · Mass schedules vary',gallery:['https://i.postimg.cc/cJhrT0hH/manila-cathedral-1.jpg', 'https://i.postimg.cc/s2L1bwFz/manila-cathedral-3.jpg', 'https://i.postimg.cc/JhMsbGNn/manila-cathedral-2.jpg']},
-  {cat:'religious',title:'Quiapo Church',img:'https://i.postimg.cc/wTkjqtQX/quiapo-church-out.jpg',desc:'Home of the Black Nazarene',details:'Home of the Black Nazarene, one of the most venerated religious icons in the Philippines, drawing millions of devotees during its annual procession every January 9.',location:'Plaza Miranda, Quiapo, Manila',hours:'5:00 AM–8:00 PM, daily · Mass schedules vary',gallery:['https://i.postimg.cc/KvsXPVtM/quiapo-church-in.webp', 'https://i.postimg.cc/RVbr78wh/quiapo-church-2.jpg', 'https://i.postimg.cc/fytjcbGw/quiapo-church-1.jpg']},
-  {cat:'heritage',title:'Manila City Hall Clock Tower',img:'https://i.postimg.cc/xCb3H8Dr/clock-tower-in.webp',desc:'Landmark clocktower',details:'An Art Deco landmark and one of the tallest structures in old Manila, topped by a clock tower that has long been a visible part of the city skyline.',location:'Padre Burgos Ave, Ermita, Manila',hours:'Viewable anytime · Offices 8:00 AM–5:00 PM, Mon–Fri',gallery:['https://i.postimg.cc/Px8QZJG6/clock-tower-1.jpg', 'https://i.postimg.cc/tTVNPJQp/clock-tower-2.jpg', 'https://i.postimg.cc/G2sxYt0N/clock-tower-3.jpg']}
+  {cat:'heritage',title:'Intramuros',img:'images/intramuros-uli.jpg',desc:'Historic walled city',details:'The historic walled city of Manila, built by the Spanish in the 16th century. Its cobblestone streets, colonial-era buildings, and centuries-old churches make it one of the most iconic heritage districts in the country.',location:'Intramuros, Manila',hours:'Grounds open 24 hours · Attractions 8:00 AM–5:00 PM',gallery:['images/intramuros-ulii.jpg', 'images/intramuros-ulili.jpg', 'images/intramuros-ulilili.jpg']},
+  {cat:'heritage',title:'Rizal Shrine, Fort Santiago',img:'images/rizal-shrine.jpg',desc:'National hero landmark',details:'The site within Fort Santiago where national hero Jose Rizal spent his final days before his execution in 1896. Today it houses a museum showcasing his personal belongings, writings, and the story of his life.',location:'Fort Santiago, Intramuros, Manila',hours:'8:00 AM–5:00 PM, daily',gallery:['images/rizal-shrine-4.jpg', 'images/rizal-shrine-1.jpg', 'images/rizal-shrine-3.jpg']},
+  {cat:'museums',title:'National Museum of Fine Arts',img:'images/national-musuem-out.jpg',desc:'Art & culture',details:"Housed in the historic Old Legislative Building, this museum holds the country's finest collection of paintings and sculptures, including Juan Luna's monumental Spoliarium.",location:'Padre Burgos Ave, Ermita, Manila',hours:'9:00 AM–5:00 PM, Tue–Sun (closed Mondays)',gallery:['images/national-museum.jpg', 'images/national-museum-1.jpg', 'images/image.png']},
+  {cat:'museums',title:'Bahay Tsinoy Museum',img:'images/bahay-tsinoy-1.jpg',desc:'Chinese-Filipino heritage',details:'A museum dedicated to the history and culture of the Chinese in the Philippines, tracing centuries of Chinese-Filipino heritage, trade, and contribution to Philippine society.',location:'Anda cor. Cabildo St, Intramuros, Manila',hours:'9:00 AM–5:00 PM, Tue–Sun (closed Mondays)',gallery:['images/bahay-tsinoy-2.png', 'images/bahay-tsinoy-3.webp', 'images/nahay-tsinoy-2.jpg']},
+  {cat:'parks',title:'Rizal Park (Luneta)',img:'images/rizal-park.webp',desc:'Iconic city park',details:'One of the largest urban parks in Asia, home to the Rizal Monument, open lawns, gardens, and fountains. A favorite gathering place for Manileños for recreation, exercise, and events.',location:'Roxas Blvd, Ermita, Manila',hours:'5:00 AM–9:00 PM, daily',gallery:['images/rizal-park-1.jpg', 'images/rizal-park-2-jph.jpg', 'images/rizal-park-3.jpg']},
+  {cat:'parks',title:'Manila Ocean Park',img:'images/ocean-park-out.png',desc:'Marine theme park',details:'An oceanarium and marine theme park along Manila Bay offering marine life exhibits, interactive shows, and rides for the whole family.',location:'Behind Quirino Grandstand, Manila',hours:'10:00 AM–8:00 PM, daily',gallery:['images/ocean-park-1.jpg', 'images/ocean-park-3.jpg', 'images/ocean-park-2.jpg']},
+  {cat:'religious',title:'Manila Cathedral',img:'images/manila-cathedral-out.jpg',desc:'Historic basilica',details:'The seat of the Roman Catholic Archdiocese of Manila, rebuilt several times through the centuries. Known for its Romanesque-Byzantine architecture and towering bronze doors.',location:'Beaterio St, Intramuros, Manila',hours:'7:00 AM–6:00 PM, daily · Mass schedules vary',gallery:['images/manila-cathedral-1.jpg', 'images/manila-cathedral-3.jpg', 'images/manila-cathedral-2.jpg']},
+  {cat:'religious',title:'Quiapo Church',img:'images/quiapo-church-out.jpg',desc:'Home of the Black Nazarene',details:'Home of the Black Nazarene, one of the most venerated religious icons in the Philippines, drawing millions of devotees during its annual procession every January 9.',location:'Plaza Miranda, Quiapo, Manila',hours:'5:00 AM–8:00 PM, daily · Mass schedules vary',gallery:['images/quiapo-church-in.webp', 'images/quiapo-church-2.jpg', 'images/quiapo-church-1.jpg']},
+  {cat:'heritage',title:'Manila City Hall Clock Tower',img:'images/clock-tower-in.webp',desc:'Landmark clocktower',details:'An Art Deco landmark and one of the tallest structures in old Manila, topped by a clock tower that has long been a visible part of the city skyline.',location:'Padre Burgos Ave, Ermita, Manila',hours:'Viewable anytime · Offices 8:00 AM–5:00 PM, Mon–Fri',gallery:['images/clock-tower-1.jpg', 'images/clock-tower-2.jpg', 'images/clock-tower-3.jpg']}
 ];
 const imgCropPos = {
-  'https://i.postimg.cc/jdhSxWhx/rizal-shrine.jpg':'center 15%',
-  'https://i.postimg.cc/59HJybh4/rizal-shrine-4.jpg':'center 15%'
+  'images/rizal-shrine.jpg':'center 15%',
+  'images/rizal-shrine-4.jpg':'center 15%'
 };
 function imgPos(url){ return imgCropPos[url] || 'center'; }
 function tourismCard(t,i){return `<div class="spot-card" onclick="openTourismModal(${i})"><img src="${t.img}" alt="" style="object-position:${imgPos(t.img)};"><div class="overlay"><div><h4>${t.title}</h4><span>${t.desc}</span></div></div></div>`;}
