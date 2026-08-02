@@ -113,6 +113,16 @@
 
   /* ===== HERO (home) ===== */
   .hero{position:relative;overflow:hidden;background-image:linear-gradient(to right,#f4f8fe 0%,rgba(244,248,254,.95) 22%,rgba(244,248,254,.62) 45%,rgba(244,248,254,.15) 68%,rgba(244,248,254,.05) 100%),url("https://cdn.jsdelivr.net/gh/JhillianBaniqued/Gov-Manila-Website@main/images/755396570_1090962856924916_2670900636473447370_n.png");background-size:cover;background-position:center;background-repeat:no-repeat;min-height:var(--hero-fill,100vh);display:flex;flex-direction:column;justify-content:center;}
+  @media(max-width:700px){
+    /* The desktop overlay assumes a side-by-side layout (opaque text column on the left, photo
+       bleeding in on the right) — on mobile the text spans full width, so that gradient left
+       long stretches of text sitting over the more transparent right-hand side. Mobile stacks
+       everything vertically instead, so the gradient (and the crop) should run top-to-bottom. */
+    .hero{
+      background-image:linear-gradient(to bottom,#f4f8fe 0%,rgba(244,248,254,.94) 32%,rgba(244,248,254,.55) 56%,rgba(244,248,254,.18) 80%,rgba(244,248,254,.08) 100%),url("https://cdn.jsdelivr.net/gh/JhillianBaniqued/Gov-Manila-Website@main/images/755396570_1090962856924916_2670900636473447370_n.png");
+      background-position:center 22%;
+    }
+  }
   .hero>.container{width:100%;}
   .hero-grid{padding:60px 0;max-width:620px;}
   .hero h1{font-size:44px;font-weight:800;line-height:1.15;margin-bottom:18px;}
@@ -182,6 +192,7 @@
 
   /* ===== page hero (inner pages) ===== */
   .page-hero{background:linear-gradient(120deg,var(--navy-deep),var(--navy-light));color:#fff;padding:52px 0 40px;position:relative;overflow:hidden;}
+  #page-transparency .section,#page-complaints .section,#page-hotlines .section{padding-top:96px;}
   .page-hero:before{content:"";position:absolute;right:-80px;top:-80px;width:320px;height:320px;border-radius:50%;background:rgba(255,255,255,.05);}
   .page-hero .crumb{font-size:12.5px;color:#a9c0ec;margin-bottom:10px;}
   .page-hero h1{color:#fff;font-size:34px;font-weight:800;}
@@ -201,6 +212,7 @@
   .value-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin-top:20px;}
   .value-item{background:var(--sky);border-radius:12px;padding:18px;display:flex;gap:14px;align-items:flex-start;}
   .value-item i{color:var(--blue);font-size:18px;margin-top:2px;}
+  @media(max-width:560px){.value-grid{grid-template-columns:1fr;gap:14px;margin-bottom:12px;}}
   .timeline{border-left:3px solid var(--sky2);padding-left:26px;margin-left:10px;}
   .tl-item{position:relative;padding-bottom:34px;}
   .tl-item:before{content:"";position:absolute;left:-32px;top:2px;width:14px;height:14px;border-radius:50%;background:var(--blue);border:3px solid #fff;box-shadow:0 0 0 2px var(--blue);}
@@ -277,8 +289,16 @@
   .psa-area-header{grid-area:header;margin-bottom:0;}
   .psa-area-sidebar{grid-area:sidebar;margin-top:29px;}
   .psa-area-grid{grid-area:grid;}
+  /* Desktop/tablet only: flip the visual stacking so Browse Calendar sits above Upcoming Events.
+     DOM order stays Events-then-Calendar (unchanged) so the mobile pill layout below, which relies
+     on that source order, isn't affected — this only reorders the two cards visually via flex order. */
+  @media(min-width:701px){
+    .psa-area-sidebar .sidebar-card:nth-child(1){order:2;}
+    .psa-area-sidebar .sidebar-card:nth-child(2){order:1;}
+  }
   @media(max-width:1100px){
-    .psa-layout{grid-template-columns:1fr;grid-template-areas:"header" "sidebar" "grid";}
+    .psa-layout{grid-template-columns:1fr;grid-template-areas:"header" "sidebar" "grid";gap:16px;}
+    .psa-area-sidebar{margin-top:0;}
   }
   /* Phone view: "Browse Calendar" and "Upcoming Events" become two compact pill buttons sitting
      side by side (icon + label + chevron), instead of two full stacked cards eating a screen of
@@ -287,25 +307,27 @@
      they reliably beat the desktop ".sidebar-card .sc-head" navy-header rule regardless of source
      order — same specificity there was letting that rule win even when this query matched. */
   @media(max-width:700px){
-    #news-announcements .psa-area-sidebar{flex-direction:row;flex-wrap:nowrap;align-items:flex-start;gap:8px;}
-    #news-announcements .psa-area-sidebar .sidebar-card{flex:none;min-width:0;background:none;border:none;box-shadow:none;border-radius:0;overflow:visible;}
+    #news-announcements .psa-area-sidebar{flex-direction:row;flex-wrap:nowrap;align-items:flex-start;gap:8px;position:relative;}
+    #news-announcements .psa-area-sidebar .sidebar-card{flex:1;min-width:0;background:none;border:none;box-shadow:none;border-radius:0;overflow:visible;}
     #news-announcements .psa-area-sidebar .sc-head{
-      display:flex;align-items:center;background:#fff;border:1.5px solid var(--line);border-radius:24px;
-      padding:9px 13px;gap:7px;cursor:pointer;transition:.2s;
+      display:flex;align-items:center;justify-content:center;background:#fff;border:1.5px solid var(--line);border-radius:24px;
+      padding:9px 8px;gap:6px;cursor:pointer;transition:.2s;width:100%;
     }
     #news-announcements .psa-area-sidebar .sc-head:hover{border-color:var(--blue);}
     #news-announcements .psa-area-sidebar .sc-head.open{border-color:var(--blue);}
-    #news-announcements .psa-area-sidebar .sc-head i{color:var(--blue);font-size:12px;}
-    #news-announcements .psa-area-sidebar .sc-head h4{color:var(--navy-deep);font-size:12px;font-weight:700;white-space:nowrap;margin-right:0;}
+    #news-announcements .psa-area-sidebar .sc-head i{color:var(--blue);font-size:12px;flex-shrink:0;}
+    #news-announcements .psa-area-sidebar .sc-head h4{color:var(--navy-deep);font-size:11.5px;font-weight:700;white-space:nowrap;margin-right:0;overflow:hidden;text-overflow:ellipsis;}
     #news-announcements .psa-area-sidebar .sc-head .psa-cal-chevron,
-    #news-announcements .psa-area-sidebar .sc-head .psa-events-chevron{display:inline-block;font-size:9px;color:var(--gray-light);transition:.2s;}
+    #news-announcements .psa-area-sidebar .sc-head .psa-events-chevron{display:inline-block;font-size:9px;color:var(--gray-light);transition:.2s;flex-shrink:0;}
     #news-announcements .psa-area-sidebar .sc-head.open .psa-cal-chevron,
     #news-announcements .psa-area-sidebar .sc-head.open .psa-events-chevron{transform:rotate(180deg);}
     #news-announcements .psa-area-sidebar .sc-body{display:none;padding:10px;}
+    /* Anchored dropdown, not a centered modal: opens directly below the pill row it belongs to,
+       same as a normal dropdown would, instead of floating in the middle of the screen. */
     #news-announcements .psa-area-sidebar .sc-body.open{
-      display:block;position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);
-      width:min(320px, calc(100vw - 32px));max-height:70vh;overflow-y:auto;
-      background:#fff;border-radius:16px;box-shadow:0 20px 50px rgba(10,36,83,.3);
+      display:block;position:absolute;top:calc(100% + 8px);left:0;right:0;
+      max-height:60vh;overflow-y:auto;
+      background:#fff;border:1px solid var(--line);border-radius:16px;box-shadow:0 16px 40px rgba(10,36,83,.2);
       z-index:220;
     }
   }
@@ -340,8 +362,8 @@
      background/border/clipping so only the toggle button and the calendar itself (with its normal
      border/shadow/rounded corners, same as the calendar popovers on the other two tabs) show, with
      no extra white box wrapping the pair. */
-  .psa-area-sidebar .sidebar-card:first-child{background:none;border:none;box-shadow:none;border-radius:0;overflow:visible;}
-  .psa-area-sidebar .sidebar-card:first-child .sc-body{padding:0;margin-top:10px;}
+  .psa-area-sidebar .sidebar-card:has(> .psa-cal-toggle){background:none;border:none;box-shadow:none;border-radius:0;overflow:visible;}
+  .psa-area-sidebar .sidebar-card:has(> .psa-cal-toggle) .sc-body{padding:0;margin-top:10px;}
   .psa-cal-toggle{cursor:pointer;user-select:none;}
   .psa-cal-toggle h4{margin-right:auto;}
   .psa-cal-toggle .psa-date-clear{color:#cfe0ff;font-size:15px;font-weight:700;line-height:1;padding:2px 4px;}
@@ -362,13 +384,15 @@
 
   /* ===== Weather Report tab ===== */
   .weather-hero{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px 16px;margin:2px 0 24px;}
-  .weather-date-picker{position:relative;}
+  .weather-date-picker{position:relative;margin-left:auto;}
   .weather-date-btn{display:flex;align-items:center;gap:10px;background:#fff;border:1.5px solid var(--line);padding:10px 18px;border-radius:24px;font-size:13px;font-weight:700;color:var(--navy-deep);transition:.2s;}
   .weather-date-btn i.fa-calendar-days{color:var(--blue);}
   .weather-date-btn i.fa-chevron-down{font-size:10px;color:var(--gray-light);transition:.2s;}
   .weather-date-btn:hover{border-color:var(--blue);color:var(--blue);}
   .weather-date-btn.open i.fa-chevron-down{transform:rotate(180deg);}
-  .weather-cal-popover{position:fixed;z-index:220;width:min(320px, calc(100vw - 24px));max-height:80vh;overflow-y:auto;display:none;}
+  /* Anchored dropdown directly below its button — same pattern as Announcements' Browse Calendar
+     card, for a consistent feel across all three calendar triggers on the site. */
+  .weather-cal-popover{position:absolute;top:calc(100% + 8px);right:0;z-index:220;width:min(320px, calc(100vw - 24px));max-height:80vh;overflow-y:auto;display:none;}
   .weather-cal-popover.open{display:block;animation:fadein .2s ease;}
   /* Cards distributed evenly across the page, icon+status on the left, details on the right */
   .advisory-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:32px;margin-bottom:34px;}
@@ -482,6 +506,7 @@
   .official-featured-top .featured-meta{display:flex;flex-wrap:wrap;gap:12px;}
   .official-featured-top .featured-meta span{display:inline-flex;align-items:center;gap:8px;font-size:13.5px;font-weight:600;color:var(--navy);background:#fff;border:1px solid var(--line);padding:9px 16px;border-radius:20px;}
   .official-featured-top .featured-meta span i{color:var(--blue);font-size:13px;}
+  @media(max-width:600px){.official-featured-top .featured-meta{flex-direction:column;}.official-featured-top .featured-meta span{width:100%;border-radius:12px;}}
   .official-featured-top .featured-chevron{font-size:22px;color:var(--gray-light);transition:.2s;flex-shrink:0;margin-top:6px;}
   .official-featured-top .featured-chevron.rotated{transform:rotate(180deg);}
   .official-group-divider{border-top:1px solid var(--line);padding-top:16px;margin-bottom:20px;}
@@ -500,8 +525,8 @@
   .official-subpanel.active{display:block;}
   .official-group-grid .official-card .info{padding:10px 8px 14px;}
   .official-group-grid .official-card h4{font-size:14px;font-weight:700;margin-bottom:0;line-height:1.3;}
-  @media(max-width:900px){.official-group-grid{grid-template-columns:repeat(3,1fr);}.official-featured-top{flex-wrap:wrap;padding:28px;}.official-featured-top .featured-photo{width:100%;max-width:340px;height:280px;}}
-  @media(max-width:480px){.official-featured-top{padding:20px;gap:20px;}.official-featured-top .featured-photo{height:220px;}.official-featured-top h3{font-size:28px;}.official-featured-top .featured-pos{font-size:16px;}}
+  @media(max-width:900px){.official-group-grid{grid-template-columns:repeat(3,1fr);}.official-featured-top{flex-wrap:wrap;padding:28px;}.official-featured-top .featured-photo{width:100%;max-width:none;height:420px;}.official-featured-top .featured-chevron-wrap{width:100%;flex-direction:row;justify-content:flex-start;gap:10px;margin-top:4px;}.official-featured-top .featured-chevron-label{max-width:none;text-align:left;}}
+  @media(max-width:480px){.official-featured-top{padding:20px;gap:20px;}.official-featured-top .featured-photo{height:380px;}.official-featured-top h3{font-size:28px;}.official-featured-top .featured-pos{font-size:16px;}}
   @media(max-width:520px){.official-group-grid{grid-template-columns:repeat(2,1fr);gap:12px;}}
 
   /* ===== Council layout: sidebar Vice Mayor + district-tabbed councilors ===== */
@@ -594,7 +619,9 @@
   .tourism-modal-gallery img{width:100%;height:100px;object-fit:cover;border-radius:12px;cursor:pointer;transition:.2s;border:2px solid transparent;}
   .tourism-modal-gallery img:hover{opacity:.85;transform:translateY(-2px);}
   .tourism-modal-gallery img.active{border-color:var(--blue);}
-  .tourism-modal-actions{display:flex;gap:12px;flex-wrap:wrap;}
+  .tourism-modal-actions{display:flex;gap:12px;}
+  .tourism-modal-actions .btn{flex:1;justify-content:center;}
+  @media(max-width:420px){.tourism-modal-actions{gap:8px;}.tourism-modal-actions .btn{padding:9px 8px;font-size:12px;gap:6px;}}
   .tourism-modal-close{position:absolute;top:16px;right:16px;z-index:5;width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,.92);color:var(--navy-deep);display:flex;align-items:center;justify-content:center;font-size:16px;}
   .tourism-modal-close:hover{background:#fff;}
   @media(max-width:640px){.tourism-modal-hero{height:240px;padding:24px;}.tourism-modal-hero h3{font-size:24px;}.tourism-modal-content{padding:22px 22px 26px;}.tourism-modal-gallery img{height:80px;}}
@@ -904,7 +931,7 @@
           <h1>Serbisyong Tapat,<br>Manileño, <br>Boom! <br>Tarat Tarat!</h1>
           <p>The City Government of Manila is committed to delivering excellent, transparent, and accessible public service for every Manileño — anytime, anywhere.</p>
           <div class="hero-actions">
-            <a class="btn btn-primary" href="#" onclick="goTo('programs');return false;">Explore Services <i class="fa-solid fa-arrow-right"></i></a>
+            <a class="btn btn-primary" href="#" onclick="goTo('programs','cityservices');return false;">Explore Services <i class="fa-solid fa-arrow-right"></i></a>
             <a class="btn btn-outline" href="#" onclick="goTo('news','announcements');return false;">View Announcements <i class="fa-solid fa-bullhorn"></i></a>
           </div>
         </div>
@@ -958,7 +985,7 @@
 
   <div class="section" style="background:var(--sky);padding-top:60px;">
     <div class="container">
-      <div class="section-head"><h2>Programs &amp; Services</h2><a class="link-arrow" href="#" onclick="goTo('programs');return false;">See All Programs <i class="fa-solid fa-arrow-right"></i></a></div>
+      <div class="section-head"><h2>Programs &amp; Services</h2><a class="link-arrow" href="#" onclick="goTo('programs','cityprograms');return false;">See All Programs <i class="fa-solid fa-arrow-right"></i></a></div>
       <div class="grid-4" id="home-programs-cards"></div>
     </div>
   </div>
@@ -1235,7 +1262,7 @@
       <div class="news-layout psa-layout">
         <div class="news-section psa-area-header">
           <span class="eyebrow">Advisories</span>
-          <div style="display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:16px;margin-bottom:24px;">
+          <div style="display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:16px;margin-bottom:14px;">
             <h2 style="font-size:22px;margin:0;">Public Service Announcements</h2>
             <div class="psa-filters">
               <div class="psa-cat-filters" id="psa-filters" style="display:flex;gap:8px;flex-wrap:wrap;"></div>
@@ -1243,6 +1270,10 @@
           </div>
         </div>
         <div class="news-sidebar psa-area-sidebar">
+          <div class="sidebar-card">
+            <div class="sc-head psa-events-toggle" id="psaEventsToggle" onclick="togglePsaEventsPopover()"><i class="fa-solid fa-calendar-day"></i><h4>Upcoming Events</h4><i class="fa-solid fa-chevron-down psa-events-chevron"></i></div>
+            <div class="sc-body" id="cal-events-list-psa"></div>
+          </div>
           <div class="sidebar-card">
             <div class="sc-head psa-cal-toggle" id="psaCalToggle" onclick="togglePsaCalInline()">
               <i class="fa-solid fa-calendar-days"></i>
@@ -1256,10 +1287,6 @@
                 <div class="cal-body"><div class="cal-grid" id="cal-grid-psa"></div></div>
               </div>
             </div>
-          </div>
-          <div class="sidebar-card">
-            <div class="sc-head psa-events-toggle" id="psaEventsToggle" onclick="togglePsaEventsPopover()"><i class="fa-solid fa-calendar-day"></i><h4>Upcoming Events</h4><i class="fa-solid fa-chevron-down psa-events-chevron"></i></div>
-            <div class="sc-body" id="cal-events-list-psa"></div>
           </div>
         </div>
         <div class="grid-3 psa-area-grid" id="psa-grid"></div>
@@ -1864,75 +1891,9 @@ document.getElementById('cal-grid-psa').addEventListener('click', e=>{
   renderPSAGrid();
   closePsaCalInline();
 });
-/* Anchors a calendar popover to its trigger button: opens below if there's room, flips above
-   if there isn't (and there's more room above), and never runs off the left/right edges — or
-   over a sidebar card sitting next to it (e.g. Announcements' "Upcoming Events" panel). */
-function positionSmartPopover(pop, btn){
-  if(!pop || !btn) return;
-  const margin = 16;
-  const btnRect = btn.getBoundingClientRect();
-  const popRect = pop.getBoundingClientRect();
-  const vw = window.innerWidth, vh = window.innerHeight;
-  const spaceBelow = vh - btnRect.bottom, spaceAbove = btnRect.top;
-  let top;
-  if(spaceBelow >= popRect.height + margin || spaceBelow >= spaceAbove){
-    top = Math.min(btnRect.bottom + margin, vh - margin - popRect.height);
-  } else {
-    top = btnRect.top - popRect.height - margin;
-  }
-  top = Math.max(margin, top);
-  /* Try centering under the button first. If that would overflow either edge of the viewport,
-     align the popover's edge to the button's matching edge instead of clamping to the raw
-     viewport edge — clamping is what pushed the popover flush against the browser edge for
-     buttons that sit near the right side of the page (Announcements' date filter, Weather
-     Report's date button), leaving almost no breathing room. */
-  let left = btnRect.left + btnRect.width/2 - popRect.width/2;
-  let rightBound = vw - margin;
-  const sidebar = document.querySelector('.news-sidebar');
-  if(sidebar){
-    const sbRect = sidebar.getBoundingClientRect();
-    /* Only treat the sidebar as a boundary when it's actually sitting beside the button in a
-       two-column row (sidebar's vertical range overlaps the button's) — on narrow screens the
-       layout stacks the sidebar below the content instead, so there's nothing to avoid there. */
-    const sameRow = sbRect.width > 0 && sbRect.top < btnRect.bottom && sbRect.bottom > btnRect.top && sbRect.left >= btnRect.left;
-    if(sameRow) rightBound = Math.min(rightBound, sbRect.left - margin);
-  }
-  if(left + popRect.width > rightBound) left = btnRect.right - popRect.width;
-  if(left < margin) left = btnRect.left;
-  left = Math.max(margin, Math.min(left, rightBound - popRect.width));
-  pop.style.top = top + 'px';
-  pop.style.left = left + 'px';
-}
-window.addEventListener('resize', ()=>{
-  document.querySelectorAll('.weather-cal-popover.open').forEach(pop=>{
-    const btn = pop.closest('.weather-date-picker')?.querySelector('.weather-date-btn');
-    if(btn) positionSmartPopover(pop, btn);
-  });
-});
-/* These popovers are position:fixed so they stay put on screen while the page scrolls underneath —
-   which leaves them visually stranded away from the button that opened them. Simplest fix: close
-   them as soon as any scrolling happens, same as a native <select> dropdown would. Capture:true so
-   this also catches scrolling inside nested scrollable containers (modals, etc.), which don't bubble.
-   suppressPopoverScrollClose guards against the scroll we trigger ourselves (scrollIntoView) when
-   opening a popover — without it, that programmatic scroll would immediately close the popover it
-   was meant to bring into view. */
-let suppressPopoverScrollClose = false;
-window.addEventListener('scroll', ()=>{
-  if(suppressPopoverScrollClose) return;
-  document.querySelectorAll('.weather-cal-popover.open').forEach(pop=>{
-    pop.classList.remove('open');
-    const btn = pop.closest('.weather-date-picker')?.querySelector('.weather-date-btn');
-    if(btn) btn.classList.remove('open');
-  });
-}, true);
-function openPopoverNearButton(pop, btn){
-  suppressPopoverScrollClose = true;
-  btn.scrollIntoView({block:'center', behavior:'instant'});
-  pop.classList.add('open');
-  btn.classList.add('open');
-  positionSmartPopover(pop, btn);
-  setTimeout(()=>{ suppressPopoverScrollClose = false; }, 200);
-}
+/* Popovers are now anchored via CSS (position:absolute, relative to their .weather-date-picker
+   trigger) instead of JS-computed position:fixed coordinates — they scroll naturally with the
+   page like any normal dropdown, so no scroll-close or resize-reposition logic is needed. */
 function togglePsaCalInline(){
   const opening = !document.getElementById('psaCalToggle').classList.contains('open');
   closePsaEventsPopover();
@@ -1970,12 +1931,8 @@ renderPSAGrid();
 function toggleNewsCalPopover(){
   const pop = document.getElementById('newsCalPopover'), btn = document.getElementById('newsDateBtn');
   const opening = !pop.classList.contains('open');
-  if(opening){
-    openPopoverNearButton(pop, btn);
-  } else {
-    pop.classList.remove('open');
-    btn.classList.remove('open');
-  }
+  pop.classList.toggle('open', opening);
+  btn.classList.toggle('open', opening);
 }
 function closeNewsCalPopover(){
   document.getElementById('newsCalPopover').classList.remove('open');
@@ -2101,7 +2058,6 @@ function renderProgSvcCards(){
 function svcsCard(p,i){
   return `<div class="card clickable-card" onclick="openServiceCategoryModal(${i})"><div class="body" style="text-align:center;padding-top:26px;"><div style="width:52px;height:52px;border-radius:50%;background:var(--sky);display:flex;align-items:center;justify-content:center;margin:0 auto 14px;color:var(--blue);font-size:20px;"><i class="fa-solid ${p.icon}"></i></div><h4>${p.title}</h4><p>${p.desc}</p><a class="link-arrow" href="#" onclick="return false;" style="margin-top:10px;justify-content:center;">Learn More <i class="fa-solid fa-arrow-right"></i></a></div></div>`;
 }
-document.getElementById('home-programs-cards').innerHTML = servicesData.slice(0,4).map(svcsCard).join('');
 renderProgSvcCards();
 
 /* ---- Programs & Services overlay (same open/close pattern as the Tourism modal) ---- */
@@ -2444,7 +2400,7 @@ function renderFeaturedOfficial(key){
     groups.get(cat).push(o);
   });
   const cats = [...groups.keys()];
-  let tabsHtml = '<div class="official-subtabs">' + cats.map((cat,i)=>{
+  let tabsHtml = '<span class="council-section-label">Department Heads by Category</span><div class="official-subtabs">' + cats.map((cat,i)=>{
     const icon = officialCatIcons[cat] || 'fa-user-group';
     return `<button class="${i===0?'active':''}" data-cat="${cat}"><i class="fa-solid ${icon}"></i> ${cat}</button>`;
   }).join('') + '</div>';
@@ -2621,7 +2577,7 @@ function openTourismModal(i){
   const galleryWrap = document.getElementById('tourism-modal-gallery-wrap');
   if(gallery.length > 1){
     galleryWrap.style.display = '';
-    document.getElementById('tourism-modal-gallery').innerHTML = gallery.map((g,gi)=>`<img src="${g}" alt="${t.title} photo ${gi+1}" class="${gi===0?'active':''}" style="object-position:${imgPos(g)};" onclick="setTourismHero('${g}');document.querySelectorAll('#tourism-modal-gallery img').forEach(im=>im.classList.remove('active'));this.classList.add('active');">`).join('');
+    document.getElementById('tourism-modal-gallery').innerHTML = gallery.map((g,gi)=>`<img src="${g}" alt="${t.title} photo ${gi+1}" class="${gi===0?'active':''}" style="object-position:${imgPos(g)};" onerror="this.remove();" onclick="setTourismHero('${g}');document.querySelectorAll('#tourism-modal-gallery img').forEach(im=>im.classList.remove('active'));this.classList.add('active');">`).join('');
   } else {
     galleryWrap.style.display = 'none';
   }
@@ -2784,6 +2740,11 @@ const newsCal = makeCalendar({
   dayClassFn:eventDayClass, onRender:(m,y)=>{ renderEventsListInto('cal-events-list-psa',m,y); }
 });
 newsCal.render();
+document.getElementById('cal-grid-news').addEventListener('click', e=>{
+  const el = e.target.closest('.day[data-day]');
+  if(!el) return;
+  closeNewsCalPopover();
+});
 
 /* ---- Weather & Hazard Report (Weather Report tab + Home widget) ---- */
 // Unified severity labels + ranking (rank is used only to pick the single "worst" badge for a day).
@@ -2928,12 +2889,8 @@ document.getElementById('cal-grid-weather').addEventListener('click', e=>{
 function toggleWeatherCalPopover(){
   const pop = document.getElementById('weatherCalPopover'), btn = document.getElementById('weatherDateBtn');
   const opening = !pop.classList.contains('open');
-  if(opening){
-    openPopoverNearButton(pop, btn);
-  } else {
-    pop.classList.remove('open');
-    btn.classList.remove('open');
-  }
+  pop.classList.toggle('open', opening);
+  btn.classList.toggle('open', opening);
 }
 function closeWeatherCalPopover(){
   document.getElementById('weatherCalPopover').classList.remove('open');
@@ -2955,9 +2912,11 @@ function goToWeatherReportTab(){
 
 // Icon-only, color-coded circles — used on the Home hero widget. No labels/status/description
 // shown directly; a native tooltip (title) carries the detail on hover, and tapping jumps to
-// the Weather Report tab for the full write-up.
+// the Weather Report tab for the full write-up. Grey ("no incident") entries are skipped here —
+// flood/fire/earthquake only earn a spot on the home screen when something's actually going on;
+// the full Weather Report tab still lists all of them regardless of level.
 function heroWeatherIconsHtml(dayData){
-  return advisoryTypes.map(t=>{
+  return advisoryTypes.filter(t=>t.render(dayData).level!=='grey').map(t=>{
     const r = t.render(dayData);
     const tip = `${t.label}: ${r.value}`.replace(/"/g,'&quot;');
     return `<div class="hw-icon adv-${r.level}" onclick="goToWeatherReportTab()" tabindex="0" role="button" title="${tip}" aria-label="${tip}"><i class="fa-solid ${t.icon}"></i></div>`;
