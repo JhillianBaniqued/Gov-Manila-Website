@@ -220,6 +220,14 @@
   .tl-item p{font-size:13.5px;color:var(--gray);}
 
   /* ===== Offices ===== */
+  .fieldmap-search{margin-bottom:18px;position:relative;}
+  .fieldmap-search input{padding-right:8px;}
+  .fieldmap-search-clear{display:none;flex-shrink:0;width:22px;height:22px;border-radius:50%;background:var(--line);color:var(--gray);align-items:center;justify-content:center;font-size:11px;}
+  .fieldmap-search-clear:hover{background:var(--gray-light);color:#fff;}
+  .fieldmap-search.has-query .fieldmap-search-clear{display:flex;}
+  .fieldmap-search-status{font-size:13px;color:var(--gray);margin:-10px 0 18px;display:none;}
+  .fieldmap-search-status.show{display:block;}
+  .office-row .cat-pill{display:inline-block;margin-left:8px;padding:2px 9px;border-radius:20px;font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.4px;background:var(--sky2);color:var(--navy);vertical-align:middle;}
   .office-cat-tabs{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:28px;}
   .office-cat-tabs button{padding:9px 18px;border-radius:20px;border:1.5px solid var(--line);font-size:13px;font-weight:600;color:var(--gray);}
   .office-cat-tabs button.active{background:var(--navy-deep);border-color:var(--navy-deep);color:#fff;}
@@ -246,6 +254,7 @@
   .map-panel iframe{width:100%;height:100%;border:0;}
   .map-close{position:absolute;top:12px;right:12px;z-index:5;width:34px;height:34px;border-radius:50%;background:#fff;color:var(--navy-deep);box-shadow:0 4px 12px rgba(10,36,83,.2);display:flex;align-items:center;justify-content:center;font-size:14px;}
   .map-close:hover{background:var(--navy-deep);color:#fff;}
+  .fieldmap-empty{padding:34px 18px;text-align:center;color:var(--gray);font-size:14px;background:var(--sky);border-radius:12px;border:1px dashed var(--line);}
   .office-row{display:flex;gap:16px;background:#fff;border:1px solid var(--line);border-radius:12px;padding:16px;align-items:flex-start;}
   .office-row .pin{width:40px;height:40px;border-radius:10px;background:var(--sky);color:var(--blue);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
   .office-row h4{font-size:14px;margin-bottom:4px;}
@@ -496,9 +505,16 @@
   .official-featured{margin-bottom:12px;}
   .featured-chevron-wrap{display:flex;flex-direction:column;align-items:center;gap:8px;flex-shrink:0;margin-top:6px;}
   .featured-chevron-label{font-size:10.5px;font-weight:700;color:var(--gray);text-transform:uppercase;letter-spacing:.5px;text-align:center;max-width:80px;}
-  .official-featured-top{display:flex;align-items:flex-start;gap:38px;padding:44px 46px;cursor:pointer;background:linear-gradient(135deg,var(--sky) 0%,#fff 65%);border:1px solid var(--line);border-radius:20px;box-shadow:var(--shadow);margin-bottom:26px;}
-  .official-featured-top .featured-photo{width:340px;height:340px;border-radius:18px;object-fit:cover;background:#fff;flex-shrink:0;border:1px solid var(--line);box-shadow:0 10px 26px -10px rgba(10,36,83,0.3);}
-  .official-featured-top .featured-info{flex:1;padding-top:4px;}
+  .official-featured-top{display:flex;align-items:flex-start;gap:38px;padding:44px 46px;background:linear-gradient(135deg,var(--sky) 0%,#fff 65%);border:1px solid var(--line);border-radius:20px;box-shadow:var(--shadow);margin-bottom:26px;cursor:pointer;}
+  .featured-clickable{display:flex;align-items:flex-start;gap:38px;flex:1;min-width:0;}
+  .featured-clickable .featured-photo{cursor:pointer;}
+  .featured-clickable:hover .featured-photo{box-shadow:0 14px 32px -10px rgba(10,36,83,0.4);}
+  .view-profile-hint{cursor:pointer;margin-top:24px;display:inline-flex;align-items:center;gap:8px;padding:11px 22px;border:1.5px solid var(--blue);border-radius:24px;font-weight:700;transition:.2s;}
+  .view-profile-hint:hover{background:var(--blue);color:#fff;}
+  .view-profile-hint i{transition:.2s;}
+  .view-profile-hint:hover i{transform:translateX(3px);color:#fff;}
+  .official-featured-top .featured-photo{width:340px;height:340px;border-radius:18px;object-fit:cover;background:#fff;flex-shrink:0;border:1px solid var(--line);box-shadow:0 10px 26px -10px rgba(10,36,83,0.3);transition:.2s;}
+  .official-featured-top .featured-info{flex:1;padding-top:4px;min-width:0;}
   .official-featured-top .featured-label{display:block;font-size:15px;font-weight:700;color:var(--blue);text-transform:uppercase;letter-spacing:1.8px;margin-bottom:12px;}
   .official-featured-top h3{font-size:42px;font-weight:800;margin-bottom:10px;line-height:1.15;}
   .official-featured-top .featured-pos{font-size:19px;color:var(--blue);font-weight:600;margin-bottom:18px;}
@@ -506,7 +522,9 @@
   .official-featured-top .featured-meta{display:flex;flex-wrap:wrap;gap:12px;}
   .official-featured-top .featured-meta span{display:inline-flex;align-items:center;gap:8px;font-size:13.5px;font-weight:600;color:var(--navy);background:#fff;border:1px solid var(--line);padding:9px 16px;border-radius:20px;}
   .official-featured-top .featured-meta span i{color:var(--blue);font-size:13px;}
+  .official-featured-top .featured-meta span svg{color:var(--blue);width:14px;height:14px;flex-shrink:0;}
   @media(max-width:600px){.official-featured-top .featured-meta{flex-direction:column;}.official-featured-top .featured-meta span{width:100%;border-radius:12px;}}
+  .featured-chevron-wrap{cursor:pointer;}
   .official-featured-top .featured-chevron{font-size:22px;color:var(--gray-light);transition:.2s;flex-shrink:0;margin-top:6px;}
   .official-featured-top .featured-chevron.rotated{transform:rotate(180deg);}
   .official-group-divider{border-top:1px solid var(--line);padding-top:16px;margin-bottom:20px;}
@@ -525,7 +543,7 @@
   .official-subpanel.active{display:block;}
   .official-group-grid .official-card .info{padding:10px 8px 14px;}
   .official-group-grid .official-card h4{font-size:14px;font-weight:700;margin-bottom:0;line-height:1.3;}
-  @media(max-width:900px){.official-group-grid{grid-template-columns:repeat(3,1fr);}.official-featured-top{flex-wrap:wrap;padding:28px;}.official-featured-top .featured-photo{width:100%;max-width:none;height:420px;}.official-featured-top .featured-chevron-wrap{width:100%;flex-direction:row;justify-content:flex-start;gap:10px;margin-top:4px;}.official-featured-top .featured-chevron-label{max-width:none;text-align:left;}}
+  @media(max-width:900px){.official-group-grid{grid-template-columns:repeat(3,1fr);}.official-featured-top{flex-wrap:wrap;padding:28px;}.featured-clickable{width:100%;flex-wrap:wrap;gap:20px;}.official-featured-top .featured-photo{width:100%;max-width:none;height:420px;}.official-featured-top .featured-chevron-wrap{width:100%;flex-direction:row;justify-content:flex-start;gap:10px;margin-top:4px;}.official-featured-top .featured-chevron-label{max-width:none;text-align:left;}}
   @media(max-width:480px){.official-featured-top{padding:20px;gap:20px;}.official-featured-top .featured-photo{height:380px;}.official-featured-top h3{font-size:28px;}.official-featured-top .featured-pos{font-size:16px;}}
   @media(max-width:520px){.official-group-grid{grid-template-columns:repeat(2,1fr);gap:12px;}}
 
@@ -549,7 +567,7 @@
   .officials-select select{border:1.5px solid var(--line);border-radius:24px;padding:10px 18px;font-size:13.5px;font-weight:600;color:var(--navy);background:#fff;font-family:inherit;cursor:pointer;}
   .official-card{background:#fff;border:1px solid var(--line);border-radius:16px;overflow:hidden;text-align:center;transition:.2s;}
   .official-card:hover{box-shadow:var(--shadow);transform:translateY(-3px);}
-  .official-card .photo{width:100%;aspect-ratio:1/1;object-fit:cover;background:var(--sky);}
+  .official-card .photo{width:100%;aspect-ratio:1/1;object-fit:cover;background:#fff;}
   .official-card .info{padding:14px 12px 18px;}
   .official-card h4{font-size:14px;margin-bottom:4px;line-height:1.3;}
   .official-card p{font-size:12px;color:var(--blue);font-weight:600;letter-spacing:.2px;}
@@ -719,24 +737,33 @@
   .official-modal-photo-label{position:static;flex-shrink:0;background:var(--navy-deep);padding:18px 22px 20px;}
   .official-modal-photo-label h3{color:#fff;font-size:18px;font-weight:800;line-height:1.3;margin-bottom:4px;}
   .official-modal-photo-label p{color:var(--gold);font-size:12.5px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;}
-  .official-modal-main{flex:1;min-width:320px;padding:64px 56px 38px 34px;display:flex;flex-direction:column;overflow-y:auto;overflow-x:hidden;max-height:100%;scrollbar-gutter:stable;}
-  .official-modal-tabs{display:flex;gap:8px;margin-bottom:26px;flex-wrap:wrap;}
+  .official-modal-main{flex:1;min-width:320px;padding:34px 40px 38px 34px;display:flex;flex-direction:column;overflow-y:auto;overflow-x:hidden;max-height:100%;scrollbar-gutter:stable;}
+  .official-modal-tabs{display:flex;gap:8px;margin-bottom:24px;flex-wrap:wrap;padding-right:44px;}
   .official-modal-tabs button{padding:11px 14px;border-radius:8px;border:1px solid var(--line);font-size:12.5px;font-weight:700;color:var(--gray);letter-spacing:.2px;transition:.2s;text-transform:uppercase;white-space:nowrap;flex-shrink:0;}
   .official-modal-tabs button:hover{border-color:var(--blue);color:var(--blue);}
   .official-modal-tabs button.active{background:var(--sky2);border-color:var(--sky2);color:var(--blue);}
+  .official-modal-quickfacts{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;background:var(--sky);border:1px solid var(--sky2);border-radius:14px;padding:16px 18px;margin-bottom:26px;}
+  .oqf-item{display:flex;align-items:flex-start;gap:10px;min-width:0;}
+  .oqf-item i{width:30px;height:30px;border-radius:9px;background:#fff;color:var(--blue);display:flex;align-items:center;justify-content:center;font-size:12.5px;flex-shrink:0;box-shadow:0 2px 6px rgba(10,36,83,.1);}
+  .oqf-item i svg{width:15px;height:15px;}
+  .oqf-item div{min-width:0;}
+  .oqf-item span{display:block;font-size:10.5px;font-weight:700;color:var(--gray-light);text-transform:uppercase;letter-spacing:.5px;margin-bottom:2px;}
+  .oqf-item strong{display:block;font-size:13px;font-weight:600;color:var(--navy-deep);line-height:1.4;overflow-wrap:break-word;}
   .official-modal-section{margin-bottom:26px;}
   .official-modal-section:last-child{margin-bottom:0;}
   .official-modal-section h4{font-size:13px;font-weight:800;color:var(--navy-deep);text-transform:uppercase;letter-spacing:.5px;margin-bottom:14px;}
   .official-modal-section ul{padding-left:20px;}
   .official-modal-section li{font-size:14px;color:var(--gray);line-height:1.8;}
-  .official-modal-section p{font-size:14px;color:var(--gray);line-height:1.7;}
+  .official-modal-section p{font-size:14px;color:var(--gray);line-height:1.7;margin-bottom:12px;}
+  .official-modal-section p:last-child{margin-bottom:0;}
   .official-modal-edu-row{display:grid;grid-template-columns:100px 130px 1fr;gap:14px;font-size:13.5px;color:var(--gray);padding:10px 0;border-bottom:1px solid var(--line);}
   .official-modal-edu-row.single{display:block;}
   .official-modal-edu-row:last-child{border-bottom:none;}
   .official-modal-edu-row .lvl{font-weight:700;color:var(--navy-deep);}
   .official-modal-section a.link-arrow{font-size:13.5px;word-break:break-all;}
-  @media(max-width:860px){.official-modal-card{height:auto;max-height:92vh;overflow-y:auto;}.official-modal-photo{width:100%;background:var(--sky);border-right:none;border-bottom:1px solid var(--line);}.official-modal-photo img{flex:none;height:320px;min-height:320px;object-fit:contain;background:var(--sky);}.official-modal-main{padding:56px 22px 30px;max-height:none;overflow-y:visible;}.official-modal-edu-row{grid-template-columns:1fr;gap:2px;}}
-  @media(max-width:480px){.official-modal{padding:16px 10px;}.official-modal-photo img{height:260px;min-height:260px;}.official-modal-tabs button{font-size:11.5px;padding:10px 10px;}}
+  .official-modal-empty{font-size:14px;color:var(--gray-light);font-style:italic;}
+  @media(max-width:860px){.official-modal-card{height:auto;max-height:92vh;overflow-y:auto;}.official-modal-photo{width:100%;background:var(--sky);border-right:none;border-bottom:1px solid var(--line);}.official-modal-photo img{flex:none;height:320px;min-height:320px;object-fit:contain;background:var(--sky);}.official-modal-main{padding:28px 22px 30px;max-height:none;overflow-y:visible;}.official-modal-tabs{padding-right:0;}.official-modal-edu-row{grid-template-columns:1fr;gap:2px;}}
+  @media(max-width:480px){.official-modal{padding:16px 10px;}.official-modal-photo img{height:260px;min-height:260px;}.official-modal-tabs button{font-size:11.5px;padding:10px 10px;}.official-modal-quickfacts{grid-template-columns:1fr 1fr;}}
 
   /* ===== News & Announcements: article detail overlay (shared by News cards + PSA cards) ===== */
   .article-modal{position:fixed;inset:0;background:rgba(8,16,40,.75);display:none;align-items:flex-start;justify-content:center;z-index:550;padding:40px 24px;overflow-y:auto;}
@@ -860,6 +887,13 @@
     .tourism-tabs button:first-child{grid-column:1/-1;width:auto;justify-self:center;}
     .quicklinks ul{grid-template-columns:1fr;}
     .quicklinks a{justify-content:center;text-align:center;gap:10px;}
+    .fieldmap-search{padding:9px 14px;border-radius:16px;}
+    .fieldmap-search input{font-size:13px;}
+    .fieldmap-search-status{font-size:12.5px;}
+    .office-row{padding:13px;gap:12px;}
+    .office-row .pin{width:34px;height:34px;font-size:13px;}
+    .office-row h4{font-size:13.5px;display:flex;flex-wrap:wrap;align-items:center;gap:6px;}
+    .office-row .cat-pill{margin-left:0;}
   }
 </style>
 </head>
@@ -1070,44 +1104,50 @@
       <div class="branch-block">
         <span class="eyebrow official-branch-label"><i class="fa-solid fa-landmark"></i> Executive Branch</span>
         <div class="official-featured" id="featured-mayor">
-          <div class="official-featured-top" onclick="toggleOfficialGroup('mayor')">
-            <img class="featured-photo" id="mayor-photo" src="" alt="Mayor">
-            <div class="featured-info">
-              <span class="featured-label">Mayor</span>
-              <h3 id="mayor-name"></h3>
-              <p class="featured-pos" id="mayor-pos"></p>
-              <p class="featured-bio" id="mayor-bio"></p>
-              <div class="featured-meta">
-                <span><i class="fa-solid fa-calendar"></i><span id="mayor-term"></span></span>
-                <span><i class="fa-solid fa-phone"></i><span id="mayor-contact"></span></span>
-                <span><i class="fa-solid fa-building"></i>Padre Burgos Ave, Manila City Hall</span>
+          <div class="official-featured-top">
+            <div class="featured-clickable">
+              <img class="featured-photo" id="mayor-photo" src="" alt="Mayor" onclick="event.stopPropagation();openMayorModal()">
+              <div class="featured-info">
+                <span class="featured-label">Mayor</span>
+                <h3 id="mayor-name"></h3>
+                <p class="featured-pos" id="mayor-pos"></p>
+                <p class="featured-bio" id="mayor-bio"></p>
+                <div class="featured-meta">
+                  <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg><span id="mayor-term"></span></span>
+                  <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"></path></svg><span id="mayor-contact"></span></span>
+                  <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="1"></rect><line x1="9" y1="6" x2="9" y2="6.01"></line><line x1="15" y1="6" x2="15" y2="6.01"></line><line x1="9" y1="10" x2="9" y2="10.01"></line><line x1="15" y1="10" x2="15" y2="10.01"></line><line x1="9" y1="14" x2="9" y2="14.01"></line><line x1="15" y1="14" x2="15" y2="14.01"></line><line x1="9" y1="18" x2="15" y2="18"></line></svg><span id="mayor-address"></span></span>
+                </div>
+                <span class="link-arrow view-profile-hint" onclick="event.stopPropagation();openMayorModal()">View Full Profile <i class="fa-solid fa-arrow-right"></i></span>
               </div>
             </div>
-            <div class="featured-chevron-wrap"><span class="featured-chevron-label">Department Heads</span><i class="fa-solid fa-chevron-down featured-chevron" id="mayor-chevron"></i></div>
+            <div class="featured-chevron-wrap" onclick="toggleOfficialGroup('mayor')"><span class="featured-chevron-label">Department Heads</span><i class="fa-solid fa-chevron-down featured-chevron" id="mayor-chevron"></i></div>
           </div>
-          <div class="official-group-wrap" id="mayor-group-grid"></div>
+          <div class="official-group-wrap" id="mayor-group-grid" onclick="event.stopPropagation()"></div>
         </div>
       </div>
 
       <div class="branch-block">
         <span class="eyebrow official-branch-label"><i class="fa-solid fa-gavel"></i> Legislative Branch &middot; Sanggunian Panlungsod</span>
         <div class="official-featured" id="featured-vicemayor">
-          <div class="official-featured-top" onclick="toggleOfficialGroup('vicemayor')">
-            <img class="featured-photo" id="vicemayor-photo" src="" alt="Vice Mayor">
-            <div class="featured-info">
-              <span class="featured-label">Vice Mayor</span>
-              <h3 id="vicemayor-name"></h3>
-              <p class="featured-pos" id="vicemayor-pos"></p>
-              <p class="featured-bio" id="vicemayor-bio"></p>
-              <div class="featured-meta">
-                <span><i class="fa-solid fa-calendar"></i><span id="vicemayor-term"></span></span>
-                <span><i class="fa-solid fa-phone"></i><span id="vicemayor-contact"></span></span>
-                <span><i class="fa-solid fa-building"></i>Padre Burgos Ave, Manila City Hall</span>
+          <div class="official-featured-top">
+            <div class="featured-clickable">
+              <img class="featured-photo" id="vicemayor-photo" src="" alt="Vice Mayor" onclick="event.stopPropagation();openVicemayorModal()">
+              <div class="featured-info">
+                <span class="featured-label">Vice Mayor</span>
+                <h3 id="vicemayor-name"></h3>
+                <p class="featured-pos" id="vicemayor-pos"></p>
+                <p class="featured-bio" id="vicemayor-bio"></p>
+                <div class="featured-meta">
+                  <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg><span id="vicemayor-term"></span></span>
+                  <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"></path></svg><span id="vicemayor-contact"></span></span>
+                  <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="1"></rect><line x1="9" y1="6" x2="9" y2="6.01"></line><line x1="15" y1="6" x2="15" y2="6.01"></line><line x1="9" y1="10" x2="9" y2="10.01"></line><line x1="15" y1="10" x2="15" y2="10.01"></line><line x1="9" y1="14" x2="9" y2="14.01"></line><line x1="15" y1="14" x2="15" y2="14.01"></line><line x1="9" y1="18" x2="15" y2="18"></line></svg><span id="vicemayor-address"></span></span>
+                </div>
+                <span class="link-arrow view-profile-hint" onclick="event.stopPropagation();openVicemayorModal()">View Full Profile <i class="fa-solid fa-arrow-right"></i></span>
               </div>
             </div>
-            <div class="featured-chevron-wrap"><span class="featured-chevron-label">Council Members</span><i class="fa-solid fa-chevron-down featured-chevron" id="vicemayor-chevron"></i></div>
+            <div class="featured-chevron-wrap" onclick="toggleOfficialGroup('vicemayor')"><span class="featured-chevron-label">Council Members</span><i class="fa-solid fa-chevron-down featured-chevron" id="vicemayor-chevron"></i></div>
           </div>
-          <div class="official-group-wrap" id="vicemayor-group-grid">
+          <div class="official-group-wrap" id="vicemayor-group-grid" onclick="event.stopPropagation()">
             <span class="council-section-label">Councilors by District</span>
             <div class="district-tabs" id="district-tabs"></div>
             <div class="council-grid" id="district-grid"></div>
@@ -1139,6 +1179,12 @@
     <div class="subpage" id="offices-fieldmap">
       <h2 style="font-size:24px;margin-bottom:8px;">Field Offices &amp; Locational Maps</h2>
       <p style="color:var(--gray);font-size:14px;margin-bottom:22px;">Browse office locations by category, then tap "View on Map" to pin it.</p>
+      <div class="doc-search fieldmap-search" id="fieldmap-search-wrap">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <input type="text" id="fieldmap-search" placeholder="Search field offices, hospitals, schools, barangays..." oninput="handleFieldmapSearch(this.value)">
+        <button type="button" id="fieldmap-search-clear" class="fieldmap-search-clear" aria-label="Clear search" onclick="clearFieldmapSearch()"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <p class="fieldmap-search-status" id="fieldmap-search-status"></p>
       <div class="office-cat-tabs" id="office-cat-tabs">
         <button class="active" data-cat="main">Main Offices</button>
         <button data-cat="field">Field Offices</button>
@@ -2212,11 +2258,15 @@ function closeImgLightbox(){
 let currentOfficialExtra = null;
 function officialExtra(o){
   return {
-    committees: o.committees || ['Committee assignment information not yet available.'],
+    background: o.background || null,
+    committees: o.committees || null,
     education: o.education || [],
     facebook: o.facebook || null,
-    legislative: o.legislative || ['No legislative measures on file yet.'],
-    programs: o.programs || ['No programs, projects, or photos on file yet.']
+    legislative: o.legislative || null,
+    programs: o.programs || null,
+    term: o.term || null,
+    contact: o.contact || null,
+    address: o.address || null
   };
 }
 function openOfficialModal(idx){
@@ -2236,26 +2286,42 @@ function closeOfficialModal(){
   document.getElementById('official-modal').classList.remove('open');
   document.body.style.overflow = '';
 }
+function renderEduRows(education){
+  return education.map(function(ed){
+    if(ed.level || ed.years){
+      return '<div class="official-modal-edu-row"><span class="lvl">'+(ed.level||'')+'</span><span class="yr">'+(ed.years||'')+'</span><span class="sch">'+ed.school+(ed.course?('<br>'+ed.course):'')+'</span></div>';
+    }
+    return '<div class="official-modal-edu-row single"><span class="sch">'+ed.school+(ed.course?('<br>'+ed.course):'')+'</span></div>';
+  }).join('');
+}
 function renderOfficialTab(tab){
   const e = currentOfficialExtra;
   const panel = document.getElementById('official-modal-panel');
   if(!e){ panel.innerHTML = ''; return; }
   if(tab === 'about'){
+    const oqfSvg = {
+      term:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>',
+      contact:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>',
+      address:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="1"></rect><line x1="9" y1="6" x2="9" y2="6.01"></line><line x1="15" y1="6" x2="15" y2="6.01"></line><line x1="9" y1="10" x2="9" y2="10.01"></line><line x1="15" y1="10" x2="15" y2="10.01"></line><line x1="9" y1="14" x2="9" y2="14.01"></line><line x1="15" y1="14" x2="15" y2="14.01"></line><line x1="9" y1="18" x2="15" y2="18"></line></svg>'
+    };
+    const quickFacts = (e.term || e.contact || e.address) ? `
+      <div class="official-modal-quickfacts">
+        ${e.term ? `<div class="oqf-item"><i>${oqfSvg.term}</i><div><span>Term</span><strong>${e.term.replace(/^Term:\s*/,'')}</strong></div></div>` : ''}
+        ${e.contact ? `<div class="oqf-item"><i>${oqfSvg.contact}</i><div><span>Contact</span><strong>${e.contact}</strong></div></div>` : ''}
+        ${e.address ? `<div class="oqf-item"><i>${oqfSvg.address}</i><div><span>Office</span><strong>${e.address}</strong></div></div>` : ''}
+      </div>` : '';
     panel.innerHTML = `
-      <div class="official-modal-section">
-        <h4>Committees Handled</h4>
-        <ul>${e.committees.map(c=>`<li>${c}</li>`).join('')}</ul>
-      </div>
-      <div class="official-modal-section">
-        <h4>Educational Background</h4>
-        ${e.education.length ? e.education.map(ed=>(ed.level||ed.years)?`<div class="official-modal-edu-row"><span class="lvl">${ed.level}</span><span class="yr">${ed.years}</span><span class="sch">${ed.school}${ed.course?`<br>${ed.course}`:''}</span></div>`:`<div class="official-modal-edu-row single"><span class="sch">${ed.school}${ed.course?`<br>${ed.course}`:''}</span></div>`).join('') : '<p>Educational background not yet available.</p>'}
-      </div>
+      ${quickFacts}
+      ${e.background ? `<div class="official-modal-section"><h4>Biography</h4>${e.background.map(p=>`<p>${p}</p>`).join('')}</div>` : ''}
+      ${e.committees ? `<div class="official-modal-section"><h4>Committees Handled</h4><ul>${e.committees.map(c=>`<li>${c}</li>`).join('')}</ul></div>` : ''}
+      ${e.education.length ? `<div class="official-modal-section"><h4>Educational Background</h4>${renderEduRows(e.education)}</div>` : ''}
       ${e.facebook ? `<div class="official-modal-section"><h4>Official Facebook Link</h4><a class="link-arrow" href="${e.facebook}" target="_blank" rel="noopener">${e.facebook} <i class="fa-solid fa-arrow-up-right-from-square"></i></a></div>` : ''}
+      ${(!e.background && !e.committees && !e.education.length) ? `<p class="official-modal-empty">Profile details not yet available.</p>` : ''}
     `;
   } else if(tab === 'legislative'){
-    panel.innerHTML = `<div class="official-modal-section"><h4>Legislative Measures</h4><ul>${e.legislative.map(l=>`<li>${l}</li>`).join('')}</ul></div>`;
+    panel.innerHTML = e.legislative ? `<div class="official-modal-section"><h4>Legislative Measures</h4><ul>${e.legislative.map(l=>`<li>${l}</li>`).join('')}</ul></div>` : `<div class="official-modal-section"><h4>Legislative Measures</h4><p class="official-modal-empty">No legislative measures on file yet.</p></div>`;
   } else {
-    panel.innerHTML = `<div class="official-modal-section"><h4>Programs / Projects / Photos</h4><ul>${e.programs.map(p=>`<li>${p}</li>`).join('')}</ul></div>`;
+    panel.innerHTML = e.programs ? `<div class="official-modal-section"><h4>Programs / Projects / Photos</h4><ul>${e.programs.map(p=>`<li>${p}</li>`).join('')}</ul></div>` : `<div class="official-modal-section"><h4>Programs / Projects / Photos</h4><p class="official-modal-empty">No programs, projects, or photos on file yet.</p></div>`;
   }
 }
 document.getElementById('official-modal-tabs').addEventListener('click', e=>{
@@ -2301,7 +2367,11 @@ document.addEventListener('keydown', e=>{
 /* City Officials */
 const officialsData = {
   mayor:[
-    {name:'HON. FRANCISCO “ISKO” DOMAGOSO',pos:'City Mayor, City Government of Manila',bio:'Leads the executive branch of the City Government of Manila, overseeing all departments and citywide programs on public health, social services, infrastructure, and disaster resilience.',term:'Term: 2025–2028',contact:'(02) 8527-0000',img:'https://cdn.jsdelivr.net/gh/JhillianBaniqued/Gov-Manila-Website@main/images/mayor.jpg'},
+    {name:'HON. FRANCISCO “ISKO” DOMAGOSO',pos:'City Mayor, City Government of Manila',bio:'Leads the executive branch of the City Government of Manila, overseeing all departments and citywide programs on public health, social services, infrastructure, and disaster resilience.',term:'Term: 2025–2028',contact:'(02) 8527-0000',address:'Padre Burgos Ave, Manila City Hall',img:'https://cdn.jsdelivr.net/gh/JhillianBaniqued/Gov-Manila-Website@main/images/mayor.jpg',
+      background:['(born October 24, 1974) – popularly known as “Isko Moreno” and colloquially as Yorme Isko – will comeback as the 29th Mayor of Manila this 30th of June 2025.','Married to Diana Lynn Ditan, they have 5 children including Patrick, Frances, Drake, Franco and Manila’s 1st District Councilor-elect Joaquin Domagoso.','Prior to becoming mayor, Mayor Domagoso was Manila’s vice mayor from 2007 – 2016 and served in Manila’s City Council representing the ancient, densely populated, and economically challenged urban district of Tondo. He was first elected to The Manila City Council in 1998.','Moreno later regained the mayoralty through a landslide victory following the May 12, 2025 elections, garnering 59.02% of the votes.','Manila Mayor-elect Francisco “Isko Moreno” Domagoso took his oath of office as the new mayor of the Capital City before Supreme Court Associate Justice Antonio T. Kho, Jr. on May 19, 2025, at exactly 2:00 P.M. at the Supreme Court En Banc Session Hall in Ermita, Manila.'],
+      facebook:'https://www.facebook.com/iskomorenodomagoso',
+      legislative:['Reviews and approves executive orders and administrative issuances for citywide implementation.','Endorses proposed city ordinances and budget measures to the Sanggunian Panlungsod.'],
+      programs:['Public health and social welfare programs delivered through the City Health Department and City Social Welfare Office.','Infrastructure and traffic decongestion projects coordinated with the City Engineer\'s Office and Manila Traffic & Parking Bureau.','Tourism and heritage revitalization initiatives across Intramuros and Manila\'s historic districts.','Citywide disaster preparedness and public safety coordination.']},
     {name:'Dept. Head',pos:'City Health Department',cat:'Health & Social Services',img:'https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=300&q=80'},
     {name:'Dept. Head',pos:'City Social Welfare Dept.',cat:'Health & Social Services',img:'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=300&q=80'},
     {name:'Dept. Head',pos:"City Treasurer's Office",cat:'Finance & Administration',img:'https://images.unsplash.com/photo-1580489944761-15a19d654956?w=300&q=80'},
@@ -2314,7 +2384,12 @@ const officialsData = {
 
 /* Legislative branch: Vice Mayor sidebar + district-tabbed councilor roster */
 const councilData = {
-  vicemayor:{name:'HON. ANGELA LEI “CHI” ATIENZA',pos:'City Vice Mayor, Presiding Officer of the Sanggunian Panlungsod',bio:'Presides over the City Council and leads the legislative branch of Manila, working with district councilors on city ordinances, budget review, and legislative oversight.',term:'Term: 2025–2028',contact:'(02) 8527-0100',img:'https://cdn.jsdelivr.net/gh/JhillianBaniqued/Gov-Manila-Website@main/images/vice_mayor.jpg'},
+  vicemayor:{name:'HON. ANGELA LEI “CHI” ATIENZA',pos:'City Vice Mayor, Presiding Officer of the Sanggunian Panlungsod',bio:'Presides over the City Council and leads the legislative branch of Manila, working with district councilors on city ordinances, budget review, and legislative oversight.',term:'Term: 2025–2028',contact:'(02) 8527-0100',address:'Padre Burgos Ave, Manila City Hall',img:'https://cdn.jsdelivr.net/gh/JhillianBaniqued/Gov-Manila-Website@main/images/vice_mayor.jpg',
+    background:['(born July 26, 1981) Angela Lei “Chi” Atienza Valdepeñas is a Filipino politician who is the vice mayor-elect of Manila, the capital city of the Philippines, having been elected in 2025. A daughter of former Manila Mayor and Congressman Lito Atienza and Ma. Evelina Ilagan, the younger sister of broadcaster and former councilors Kim, Ali and incumbent councilor Maile. She is a graduate of De La Salle University.','Atienza will begin her term as the 29th vice mayor of Manila on June 30, 2025.'],
+    education:[{level:'',years:'',school:'De La Salle University'}],
+    facebook:'https://www.facebook.com/OVMManila',
+    legislative:['Presides over regular and special sessions of the Sanggunian Panlungsod (City Council).','Reviews proposed city ordinances and resolutions ahead of Council deliberation.','Casts the tie-breaking vote on Council matters when required.','Coordinates legislative priorities with district councilors across Manila\'s six districts.'],
+    programs:['Oversight of Council committee work and legislative calendar across all six districts.','Coordination between the legislative and executive branches on citywide policy matters.']},
   districts:{
     'District I':[
       {name:'HON. JOAQUIN DOMAGOSO',pos:'Councilor, 1st District',img:'https://cdn.jsdelivr.net/gh/JhillianBaniqued/Gov-Manila-Website@main/images/HON.-JDOMAGOSO_2.png',committees:['Committee on Education','Committee on Social Welfare'],education:[{level:'Tertiary',years:'2020-present',school:'Enderun Colleges',course:'Bachelor of Science in Economics'},{level:'Secondary',years:'2018-2020',school:'Southville International School'}],facebook:'https://www.facebook.com/DOMAGOSOJOAQUIN'},
@@ -2393,6 +2468,7 @@ function renderFeaturedOfficial(key){
   document.getElementById(key+'-bio').textContent = head.bio || '';
   document.getElementById(key+'-term').textContent = head.term || '';
   document.getElementById(key+'-contact').textContent = head.contact || '';
+  document.getElementById(key+'-address').textContent = head.address || '';
   const groups = new Map();
   rest.forEach(o=>{
     const cat = o.cat || 'Officials';
@@ -2414,6 +2490,17 @@ function toggleOfficialGroup(key){
   document.getElementById(key+'-group-grid').classList.toggle('collapsed');
   document.getElementById(key+'-chevron').classList.toggle('rotated');
 }
+/* Clicking anywhere on the card's background also expands/collapses the dropdown,
+   so users don't have to hit the chevron precisely. Clicks on the photo/profile
+   area (opens the modal) and inside the expanded content stop propagation above,
+   and clicks on the chevron itself are excluded here to avoid double-toggling. */
+document.querySelectorAll('.official-featured').forEach(card=>{
+  card.addEventListener('click', e=>{
+    if(e.target.closest('.featured-chevron-wrap')) return;
+    const key = card.id.replace('featured-','');
+    toggleOfficialGroup(key);
+  });
+});
 /* Category tab switching inside the officials expand panel (event delegation, since panels are built dynamically) */
 document.addEventListener('click', e=>{
   const btn = e.target.closest('.official-subtabs button');
@@ -2425,6 +2512,8 @@ document.addEventListener('click', e=>{
   wrap.querySelectorAll('.official-subpanel').forEach(p=>p.classList.toggle('active', p.dataset.cat===cat));
 });
 renderFeaturedOfficial('mayor');
+const mayorModalIdx = registerOfficial(officialsData.mayor[0]);
+function openMayorModal(){ openOfficialModal(mayorModalIdx); }
 
 /* Legislative branch: sidebar + district tabs + ex-officio/secretariat sub-switch */
 function councilCard(o){ const idx = registerOfficial(o); return `<div class="official-card" onclick="openOfficialModal(${idx})"><img class="photo" src="${o.img}" alt="${o.name}"><div class="info"><h4>${o.name}</h4></div></div>`; }
@@ -2436,6 +2525,7 @@ function renderVicemayorSidebar(){
   document.getElementById('vicemayor-bio').textContent = v.bio;
   document.getElementById('vicemayor-term').textContent = v.term;
   document.getElementById('vicemayor-contact').textContent = v.contact;
+  document.getElementById('vicemayor-address').textContent = v.address || '';
 }
 function renderDistrictGrid(d){
   document.getElementById('district-grid').innerHTML = councilData.districts[d].map(councilCard).join('');
@@ -2461,6 +2551,8 @@ document.getElementById('council-subswitch').addEventListener('click', e=>{
   btn.classList.add('active');
   renderCouncilSubswitch(btn.dataset.sub);
 });
+const vicemayorModalIdx = registerOfficial(councilData.vicemayor);
+function openVicemayorModal(){ openOfficialModal(vicemayorModalIdx); }
 renderVicemayorSidebar();
 renderDistrictTabs();
 renderCouncilSubswitch('exofficio');
@@ -2475,14 +2567,55 @@ const officeData = {
   high:[{n:'Manila Science High School',a:'Ermita, Manila'},{n:'Araullo High School',a:'Sta. Cruz, Manila'}],
   univ:[{n:'Pamantasan ng Lungsod ng Maynila',a:'Intramuros, Manila'},{n:'Universidad de Manila',a:'Ermita, Manila'}]
 };
-function renderOffices(cat){
-  document.getElementById('office-list').innerHTML = officeData[cat].map(o=>`<div class="office-row"><div class="pin"><i class="fa-solid fa-location-dot"></i></div><div><h4>${o.n}</h4><p>${o.a}</p><a class="link-arrow view-map" href="#" data-name="${o.n}" data-address="${o.a}">View on Map <i class="fa-solid fa-arrow-right"></i></a></div></div>`).join('');
+let activeOfficeCat = 'main';
+function officeRowHTML(o, showCat){
+  const pill = showCat ? `<span class="cat-pill">${officeCatLabels[o.cat]||''}</span>` : '';
+  return `<div class="office-row"><div class="pin"><i class="fa-solid fa-location-dot"></i></div><div><h4>${o.n}${pill}</h4><p>${o.a}</p><a class="link-arrow view-map" href="#" data-name="${o.n}" data-address="${o.a}">View on Map <i class="fa-solid fa-arrow-right"></i></a></div></div>`;
+}
+function attachOfficeMapHandlers(){
   document.getElementById('office-list').querySelectorAll('.view-map').forEach(a=>{
     a.addEventListener('click', e=>{
       e.preventDefault();
       showOfficeOnMap(a.dataset.name, a.dataset.address);
     });
   });
+}
+function renderOffices(cat){
+  activeOfficeCat = cat;
+  document.getElementById('office-list').innerHTML = officeData[cat].map(o=>officeRowHTML(o,false)).join('');
+  attachOfficeMapHandlers();
+}
+function handleFieldmapSearch(query){
+  const wrap = document.getElementById('fieldmap-search-wrap');
+  const status = document.getElementById('fieldmap-search-status');
+  const q = query.trim().toLowerCase();
+  wrap.classList.toggle('has-query', !!query.trim());
+  if(!q){
+    status.classList.remove('show');
+    status.textContent = '';
+    renderOffices(activeOfficeCat);
+    return;
+  }
+  const results = [];
+  Object.keys(officeData).forEach(catKey=>{
+    officeData[catKey].forEach(o=>{
+      if(o.n.toLowerCase().includes(q) || o.a.toLowerCase().includes(q)){
+        results.push(Object.assign({}, o, {cat:catKey}));
+      }
+    });
+  });
+  document.getElementById('office-list').innerHTML = results.length
+    ? results.map(o=>officeRowHTML(o,true)).join('')
+    : '<div class="fieldmap-empty">No field offices, hospitals, schools, or barangay halls match your search.</div>';
+  attachOfficeMapHandlers();
+  status.textContent = `${results.length} result${results.length===1?'':'s'} found for "${query.trim()}" across all categories`;
+  status.classList.add('show');
+}
+function clearFieldmapSearch(){
+  const input = document.getElementById('fieldmap-search');
+  input.value = '';
+  handleFieldmapSearch('');
+  input.focus();
 }
 function showOfficeOnMap(name, address){
   const query = encodeURIComponent(`${name}, ${address}, Manila, Philippines`);
@@ -2509,6 +2642,10 @@ function switchOfficeCat(cat){
   document.getElementById('officeCatDdList').querySelectorAll('button').forEach(x=>x.classList.toggle('active', x.dataset.cat===cat));
   document.getElementById('officeCatDdLabel').textContent = officeCatLabels[cat] || cat;
   closeOfficeCatDd();
+  const searchInput = document.getElementById('fieldmap-search');
+  if(searchInput) searchInput.value = '';
+  document.getElementById('fieldmap-search-wrap').classList.remove('has-query');
+  document.getElementById('fieldmap-search-status').classList.remove('show');
   renderOffices(cat);
 }
 document.getElementById('office-cat-tabs').querySelectorAll('button').forEach(b=>{
