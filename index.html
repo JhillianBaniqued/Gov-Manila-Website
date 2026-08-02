@@ -192,7 +192,6 @@
 
   /* ===== page hero (inner pages) ===== */
   .page-hero{background:linear-gradient(120deg,var(--navy-deep),var(--navy-light));color:#fff;padding:52px 0 40px;position:relative;overflow:hidden;}
-  #page-transparency .section,#page-complaints .section,#page-hotlines .section{padding-top:96px;}
   .page-hero:before{content:"";position:absolute;right:-80px;top:-80px;width:320px;height:320px;border-radius:50%;background:rgba(255,255,255,.05);}
   .page-hero .crumb{font-size:12.5px;color:#a9c0ec;margin-bottom:10px;}
   .page-hero h1{color:#fff;font-size:34px;font-weight:800;}
@@ -802,7 +801,7 @@
   .hotline-card p{font-size:11.5px;color:var(--gray-light);margin-top:2px;}
 
   /* ===== Footer ===== */
-  footer{background:var(--navy-deep);color:#b9c8ea;padding:56px 0 28px;margin-top:20px;}
+  footer{background:var(--navy-deep);color:#b9c8ea;padding:56px 0 28px;}
   .foot-grid{display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:36px;margin-bottom:36px;}
   .foot-col1-split{display:flex;justify-content:space-between;align-items:flex-start;gap:20px;flex-wrap:wrap;}
   .foot-col1-right{display:flex;align-items:center;gap:14px;text-align:left;flex-shrink:0;}
@@ -877,7 +876,7 @@
     .brand .name strong{font-size:15px;}
     .brand .seal{width:38px;height:38px;}
     .hero-grid h1{font-size:32px;}
-    .container{padding:0 16px;}
+    .container{padding-left:16px;padding-right:16px;}
     .chat-fab{padding:12px 16px 12px 14px;}
     .chat-panel{width:calc(100vw - 32px);right:16px;}
     .tabnav{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;max-width:100%;width:100%;margin:16px auto 28px;}
@@ -1284,7 +1283,7 @@
     <div class="subpage active" id="news-latest">
       <div class="news-section">
         <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px 16px;margin-bottom:20px;">
-          <div><span class="eyebrow">Headlines</span><h2 style="font-size:22px;margin:0;">Latest News</h2></div>
+          <div><span class="eyebrow" style="margin-bottom:0;font-size:15px;">Headlines</span></div>
           <div class="weather-date-picker" id="newsCalPickerWrap">
             <button class="weather-date-btn" id="newsDateBtn" onclick="toggleNewsCalPopover()">
               <i class="fa-solid fa-calendar-days"></i>
@@ -1839,18 +1838,18 @@ setupTabs('news-tabs','news');
 
 /* ============ DATA ============ */
 const newsData = [
-  {m:'MAY',d:'24',tag:'Announcement',title:"Manila City Hall Extends Business Permit Renewal Until May 31",desc:"The City Government of Manila announces the extension of the business permit renewal period.",img:"https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=500&q=80",author:"Manila PIO",body:["The City Government of Manila announces the extension of the business permit renewal period, giving business owners additional time to comply without incurring penalties.","BPLO help desks at City Hall and satellite offices will remain open with extended hours to assist late filers throughout the extension period."]},
+  {m:'MAY',d:'24',tag:'Advisory',title:"Manila City Hall Extends Business Permit Renewal Until May 31",desc:"The City Government of Manila announces the extension of the business permit renewal period.",img:"https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=500&q=80",author:"Manila PIO",body:["The City Government of Manila announces the extension of the business permit renewal period, giving business owners additional time to comply without incurring penalties.","BPLO help desks at City Hall and satellite offices will remain open with extended hours to assist late filers throughout the extension period."]},
   {m:'MAY',d:'20',tag:'Event',title:"Manila Day 2026 Celebration",desc:"Join us as we celebrate the rich history, culture, and vibrant spirit of our city.",img:"https://images.unsplash.com/photo-1533073526757-2c8ca1df9f1c?w=500&q=80",author:"Manila PIO",body:["Join us as we celebrate the rich history, culture, and vibrant spirit of our city with a week of festivities across Manila's districts.","Highlights include street parades, heritage tours, local food fairs, and a fireworks display capping off the celebration at Rizal Park."]},
   {m:'MAY',d:'15',tag:'News',title:"Major Road Rehabilitation at España Boulevard",desc:"Improvement works are ongoing to ensure safer and smoother travel for all road users.",img:"https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=500&q=80",author:"Manila DPWH Liaison",body:["Improvement works are ongoing to ensure safer and smoother travel for all road users along España Boulevard.","Motorists are advised to expect partial lane closures and to allot extra travel time until the rehabilitation is completed."]},
-  {m:'MAY',d:'10',tag:'Announcement',title:"Free Medical Mission in Tondo District",desc:"Free check-ups, medicines, and dental services available to residents.",img:"https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=500&q=80",author:"Manila Health Department",body:["Free check-ups, medicines, and dental services are available to residents of Tondo District at designated barangay health centers.","Residents are encouraged to bring a valid ID and their barangay certificate of residency to avail of the free services."]},
+  {m:'MAY',d:'10',tag:'Advisory',title:"Free Medical Mission in Tondo District",desc:"Free check-ups, medicines, and dental services available to residents.",img:"https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=500&q=80",author:"Manila Health Department",body:["Free check-ups, medicines, and dental services are available to residents of Tondo District at designated barangay health centers.","Residents are encouraged to bring a valid ID and their barangay certificate of residency to avail of the free services."]},
   {m:'MAY',d:'6',tag:'News',title:"New Public Library Wing Opens in Intramuros",desc:"Expanded reading spaces and digital resources now available to the public.",img:"https://images.unsplash.com/photo-1521587760476-6c12a4b040da?w=500&q=80",author:"Manila PIO",body:["Expanded reading spaces and digital resources are now available to the public at the newly opened wing of the Intramuros branch library.","The new wing adds seating, computer stations, and a dedicated children's reading corner."]},
   {m:'APR',d:'29',tag:'Event',title:"Job Fair 2026: Over 3,000 Vacancies",desc:"Local and international employers gather at Manila City Hall grounds.",img:"https://images.unsplash.com/photo-1521737711867-e3b97375f902?w=500&q=80",author:"Manila PESO",body:["Local and international employers gather at Manila City Hall grounds, offering over 3,000 vacancies across various industries.","Applicants are advised to bring several copies of their resume and valid identification for on-the-spot interviews."]}
 ];
 function newsCard(n, featured, i){
   if(featured){
-    return `<div class="news-featured clickable-card" onclick="openArticleModal('news',${i})"><div class="thumb"><img src="${n.img}" alt=""><div class="date-badge"><div class="m">${n.m}</div><div class="d">${n.d}</div></div></div><div class="body"><span class="tag tag-blue">${n.tag}</span><h3>${n.title}</h3><p>${n.desc}</p><span class="link-arrow">Read More <i class="fa-solid fa-arrow-right"></i></span></div></div>`;
+    return `<div class="news-featured clickable-card" onclick="openArticleModal('news',${i})"><div class="thumb"><img src="${n.img}" alt=""><div class="date-badge"><div class="m">${n.m}</div><div class="d">${n.d}</div></div></div><div class="body"><h3>${n.title}</h3><p>${n.desc}</p><span class="link-arrow">Read More <i class="fa-solid fa-arrow-right"></i></span></div></div>`;
   }
-  return `<div class="card clickable-card" onclick="openArticleModal('news',${i})"><div class="thumb"><img src="${n.img}" alt=""><div class="date-badge"><div class="m">${n.m}</div><div class="d">${n.d}</div></div></div><div class="body"><span class="tag tag-blue">${n.tag}</span><h4>${n.title}</h4><p>${n.desc}</p></div></div>`;
+  return `<div class="card clickable-card" onclick="openArticleModal('news',${i})"><div class="thumb"><img src="${n.img}" alt=""><div class="date-badge"><div class="m">${n.m}</div><div class="d">${n.d}</div></div></div><div class="body"><h4>${n.title}</h4><p>${n.desc}</p></div></div>`;
 }
 document.getElementById('home-news-cards').innerHTML = newsData.slice(0,3).map((n,i)=>newsCard(n,false,i)).join('');
 document.getElementById('news-featured-cards').innerHTML = newsData.slice(0,2).map((n,i)=>newsCard(n,true,i)).join('');
@@ -2351,6 +2350,7 @@ function openArticleModal(type, i){
   document.getElementById('article-modal-img').alt = title;
   document.getElementById('article-modal-tag').className = 'tag '+tagClass;
   document.getElementById('article-modal-tag').textContent = tagText;
+  document.getElementById('article-modal-tag').style.display = (type==='news') ? 'none' : '';
   document.getElementById('article-modal-title').textContent = title;
   document.getElementById('article-modal-meta').className = metaClass;
   document.getElementById('article-modal-meta').innerHTML = metaHtml;
@@ -2441,12 +2441,12 @@ const councilData = {
     ]
   },
   exOfficio:[
-    {name:'HON. ENRIQUETA “ERIKA” PLATON',pos:'Ex-Officio Member',img:'https://cdn.jsdelivr.net/gh/JhillianBaniqued/Gov-Manila-Website@main/images/HON.-ERIKA-PLATON_-500x539.png',committees:['Committee on Barangay Affairs'],education:[{level:'',years:'',school:'Lyceum of the Philippines'},{level:'',years:'',school:'Araullo High School'},{level:'',years:'',school:'Aurora A. Quezon Elementary School'}],facebook:'https://www.facebook.com/CouncilorErika.Platon/'},
-    {name:'HON. JULIANA RAE “YANYAN” IBAY',pos:'Ex-Officio Member',img:'https://cdn.jsdelivr.net/gh/JhillianBaniqued/Gov-Manila-Website@main/images/HON.-JULIANA-RAE-YANYAN-IBAY_-500x539.png'}
+    {name:'HON. ENRIQUETA “ERIKA” PLATON',pos:'Ex-Officio Member &middot; Liga ng mga Barangay President',img:'https://cdn.jsdelivr.net/gh/JhillianBaniqued/Gov-Manila-Website@main/images/HON.-ERIKA-PLATON_-500x539.png',committees:['Committee on Barangay Affairs'],education:[{level:'',years:'',school:'Lyceum of the Philippines'},{level:'',years:'',school:'Araullo High School'},{level:'',years:'',school:'Aurora A. Quezon Elementary School'}],facebook:'https://www.facebook.com/CouncilorErika.Platon/'},
+    {name:'HON. JULIANA RAE “YANYAN” IBAY',pos:'Ex-Officio Member &middot; SK Federation President',img:'https://cdn.jsdelivr.net/gh/JhillianBaniqued/Gov-Manila-Website@main/images/HON.-JULIANA-RAE-YANYAN-IBAY_-500x539.png'}
   ],
   secretariat:[
     {name:'ATTY. HANS ROGER S. LUNA',pos:'Council Secretariat',img:'https://cdn.jsdelivr.net/gh/JhillianBaniqued/Gov-Manila-Website@main/images/ATTY.-HANS-ROGER-S.-LUNA_-500x539.png'},
-    {name:'MR. ROMEO N. FRANCIA',pos:'Council Secretariat',img:'https://cdn.jsdelivr.net/gh/JhillianBaniqued/Gov-Manila-Website@main/images/MR.-ROMEO-N-FRANCIA-500x539.png'}
+    {name:'MR. ROMEO N. FRANCIA',pos:'Council Secretariat &middot; Officer-in-Charge',img:'https://cdn.jsdelivr.net/gh/JhillianBaniqued/Gov-Manila-Website@main/images/MR.-ROMEO-N-FRANCIA-500x539.png'}
   ]
 };
 let officialModalRegistry = [];
@@ -2961,7 +2961,7 @@ const advisoryTypes = [
   ]}
 ];
 
-// Daily weather data for July 2026 (day -> readings). Days not listed use the defaults above (all Normal/Green).
+// Daily weather data, keyed by day-of-month (applies to the current real month). Days not listed use the defaults above (all Normal/Green).
 const weatherData = {
   3:  { system:{level:'orange', name:'Low Pressure Area (LPA)', desc:'LPA enhancing the Southwest Monsoon; heavy rain expected with flooding possible in low-lying barangays.', link:{url:'https://www.pagasa.dost.gov.ph/', label:'PAGASA bulletin'}}, rainChance:85, heatIndex:{min:26, max:30} },
   9:  { system:{level:'yellow', name:'Tropical Depression (Potential)', desc:'A tropical depression may enter PAR by the weekend. Monitor updates.', link:{url:'https://www.pagasa.dost.gov.ph/', label:'PAGASA bulletin'}}, rainChance:55 },
@@ -2981,7 +2981,8 @@ function dayWorstLevel(dayData){
 
 function weatherDayClass(d,m,y){
   let cls = 'day';
-  const inDemoMonth = (m===6 && y===2026);
+  const now = new Date();
+  const inDemoMonth = (m===now.getMonth() && y===now.getFullYear());
   if(inDemoMonth && weatherData[d]){
     cls += ' adv-mark sev-'+dayWorstLevel(weatherData[d]);
   }
@@ -3005,11 +3006,12 @@ function renderAdvisories(day, m, y){
   const dateObj = new Date(y,m,day);
   document.getElementById('weather-date-label').textContent =
     dateObj.toLocaleDateString('default',{month:'long',day:'numeric',year:'numeric'});
-  const dayData = (m===6 && y===2026) ? (weatherData[day] || {}) : {};
+  const nowRA = new Date();
+  const dayData = (m===nowRA.getMonth() && y===nowRA.getFullYear()) ? (weatherData[day] || {}) : {};
   document.getElementById('advisory-grid').innerHTML = advisoryCardsHtml(dayData);
 }
 const weatherCal = makeCalendar({
-  gridId:'cal-grid-weather', titleId:'cal-title-weather', date:new Date(2026,6,1),
+  gridId:'cal-grid-weather', titleId:'cal-title-weather', date:new Date(new Date().getFullYear(), new Date().getMonth(), 1),
   dayClassFn:weatherDayClass,
   onRender:(m,y)=>renderAdvisories(weatherSelectedDay, m, y)
 });
@@ -3041,7 +3043,7 @@ document.addEventListener('click', e=>{
 /* Jump from a Home widget straight to today on the Weather Report calendar/tab. */
 function goToWeatherReportTab(){
   weatherSelectedDay = new Date().getDate();
-  weatherCal.date = new Date(2026,6,1);
+  weatherCal.date = new Date(new Date().getFullYear(), new Date().getMonth(), 1);
   weatherCal.render();
   closeWeatherCalPopover();
   goTo('news','weather');
@@ -3063,8 +3065,7 @@ function heroWeatherIconsHtml(dayData){
 /* ---- Home hero weather widget: icons only, color-coded per severity legend, bottom-center of hero ---- */
 function renderHomeWeatherWidget(){
   const now = new Date();
-  const inDemoMonth = (now.getMonth()===6 && now.getFullYear()===2026);
-  const dayData = inDemoMonth ? (weatherData[now.getDate()] || {}) : {};
+  const dayData = weatherData[now.getDate()] || {};
   document.getElementById('home-weather-dow').textContent = now.toLocaleDateString('default',{weekday:'long'});
   document.getElementById('home-weather-day').textContent = now.toLocaleDateString('default',{month:'long',day:'numeric',year:'numeric'});
   document.getElementById('home-weather-icons').innerHTML = heroWeatherIconsHtml(dayData);
