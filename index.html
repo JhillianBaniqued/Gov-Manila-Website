@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>City Government of Manila</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&family=Oswald:wght@500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <style>
   :root{
@@ -45,7 +45,7 @@
   .link-arrow{color:var(--blue);font-weight:600;font-size:14px;display:inline-flex;align-items:center;gap:6px;}
   .link-arrow i{font-size:11px;transition:.2s;}
   .link-arrow:hover i{transform:translateX(3px);}
-  .section{padding:64px 0;}
+  .section{padding-top:64px;padding-bottom:64px;}
   .section-head{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:34px;gap:20px;flex-wrap:wrap;}
   .section-head h2{font-size:30px;font-weight:700;position:relative;padding-bottom:14px;}
   .section-head h2:after{content:"";position:absolute;left:0;bottom:0;width:46px;height:4px;border-radius:4px;background:var(--gold);}
@@ -64,15 +64,21 @@
 
   /* ===== MAIN NAV ===== */
   .mainnav{background:#fff;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:200;box-shadow:0 2px 10px rgba(10,36,83,0.04);}
-  .mainnav .container{display:flex;align-items:center;justify-content:space-between;height:82px;gap:20px;}
+  .mainnav .container{display:flex;align-items:center;justify-content:space-between;min-height:82px;gap:20px;max-width:1640px;}
+  .mainnav .brand{margin-left:0;}
+  /* The -40px pull only has room to breathe once the centered .container has genuine free
+     space around it (i.e. the viewport is wider than the container's own 1640px cap + padding);
+     below that it was shoving the seal past the left edge of the viewport entirely. */
+  @media(min-width:1720px){.mainnav .brand{margin-left:-40px;}}
+  .nav-right{display:flex;align-items:center;gap:28px;}
   .brand{display:flex;align-items:center;gap:12px;flex-shrink:0;cursor:pointer;}
-  .brand .seal{width:50px;height:50px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#ffe08a,var(--gold));display:flex;align-items:center;justify-content:center;font-family:'Poppins';font-weight:800;color:var(--navy-deep);font-size:9px;text-align:center;border:2px solid var(--navy-deep);}
-  .brand .name{line-height:1.2;}
-  .brand .name span{display:block;font-size:11px;font-weight:600;color:var(--gray);letter-spacing:1px;}
-  .brand .name strong{display:block;font-size:20px;font-weight:800;color:var(--navy-deep);letter-spacing:.5px;}
+  .brand .seal{width:56px;height:56px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#ffe08a,var(--gold));display:flex;align-items:center;justify-content:center;font-family:'Poppins';font-weight:800;color:var(--navy-deep);font-size:9px;text-align:center;border:2px solid var(--navy-deep);}
+  .brand .name{line-height:1.25;}
+  .brand .name span{display:block;font-size:12.5px;font-weight:600;color:var(--gray);letter-spacing:1px;}
+  .brand .name strong{display:block;font-size:23px;font-weight:800;color:var(--navy-deep);letter-spacing:.5px;}
   .navlist{display:flex;align-items:center;gap:2px;flex-wrap:wrap;}
   .navlist>li{position:relative;}
-  .navlist>li>a{display:flex;align-items:center;gap:6px;padding:10px 10px;font-weight:600;font-size:13px;color:var(--ink);border-radius:8px;white-space:nowrap;}
+  .navlist>li>a{display:flex;align-items:center;gap:6px;padding:10px 12px;font-weight:600;font-size:14.5px;color:var(--ink);border-radius:8px;white-space:nowrap;}
   .navlist>li>a i.fa-chevron-down{font-size:9px;color:var(--gray-light);}
   .navlist>li>a:hover, .navlist>li>a.active{color:var(--blue);background:var(--sky);}
   .nav-tools{display:flex;align-items:center;gap:12px;flex-shrink:0;}
@@ -91,9 +97,9 @@
   .search-results .sr-item strong{font-size:13.5px;color:var(--ink);font-weight:600;}
   .search-results .sr-item span{font-size:12px;color:var(--gray);}
   .search-results .sr-empty{padding:16px 12px;font-size:13px;color:var(--gray);text-align:center;}
-  .menu-toggle{display:none;font-size:22px;color:var(--navy-deep);}
-  @media(max-width:1300px){
-    .navlist>li>a{padding:10px 8px;font-size:12.5px;}
+  .menu-toggle{display:none;font-size:22px;color:var(--navy-deep);width:40px;height:40px;align-items:center;justify-content:center;flex-shrink:0;}
+  @media(max-width:1450px){
+    .navlist>li>a{padding:10px 9px;font-size:13.5px;}
     .search-box{width:210px;}
   }
 
@@ -105,37 +111,71 @@
   /* ===== TICKER (shown on all pages) ===== */
   .ticker{background:var(--gold);display:flex;align-items:stretch;overflow:hidden;position:relative;z-index:150;}
   .ticker-track{overflow:hidden;flex:1;position:relative;display:flex;align-items:center;}
-  .ticker-content{display:inline-flex;white-space:nowrap;padding-left:100%;animation:ticker-scroll 60s linear infinite;}
-  .ticker-content span{margin-right:64px;font-size:15px;font-weight:600;color:#fff;display:inline-flex;align-items:center;}
+  .ticker-content{display:inline-flex;white-space:nowrap;padding-left:100%;animation:ticker-scroll 70s linear infinite;}
+  .ticker-content span{margin-right:64px;font-size:18px;font-weight:600;color:#0E0E55;display:inline-flex;align-items:center;}
   .ticker-content span i{margin-right:8px;display:inline-flex;align-items:center;}
-  .ticker-track:hover .ticker-content{animation-play-state:paused;}
   @keyframes ticker-scroll{0%{transform:translateX(0);}100%{transform:translateX(-50%);}}
 
-  /* ===== HERO (home) ===== */
-  .hero{position:relative;overflow:hidden;background-image:linear-gradient(to right,#f4f8fe 0%,rgba(244,248,254,.95) 22%,rgba(244,248,254,.62) 45%,rgba(244,248,254,.15) 68%,rgba(244,248,254,.05) 100%),url("https://cdn.jsdelivr.net/gh/JhillianBaniqued/Gov-Manila-Website@main/images/755396570_1090962856924916_2670900636473447370_n.png");background-size:cover;background-position:center;background-repeat:no-repeat;min-height:var(--hero-fill,100vh);display:flex;flex-direction:column;justify-content:center;}
+  /* ===== HERO (home) — image carousel ===== */
+  .hero{position:relative;overflow:hidden;min-height:var(--hero-fill,100vh);}
+  .hero-slide{position:absolute;inset:0;background-size:cover;background-position:center;background-repeat:no-repeat;display:flex;flex-direction:column;justify-content:center;opacity:0;pointer-events:none;transition:opacity .9s ease;z-index:1;}
+  .hero-slide.is-active{opacity:1;pointer-events:auto;z-index:2;}
+  /* fixed text block that sits above all slides — stays put while only the photo behind it changes */
+  .hero-text{position:absolute;inset:0;z-index:5;display:flex;flex-direction:column;justify-content:center;pointer-events:none;}
+  .hero-text .hero-actions{pointer-events:auto;}
+  .hero-text .hero-actions a{pointer-events:auto;}
   @media(max-width:700px){
     /* The desktop overlay assumes a side-by-side layout (opaque text column on the left, photo
        bleeding in on the right) — on mobile the text spans full width, so that gradient left
        long stretches of text sitting over the more transparent right-hand side. Mobile stacks
        everything vertically instead, so the gradient (and the crop) should run top-to-bottom. */
-    .hero{
-      background-image:linear-gradient(to bottom,#f4f8fe 0%,rgba(244,248,254,.94) 32%,rgba(244,248,254,.55) 56%,rgba(244,248,254,.18) 80%,rgba(244,248,254,.08) 100%),url("https://cdn.jsdelivr.net/gh/JhillianBaniqued/Gov-Manila-Website@main/images/755396570_1090962856924916_2670900636473447370_n.png");
-      background-position:center 22%;
-    }
+    .hero-slide{background-position:center 22% !important;}
   }
-  .hero>.container{width:100%;}
+  .hero-slide>.container{width:100%;}
+  .hero-text>.container{width:100%;}
+  /* prev/next arrows + dots: grouped into one centered bottom bar so the arrows always sit on a
+     solid, high-contrast pill instead of directly on the photo, and never compete for space with
+     the fixed weather widget / i-Tanong launcher pinned to the right corner. */
+  .hero-nav{position:absolute;left:50%;bottom:26px;transform:translateX(-50%);display:flex;align-items:center;gap:14px;z-index:6;}
+  .hero-arrow{position:static;width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,.7);border:1px solid rgba(10,36,83,.1);color:var(--navy-deep);display:flex;align-items:center;justify-content:center;font-size:14px;cursor:pointer;transition:.2s;box-shadow:0 8px 20px -8px rgba(10,36,83,.4);flex-shrink:0;}
+  .hero-arrow:hover{background:rgba(255,255,255,.92);transform:scale(1.06);}
+  @media(max-width:640px){.hero-nav{bottom:16px;gap:10px;}.hero-arrow{width:34px;height:34px;font-size:12px;}}
+  /* dot indicators */
+  .hero-dots{display:flex;align-items:center;gap:9px;background:rgba(255,255,255,.55);backdrop-filter:blur(4px);padding:8px 14px;border-radius:20px;box-shadow:0 8px 20px -8px rgba(10,36,83,.3);}
+  .hero-dot{width:8px;height:8px;border-radius:50%;background:rgba(10,36,83,.25);border:none;cursor:pointer;padding:0;transition:.2s;}
+  .hero-dot.is-active{background:var(--navy-deep);width:22px;border-radius:5px;}
   .hero-grid{padding:60px 0;max-width:620px;}
   .hero h1{font-size:44px;font-weight:800;line-height:1.15;margin-bottom:18px;}
   .hero p{color:var(--gray);font-size:15.5px;max-width:460px;margin-bottom:30px;}
   .hero-actions{display:flex;gap:14px;flex-wrap:wrap;}
-  /* ===== Home hero: icon-only, color-coded weather/hazard widget, bottom-center overlay ===== */
-  .hero-weather{position:absolute;left:50%;bottom:26px;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:16px;z-index:5;width:100%;}
-  .hero-weather-date{display:flex;align-items:baseline;gap:10px;background:rgba(255,255,255,.72);border:1px solid rgba(255,255,255,.9);padding:14px 30px;border-radius:20px;box-shadow:0 10px 26px -10px rgba(10,36,83,.3);}
-  .hero-weather-date .hwd-dow{font-family:'Poppins',sans-serif;font-size:19px;font-weight:800;color:var(--navy-deep);}
-  .hero-weather-date .hwd-dow:after{content:",";color:var(--navy-deep);}
-  .hero-weather-date .hwd-day{font-family:'Poppins',sans-serif;font-size:19px;font-weight:800;color:var(--navy-deep);}
-  .hero-weather-icons{display:flex;gap:20px;flex-wrap:wrap;justify-content:center;max-width:92vw;}
-  .hw-icon{width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:22px;cursor:pointer;transition:.2s;flex-shrink:0;filter:drop-shadow(0 4px 10px rgba(10,36,83,.18));border:2.5px solid transparent;box-sizing:border-box;}
+  /* ===== Home hero: floating weather/hazard widget, docked bottom-right, stacked directly above
+     the i-Tanong chat launcher (.chat-fab) so the two read as one floating stack. Date now lives
+     inside the card itself instead of a separate pill. ===== */
+  .hero-weather{position:fixed;right:26px;bottom:100px;display:flex;flex-direction:column;align-items:stretch;gap:12px;z-index:499;width:auto;transition:bottom .3s ease;}
+  /* When the i-Tanong chat panel is open, it sits directly on top of this widget (both are
+     pinned to the same bottom-right corner) — shift the widget up above the panel instead of
+     letting the panel cover/hide it. */
+  .hero-weather.chat-open{bottom:var(--chat-panel-offset,570px);}
+  /* Compact current-conditions card (icon + temp + condition + feels-like), date folded into the top row. */
+  .hero-weather-card{display:flex;align-items:center;gap:12px;background:rgba(255,255,255,.96);backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,.95);padding:11px 16px;border-radius:18px;box-shadow:0 10px 26px -10px rgba(10,36,83,.32);cursor:pointer;transition:.2s;max-width:300px;width:100%;box-sizing:border-box;overflow:hidden;}
+  .hero-weather-card:hover{transform:translateY(-3px);box-shadow:0 14px 32px -10px rgba(10,36,83,.38);}
+  .hwc-icon{width:42px;height:42px;border-radius:50%;background:var(--sky);color:var(--blue);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;}
+  .hwc-body{display:flex;flex-direction:column;gap:3px;flex:1;min-width:0;}
+  .hwc-toprow{display:flex;align-items:baseline;justify-content:flex-start;gap:8px;}
+  .hwc-title{font-size:9.5px;font-weight:700;color:var(--gray-light);text-transform:uppercase;letter-spacing:.5px;white-space:nowrap;}
+  .hwc-date{font-size:16px;font-weight:800;color:var(--navy-deep);white-space:nowrap;}
+  .hwc-date .hwd-dow:after{content:",";}
+  .hwc-main{display:flex;align-items:baseline;gap:14px;}
+  .hwc-details{display:flex;flex-direction:column;gap:2px;min-width:0;}
+  .hwc-cond{font-family:'Poppins',sans-serif;font-size:17px;font-weight:800;color:var(--navy-deep);line-height:1.15;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+  .hwc-sub{display:flex;align-items:baseline;gap:0;white-space:nowrap;}
+  .hwc-temp{font-size:11.5px;font-weight:700;color:var(--gray-light);}
+  .hwc-feels{font-size:11px;color:var(--gray-light);}
+  .hwc-feels:before{content:"\00b7";margin-right:6px;}
+  .hwc-arrow{color:var(--gray-light);font-size:13px;flex-shrink:0;}
+  /* Secondary hazard row: only rendered when a non-fair advisory (flood/fire/quake/severe air etc.) is active that day, so normal days stay uncluttered. */
+  .hero-weather-hazards{display:none;gap:14px;flex-wrap:wrap;justify-content:flex-end;max-width:300px;}
+  .hw-icon{width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:16px;cursor:pointer;transition:.2s;flex-shrink:0;filter:drop-shadow(0 4px 10px rgba(10,36,83,.18));border:2px solid transparent;box-sizing:border-box;}
   .hw-icon:hover{transform:translateY(-4px) scale(1.07);}
   .hw-icon.adv-grey{background:#e9ecf2;color:#8b93a3;border-color:#8b93a3;}
   .hw-icon.adv-green{background:#e1f7e9;color:#1f9d55;border-color:#1f9d55;}
@@ -145,8 +185,9 @@
   .hw-icon.adv-purple{background:#ede1fb;color:#7c3aed;border-color:#7c3aed;}
   .hw-icon.adv-red{background:#fbdcdb;color:#d32f2b;border-color:#d32f2b;}
   .hw-icon.adv-maroon{background:#eddadd;color:#7a1f2b;border-color:#7a1f2b;}
-  @media(max-width:900px){.hero-grid{padding:50px 0 20px;}.hero-weather{position:static;transform:none;margin-top:8px;padding-bottom:32px;}}
-  @media(max-width:500px){.hero-weather-date{padding:11px 20px;}.hero-weather-date .hwd-dow{font-size:15.5px;}.hero-weather-date .hwd-day{font-size:15.5px;}.hw-icon{width:46px;height:46px;font-size:18px;}.hero-weather-icons{gap:14px;max-width:234px;}}
+  @media(max-width:900px){.hero-grid{padding:50px 0 20px;}}
+  @media(max-width:640px){.hero-weather{right:16px;bottom:88px;}}
+  @media(max-width:500px){.hero-weather-card{padding:9px 14px;gap:9px;max-width:240px;}.hwc-icon{width:36px;height:36px;font-size:15px;}.hwc-cond{font-size:14px;}.hwc-title{font-size:8.5px;}.hwc-date{font-size:13px;}.hwc-temp,.hwc-feels{font-size:10px;}.hw-icon{width:34px;height:34px;font-size:13px;}}
   .qc{padding:14px 18px;text-align:center;border-right:1px solid var(--line);}
   .qc:last-child{border-right:none;}
   .qc .icon{width:52px;height:52px;border-radius:50%;background:var(--sky);display:flex;align-items:center;justify-content:center;margin:0 auto 12px;color:var(--blue);font-size:20px;}
@@ -171,24 +212,28 @@
   .card .body p{font-size:13px;color:var(--gray);}
 
   /* ===== strip / banner section ===== */
-  .strip{background:var(--navy-deep);color:#fff;padding:38px 0;position:relative;overflow:hidden;}
+  .strip{background:var(--navy-deep);color:#fff;padding:26px 0;position:relative;overflow:hidden;}
   .strip:before{content:"";position:absolute;left:-60px;bottom:-90px;width:260px;height:260px;border-radius:50%;background:rgba(255,255,255,.04);}
   .strip:after{content:"";position:absolute;right:8%;top:-70px;width:160px;height:160px;border-radius:50%;background:rgba(255,255,255,.035);}
   .strip .container{position:relative;z-index:1;}
-  .strip-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:30px;align-items:center;}
+  .strip-grid{display:grid;grid-template-columns:0.8fr 0.8fr 1.6fr;gap:30px;align-items:center;}
   .strip-item{display:flex;gap:16px;align-items:center;}
-  .strip-item img{width:120px;height:120px;object-fit:contain;flex-shrink:0;}
+  .strip-item img{width:84px;height:84px;object-fit:contain;flex-shrink:0;}
   .strip-item img[alt="Transparency Seal"]{background:#fff;border-radius:50%;padding:4px;}
-  .strip-item img[alt="NPC Seal of Registration"]{width:auto;height:170px;object-fit:contain;}
-  .strip-item h4{color:#fff;font-size:15px;margin-bottom:6px;}
-  .strip-item p{font-size:12.5px;color:#b9c8ea;margin-bottom:10px;}
+  .strip-item img[alt="NPC Seal of Registration"]{width:auto;height:112px;object-fit:contain;}
+  .strip-item h4{color:#fff;font-size:15px;margin-bottom:5px;}
+  .strip-item p{font-size:12.5px;color:#b9c8ea;margin-bottom:8px;}
   .strip .btn-outline{background:transparent;border-color:rgba(255,255,255,.35);color:#fff;}
   .strip .btn-outline:hover{border-color:#fff;}
-  .quicklinks{background:var(--navy);border-radius:16px;padding:22px 26px;}
-  .quicklinks h4{color:#fff;font-size:14px;margin-bottom:14px;}
-  .quicklinks ul{display:grid;grid-template-columns:1fr 1fr;gap:8px 20px;}
-  .quicklinks a{font-size:12.5px;color:#dbe6fa;display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px solid rgba(255,255,255,.08);}
-  .quicklinks a:hover{color:#fff;}
+  .quicklinks{background:var(--navy);border-radius:18px;padding:22px 26px;height:100%;}
+  .quicklinks h4{color:#fff;font-size:17px;margin-bottom:14px;}
+  .ql-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;}
+  .ql-tile{display:flex;flex-direction:row;align-items:center;gap:12px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:12px 14px;transition:.2s;cursor:pointer;}
+  .ql-tile:hover{background:rgba(255,255,255,.13);transform:translateY(-3px);border-color:rgba(255,255,255,.28);}
+  .ql-tile .ql-icon{width:36px;height:36px;border-radius:9px;background:rgba(255,255,255,.12);color:#fff;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0;border:1px solid rgba(255,255,255,.16);}
+  .ql-tile:hover .ql-icon{background:var(--blue);border-color:var(--blue);}
+  .ql-tile .ql-label{color:#fff;font-size:15px;font-weight:600;line-height:1.3;}
+  @media(max-width:640px){.ql-grid{grid-template-columns:1fr;}}
 
   /* ===== page hero (inner pages) ===== */
   .page-hero{background:linear-gradient(120deg,var(--navy-deep),var(--navy-light));color:#fff;padding:52px 0 40px;position:relative;overflow:hidden;}
@@ -203,6 +248,37 @@
   .tabnav button.active{background:var(--blue);color:#fff;}
   .subpage{display:none;}
   .subpage.active{display:block;animation:fadein .3s ease;}
+  .progsvc-columns{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start;}
+  .progsvc-col{min-width:0;}
+  .progsvc-col-title{display:flex;align-items:center;gap:10px;font-size:19px;font-weight:700;margin-bottom:20px;padding-bottom:14px;border-bottom:2px solid var(--line);}
+  .progsvc-col-title i{color:var(--blue);font-size:17px;}
+
+  /* ===== Home Programs & Services (compact two-panel layout) ===== */
+  .progsvc-panels{display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:stretch;}
+  .progsvc-panel{background:#fff;border:1px solid var(--line);border-radius:16px;padding:22px 22px 18px;box-shadow:0 8px 22px -14px rgba(10,36,83,.18);display:flex;flex-direction:column;min-width:0;}
+  .progsvc-panel-head{display:flex;align-items:center;gap:13px;margin-bottom:14px;padding-bottom:16px;border-bottom:1px solid var(--line);}
+  .progsvc-panel-link{margin-left:auto;flex-shrink:0;font-size:13px;}
+  .progsvc-panel-icon{width:42px;height:42px;border-radius:11px;background:#fdf1dc;color:var(--gold);display:flex;align-items:center;justify-content:center;font-size:17px;flex-shrink:0;}
+  .progsvc-panel-head h3{font-size:16.5px;font-weight:700;line-height:1.3;}
+  .progsvc-panel-head span{display:block;font-size:11.5px;color:var(--gray);font-weight:500;margin-top:1px;}
+  .progsvc-list{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:12px;flex:1;}
+  .progsvc-item{display:flex;flex-direction:column;align-items:flex-start;gap:6px;padding:12px 14px;border-radius:12px;cursor:pointer;transition:.18s;border:1px solid var(--line);background:#fff;min-width:0;}
+  .progsvc-item:hover{background:var(--sky);border-color:var(--blue);transform:translateY(-2px);box-shadow:0 10px 20px -14px rgba(10,36,83,.3);}
+  .progsvc-item-row{display:flex;align-items:center;gap:10px;width:100%;min-width:0;}
+  .progsvc-item-icon{width:28px;height:28px;border-radius:8px;background:var(--sky);color:var(--blue);display:flex;align-items:center;justify-content:center;font-size:12px;flex-shrink:0;transition:.15s;}
+  .progsvc-item:hover .progsvc-item-icon{background:var(--blue);color:#fff;}
+  .progsvc-item-text{width:100%;min-width:0;}
+  .progsvc-item-text h4{font-size:13.5px;font-weight:700;color:var(--ink);line-height:1.3;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+  .progsvc-item-text p{font-size:11.5px;color:var(--gray);margin-top:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+  .progsvc-item-arrow{align-self:flex-end;color:var(--gray-light);font-size:11px;margin-top:-2px;}
+  @media(max-width:520px){.progsvc-list{grid-template-columns:1fr;}.progsvc-panel-head{flex-wrap:wrap;}.progsvc-panel-link{margin-left:56px;}}
+  @media(min-width:701px) and (max-width:1010px){.progsvc-list{grid-template-columns:1fr;}}
+  @media(max-width:700px){
+    .progsvc-panels{grid-template-columns:1fr;gap:18px;}
+  }
+  @media(max-width:900px){
+    .progsvc-columns{grid-template-columns:1fr;gap:44px;}
+  }
 
   /* ===== About us ===== */
   .about-block{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:center;}
@@ -212,11 +288,39 @@
   .value-item{background:var(--sky);border-radius:12px;padding:18px;display:flex;gap:14px;align-items:flex-start;}
   .value-item i{color:var(--blue);font-size:18px;margin-top:2px;}
   @media(max-width:560px){.value-grid{grid-template-columns:1fr;gap:14px;margin-bottom:12px;}}
-  .timeline{border-left:3px solid var(--sky2);padding-left:26px;margin-left:10px;}
-  .tl-item{position:relative;padding-bottom:34px;}
-  .tl-item:before{content:"";position:absolute;left:-32px;top:2px;width:14px;height:14px;border-radius:50%;background:var(--blue);border:3px solid #fff;box-shadow:0 0 0 2px var(--blue);}
-  .tl-item h4{font-size:15px;color:var(--blue);margin-bottom:4px;}
-  .tl-item p{font-size:13.5px;color:var(--gray);}
+  .award-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:20px;}
+  .award-item{background:var(--sky);border-radius:var(--radius);padding:22px;display:flex;flex-direction:column;gap:10px;}
+  .award-item .award-icon{width:46px;height:46px;border-radius:50%;background:var(--gold);color:#fff;display:flex;align-items:center;justify-content:center;font-size:19px;flex-shrink:0;}
+  .award-item h4{font-size:15.5px;line-height:1.35;}
+  .award-item .award-meta{font-size:12.5px;color:var(--blue);font-weight:700;text-transform:uppercase;letter-spacing:.4px;}
+  .award-item p{font-size:13px;color:var(--gray);line-height:1.6;}
+  @media(max-width:900px){.award-grid{grid-template-columns:repeat(2,1fr);}}
+  @media(max-width:560px){.award-grid{grid-template-columns:1fr;}}
+  .heritage-timeline{position:relative;margin-top:8px;}
+  .heritage-timeline:before{content:"";position:absolute;left:50%;top:0;bottom:0;width:1px;background:var(--line);transform:translateX(-50%);}
+  .ht-row{display:grid;grid-template-columns:1fr 1fr;column-gap:64px;align-items:center;position:relative;padding:44px 0;}
+  .ht-row:before{content:"";position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:14px;height:14px;border-radius:50%;background:var(--blue);border:3px solid #fff;box-shadow:0 0 0 2px var(--blue);z-index:2;}
+  .ht-media{grid-column:1;grid-row:1;}
+  .ht-content{grid-column:2;grid-row:1;min-width:0;}
+  .ht-row:nth-child(even) .ht-media{grid-column:2;}
+  .ht-row:nth-child(even) .ht-content{grid-column:1;}
+  .ht-media img{width:100%;height:230px;object-fit:cover;border-radius:4px;display:block;filter:grayscale(1);box-shadow:0 8px 24px -10px rgba(10,36,83,.3);}
+  .ht-content h3{font-family:'Oswald',sans-serif;font-size:27px;font-weight:700;letter-spacing:.2px;line-height:1.25;margin-bottom:14px;}
+  .ht-content h3 .ht-year{margin-right:10px;}
+  .ht-content p{font-size:14.5px;color:var(--gray);line-height:1.7;}
+  @media(max-width:900px){
+    .ht-row{column-gap:36px;padding:34px 0;}
+    .ht-media img{height:190px;}
+    .ht-content h3{font-size:22px;}
+  }
+  @media(max-width:760px){
+    .heritage-timeline:before{left:20px;}
+    .ht-row,.ht-row:nth-child(even){grid-template-columns:1fr;row-gap:16px;padding:24px 0 24px 46px;}
+    .ht-row:before{left:20px;top:26px;transform:translate(-50%,-50%);}
+    .ht-media,.ht-row:nth-child(even) .ht-media{grid-column:1;grid-row:1;}
+    .ht-content,.ht-row:nth-child(even) .ht-content{grid-column:1;grid-row:2;}
+    .ht-media img{height:200px;}
+  }
 
   /* ===== Offices ===== */
   .fieldmap-search{margin-bottom:18px;position:relative;}
@@ -264,6 +368,10 @@
   table.directory td{padding:14px 18px;border-bottom:1px solid var(--line);font-size:13.5px;}
   table.directory tr:last-child td{border-bottom:none;}
   table.directory tr:hover td{background:var(--sky);}
+  .directory-office-link{color:var(--blue);font-weight:600;text-decoration:underline;text-underline-offset:2px;}
+  .directory-office-link:hover{color:var(--blue-hover);}
+  .directory-email-link{color:var(--blue);text-decoration:underline;text-underline-offset:2px;}
+  .directory-email-link:hover{color:var(--blue-hover);}
   .directory-scroll{width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch;}
   @media(max-width:700px){
     table.directory th{padding:8px 8px;font-size:9.5px;}
@@ -449,6 +557,35 @@
   .ld-maroon{background:#7a1f2b;}
   @media(max-width:500px){.advisory-card{flex-direction:column;align-items:center;text-align:center;}.advisory-card .ac-left{width:auto;}}
 
+  /* ===== Home weather/hazard overlay — opens from the floating home widget instead of
+     navigating to the News & Announcements > Weather Report tab; same overlay pattern as the
+     Programs modal (.program-modal), sized wider to fit the advisory card grid. ===== */
+  .weather-modal-card{max-width:min(94vw, 1100px);}
+  .weather-modal-hero{padding:34px 38px 26px;}
+  .weather-modal-hero h3{font-size:38px;margin-top:4px;}
+  .weather-modal-cond{color:rgba(255,255,255,.78);font-size:13.5px;margin-top:6px;}
+  .weather-modal-content{padding:26px 38px 32px;overflow-x:hidden;}
+  .weather-modal-section-head{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px 16px;margin-bottom:14px;}
+  .weather-modal-section-head h4{margin:0;}
+  .weather-modal-section-head .weather-date-picker{margin-left:0;}
+  .weather-modal-grid{display:grid;grid-template-columns:repeat(auto-fit, minmax(240px, 1fr));gap:14px;}
+  @media(max-width:560px){.weather-modal-hero{padding:28px 24px 22px;}.weather-modal-content{padding:20px 22px 26px;}.weather-modal-hero h3{font-size:30px;}.weather-modal-actions{padding:14px 22px;}}
+  .advisory-card-compact{padding:18px;gap:14px;border-radius:16px;}
+  .advisory-card-compact .ac-left{width:96px;}
+  .advisory-card-compact .aicon{width:56px;height:56px;font-size:21px;}
+  .advisory-card-compact h4{font-size:14px;margin-bottom:4px;}
+  /* At the compact size, break-word (inherited from .status) would split a single long word
+     like "Weather" mid-letter once it no longer fit the narrow badge. Wrapping at word
+     boundaries only, with a slightly wider ac-left above, keeps each word intact. */
+  .advisory-card-compact .status{font-size:11px;padding:4px 9px;border-radius:9px;word-break:normal;overflow-wrap:normal;}
+  .advisory-card-compact p{font-size:12px;margin-top:2px;line-height:1.55;}
+  .advisory-card-compact .card-link{font-size:11.5px;margin-top:6px;}
+  @media(max-width:500px){.advisory-card-compact{flex-direction:row;align-items:flex-start;text-align:left;}.advisory-card-compact .ac-left{width:84px;}}
+  .weather-modal-actions{display:flex;gap:12px;flex-wrap:wrap;flex-shrink:0;padding:18px 38px;background:#fff;border-top:1px solid var(--line);}
+  .weather-modal-actions .btn{flex:1 1 180px;justify-content:center;}
+  .weather-emergency-btn{background:#e53e3e;color:#fff;}
+  .weather-emergency-btn:hover{background:#c53030;}
+
   /* ===== News: featured lead card ===== */
   .news-featured{display:grid;grid-template-columns:1.1fr 1fr;height:340px;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;background:#fff;transition:.2s;margin-bottom:24px;}
   /* Announcements grid is 3-across; the featured (first) PSA card should fill that entire first row instead of being squeezed into one column. */
@@ -461,6 +598,25 @@
   .news-featured .body h3{font-size:27px;line-height:1.32;margin-bottom:14px;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;}
   .news-featured .body p{font-size:15px;line-height:1.6;color:var(--gray);margin-bottom:20px;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;}
   @media(max-width:700px){.news-featured{height:auto;grid-template-columns:1fr;}.news-featured .thumb{height:220px;}.news-featured .body{padding:26px 24px 30px;}}
+
+  /* ===== Home Latest News — card grid ===== */
+  .home-news-grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+  .home-news-card{background:#fff;border:1px solid var(--line);border-radius:16px;overflow:hidden;box-shadow:0 8px 20px -14px rgba(10,36,83,.18);transition:.25s;cursor:pointer;display:flex;flex-direction:column;}
+  .home-news-card:hover{box-shadow:var(--shadow);transform:translateY(-4px);}
+  .home-news-card .thumb{height:190px;position:relative;flex-shrink:0;}
+  .home-news-card .thumb img{width:100%;height:100%;object-fit:cover;transition:.35s;}
+  .home-news-card:hover .thumb img{transform:scale(1.05);}
+  .home-news-card .date-badge{position:absolute;top:14px;left:14px;background:#fff;border-radius:10px;padding:7px 12px;text-align:center;box-shadow:0 6px 16px -6px rgba(10,36,83,.4);}
+  .home-news-card .date-badge .m{font-size:9.5px;font-weight:700;color:var(--blue);text-transform:uppercase;letter-spacing:.4px;}
+  .home-news-card .date-badge .d{font-size:16px;font-weight:800;color:var(--navy-deep);line-height:1;}
+  .home-news-card .body{padding:20px 22px 22px;display:flex;flex-direction:column;flex:1;}
+  .home-news-card .body h3{font-size:16.5px;font-weight:700;line-height:1.35;margin-bottom:8px;color:var(--navy-deep);transition:.15s;}
+  .home-news-card:hover .body h3{color:var(--blue);}
+  .home-news-card .body p{font-size:13px;color:var(--gray);line-height:1.55;margin-bottom:14px;flex:1;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
+  .home-news-card .body .link-arrow{font-size:12.5px;align-self:flex-start;}
+  @media(max-width:900px){.home-news-grid3{grid-template-columns:repeat(2,1fr);}}
+  @media(max-width:600px){.home-news-grid3{grid-template-columns:1fr;}}
+
 
   /* ===== Announcements: row layout (distinct from News cards) ===== */
   .psa-filters{display:flex;gap:8px;flex-wrap:wrap;align-items:center;}
@@ -578,6 +734,20 @@
   .doc-year{border:1.5px solid var(--line);border-radius:24px;padding:10px 18px;font-size:13.5px;font-weight:600;color:var(--navy);background:#fff;font-family:inherit;cursor:pointer;}
   .doc-empty{color:var(--gray);font-size:13.5px;padding:24px 4px;}
   .doc-list{display:flex;flex-direction:column;gap:10px;}
+  .faq-list{display:flex;flex-direction:column;gap:10px;}
+  .faq-item{border:1.5px solid var(--line);border-radius:14px;overflow:hidden;background:#fff;}
+  .faq-q{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:16px 20px;cursor:pointer;font-weight:700;font-size:15px;color:var(--navy-deep);}
+  .faq-q i{color:var(--blue);transition:transform .2s;flex-shrink:0;}
+  .faq-item.open .faq-q i{transform:rotate(180deg);}
+  .faq-a{max-height:0;overflow:hidden;transition:max-height .25s ease;}
+  .faq-item.open .faq-a{max-height:400px;}
+  .faq-a p{padding:0 20px 18px;color:var(--gray);font-size:14px;line-height:1.6;}
+  .faq-cat{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--blue);margin:26px 0 4px;}
+  .faq-cat:first-child{margin-top:0;}
+  #page-faqs .container.section{max-width:1200px;}
+  #page-faqs .doc-controls{margin-bottom:24px;}
+  #page-faqs .doc-search{width:100%;}
+  .faq-empty{padding:24px;text-align:center;color:var(--gray);font-size:13.5px;}
   .doc-row{display:flex;align-items:center;gap:16px;background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px 18px;}
   .doc-row .ficon{width:42px;height:42px;border-radius:10px;background:var(--sky);color:var(--blue);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:17px;}
   .doc-row .info{flex:1;}
@@ -651,6 +821,7 @@
   .program-modal-icon{width:60px;height:60px;border-radius:50%;background:rgba(255,255,255,.12);display:flex;align-items:center;justify-content:center;margin:0 auto 14px;color:var(--gold);font-size:24px;}
   .program-modal-hero .tag{margin-bottom:12px;}
   .program-modal-hero h3{color:#fff;font-size:22px;}
+  .title-pill{font-size:21px;padding:11px 26px;border-radius:30px;text-transform:none;letter-spacing:normal;max-width:100%;white-space:normal;line-height:1.3;}
   .program-modal-content{padding:26px 38px 32px;overflow-y:auto;}
   .program-modal-content .desc{color:var(--gray);font-size:14px;line-height:1.75;margin-bottom:24px;}
   .program-modal-section{margin-bottom:22px;}
@@ -671,10 +842,10 @@
   .program-modal-actions{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;}
   .program-modal-close{position:absolute;top:16px;right:16px;z-index:5;width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,.14);color:#fff;display:flex;align-items:center;justify-content:center;font-size:16px;}
   .program-modal-close:hover{background:rgba(255,255,255,.24);}
-  @media(max-width:640px){.program-modal-hero{padding:32px 24px 22px;}.program-modal-hero h3{font-size:19px;}.program-modal-content{padding:20px 22px 26px;}}
+  @media(max-width:640px){.program-modal-hero{padding:32px 24px 22px;}.program-modal-hero h3{font-size:19px;}.title-pill{font-size:17px;padding:9px 18px;}.program-modal-content{padding:20px 22px 26px;}}
 
   /* Office modal (2nd overlay for City Services): Citizen's Charter pill below the office name */
-  .office-charter-btn{display:inline-flex;align-items:center;gap:7px;margin-top:12px;padding:7px 16px;border-radius:20px;background:rgba(255,255,255,.14);color:#fff;font-size:12px;font-weight:700;}
+  .office-charter-btn{display:flex;width:fit-content;align-items:center;gap:7px;margin:14px auto 0;padding:7px 16px;border-radius:20px;background:rgba(255,255,255,.14);color:#fff;font-size:12px;font-weight:700;}
   .office-charter-btn:hover{background:rgba(255,255,255,.24);}
 
   /* Programs: category list overlay (1st overlay) — rows for the specific programs under a category */
@@ -784,11 +955,13 @@
   @media(max-width:640px){.article-modal-card{max-height:calc(100vh - 48px);}.article-modal-img{height:190px;}.article-modal-content{padding:24px 24px 30px;}.article-modal-content h3{font-size:19px;}}
 
   /* ===== Complaints ===== */
-  .fb-card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:32px;display:flex;gap:26px;align-items:center;}
-  .fb-card .qr{width:130px;height:130px;border-radius:12px;border:1px solid var(--line);padding:8px;flex-shrink:0;background:#fff;}
+  .fb-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+  .fb-card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:32px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:6px;}
+  .fb-card .qr{width:130px;height:130px;border-radius:12px;border:1px solid var(--line);padding:8px;flex-shrink:0;background:#fff;margin-bottom:10px;}
   .fb-card h3{font-size:19px;margin-bottom:10px;}
   .fb-card p{font-size:13.5px;color:var(--gray);margin-bottom:16px;}
-  @media(max-width:768px){.fb-card{flex-direction:column;text-align:center;padding:26px 22px;}.fb-card .qr{margin:0 auto;}}
+  @media(max-width:1024px){.fb-grid{grid-template-columns:repeat(2,1fr);}}
+  @media(max-width:768px){.fb-grid{grid-template-columns:1fr;}.fb-card{padding:26px 22px;}}
 
   /* ===== Hotlines ===== */
   .hotline-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
@@ -804,8 +977,14 @@
   footer{background:var(--navy-deep);color:#b9c8ea;padding:56px 0 28px;}
   .foot-grid{display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:36px;margin-bottom:36px;}
   .foot-col1-split{display:flex;justify-content:space-between;align-items:flex-start;gap:20px;flex-wrap:wrap;}
-  .foot-col1-right{display:flex;align-items:center;gap:14px;text-align:left;flex-shrink:0;}
-  @media(max-width:480px){.foot-col1-right{flex-wrap:wrap;}.foot-col1-right .seal{width:120px !important;height:120px !important;}}
+  .foot-col1-right{display:flex;align-items:center;gap:14px;text-align:left;flex-shrink:0;min-width:0;}
+  .foot-col1-right-text{min-width:0;}
+  /* The 200px GOVPH seal has flex-shrink:0, so once the footer's first grid column narrows
+     (2-col layout kicks in at max-width:1100px) it refused to shrink and pushed the
+     "Republic of the Philippines" text past the column edge, overlapping the next column's
+     links. Scale the seal down before that happens, well before the 480px full-stack case. */
+  @media(max-width:1100px){.foot-col1-right .seal{width:110px !important;height:110px !important;}}
+  @media(max-width:480px){.foot-col1-right{flex-wrap:wrap;width:100%;}.foot-col1-right .seal{width:120px !important;height:120px !important;}.foot-col1-right-text{flex:1;}}
   .foot-brand{display:flex;gap:12px;align-items:center;margin-bottom:14px;}
   .foot-brand strong{color:#fff;font-size:18px;}
   .foot-brand img{border-radius: 50%;}
@@ -846,13 +1025,19 @@
     .qc{border-right:none;border-bottom:1px solid var(--line);}
     .seals-grid{grid-template-columns:repeat(2,1fr);}
   }
-  @media(max-width:900px){
+  /* Full nav + search only has room from ~1450px down to ~1260px (compact style above); below
+     1260px it started wrapping onto a second row that the fixed-height bar clipped/overlapped
+     with the ticker underneath it, so the hamburger takes over before that wrap point instead
+     of waiting until 900px. */
+  @media(max-width:1260px){
     .navlist,.nav-tools .search-box{display:none;}
-    .menu-toggle{display:block;}
+    .menu-toggle{display:flex;}
     .navlist.mobile-open{display:flex;position:absolute;top:82px;left:0;right:0;background:#fff;flex-direction:column;align-items:stretch;gap:0;padding:10px 20px 16px;box-shadow:var(--shadow);z-index:250;max-height:calc(100vh - 82px);overflow-y:auto;}
     .navlist.mobile-open>li>a{width:100%;padding:12px 4px;border-radius:0;border-bottom:1px solid var(--line);}
     .navlist.mobile-open .mobile-search-item{display:block;padding:6px 0 16px;}
     .navlist.mobile-open .mobile-search-item .search-box{width:100%;}
+  }
+  @media(max-width:900px){
     .about-block{grid-template-columns:1fr;}
     .app-links{grid-template-columns:1fr;}
     .office-list{grid-template-columns:1fr;}
@@ -873,8 +1058,8 @@
     .topbar-left,.topbar-right{flex-wrap:wrap;gap:10px;}
     .mainnav .container{height:68px;}
     .navlist.mobile-open{top:68px;max-height:calc(100vh - 68px);}
-    .brand .name strong{font-size:15px;}
-    .brand .seal{width:38px;height:38px;}
+    .brand .name strong{font-size:16.5px;}
+    .brand .seal{width:40px;height:40px;}
     .hero-grid h1{font-size:32px;}
     .container{padding-left:16px;padding-right:16px;}
     .chat-fab{padding:12px 16px 12px 14px;}
@@ -884,8 +1069,6 @@
     .tourism-tabs{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;justify-content:center;margin:20px 0 30px;}
     .tourism-tabs button{width:100%;}
     .tourism-tabs button:first-child{grid-column:1/-1;width:auto;justify-self:center;}
-    .quicklinks ul{grid-template-columns:1fr;}
-    .quicklinks a{justify-content:center;text-align:center;gap:10px;}
     .fieldmap-search{padding:9px 14px;border-radius:16px;}
     .fieldmap-search input{font-size:13px;}
     .fieldmap-search-status{font-size:12.5px;}
@@ -894,26 +1077,53 @@
     .office-row h4{font-size:13.5px;display:flex;flex-wrap:wrap;align-items:center;gap:6px;}
     .office-row .cat-pill{margin-left:0;}
   }
+
+  /* ===== ANNOUNCEMENT POPUP (near full screen, backdrop peeking through) ===== */
+  .announce-overlay{position:fixed;inset:0;background:rgba(8,18,40,.72);backdrop-filter:blur(3px);display:flex;align-items:center;justify-content:center;z-index:1000;padding:28px;opacity:0;pointer-events:none;visibility:hidden;transition:opacity .3s ease,visibility 0s linear .3s;}
+  .announce-overlay.is-open{opacity:1;pointer-events:auto;visibility:visible;transition:opacity .3s ease,visibility 0s linear 0s;}
+  .announce-modal{position:relative;width:80vw;height:74vh;max-width:1040px;background:var(--navy-deep);border-radius:20px;box-shadow:0 40px 90px -20px rgba(0,0,0,.55);overflow:hidden;display:flex;flex-direction:column;transform:translateY(16px) scale(.97);transition:transform .35s ease;}
+  .announce-overlay.is-open .announce-modal{transform:translateY(0) scale(1);}
+  .announce-close{position:absolute;top:20px;right:20px;width:46px;height:46px;border-radius:50%;background:rgba(10,36,83,.6);color:#fff;display:flex;align-items:center;justify-content:center;font-size:18px;z-index:20;transition:.2s;}
+  .announce-close:hover{background:rgba(10,36,83,.9);transform:scale(1.06);}
+  /* slideshow: each slide is a full-bleed photo + gradient body, cross-fading like the hero carousel */
+  .announce-slides{position:relative;width:100%;height:100%;}
+  .announce-slide{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;opacity:0;pointer-events:none;transition:opacity .5s ease;}
+  .announce-slide.is-active{opacity:1;pointer-events:auto;z-index:2;}
+  .announce-media{position:absolute;inset:0;width:100%;height:100%;background:var(--sky);}
+  .announce-media img{width:100%;height:100%;display:block;object-fit:cover;position:absolute;inset:0;}
+  .announce-body{position:relative;z-index:2;padding:28px 40px 46px;background:linear-gradient(0deg,rgba(10,36,83,.94) 0%,rgba(10,36,83,.62) 55%,rgba(10,36,83,0) 100%);color:#fff;}
+  .announce-body h3{font-size:26px;font-weight:800;margin-bottom:12px;line-height:1.25;color:#fff;max-width:820px;}
+  .announce-body p{color:#dbe6fb;font-size:14.5px;margin-bottom:18px;max-width:560px;}
+  .announce-actions{display:flex;align-items:center;gap:14px;flex-wrap:wrap;}
+  /* prev/next arrows + dots, grouped like the hero nav so they never sit flush against the photo */
+  .announce-nav{position:absolute;left:50%;bottom:22px;transform:translateX(-50%);display:flex;align-items:center;gap:14px;z-index:10;}
+  .announce-arrow{width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,.7);border:1px solid rgba(10,36,83,.1);color:var(--navy-deep);display:flex;align-items:center;justify-content:center;font-size:14px;cursor:pointer;transition:.2s;box-shadow:0 8px 20px -8px rgba(10,36,83,.4);flex-shrink:0;}
+  .announce-arrow:hover{background:rgba(255,255,255,.92);transform:scale(1.06);}
+  .announce-dots{display:flex;align-items:center;gap:9px;background:rgba(255,255,255,.55);backdrop-filter:blur(4px);padding:8px 14px;border-radius:20px;box-shadow:0 8px 20px -8px rgba(10,36,83,.3);}
+  .announce-dot{width:8px;height:8px;border-radius:50%;background:rgba(10,36,83,.25);border:none;cursor:pointer;padding:0;transition:.2s;}
+  .announce-dot.is-active{background:var(--navy-deep);width:22px;border-radius:5px;}
+  @media(max-width:700px){
+    .announce-modal{width:100%;height:94vh;border-radius:16px;}
+    .announce-close{top:14px;right:14px;width:42px;height:42px;font-size:16px;}
+    .announce-body{padding:26px 22px 76px;}
+    .announce-body h3{font-size:24px;}
+    .announce-body p{font-size:14.5px;}
+    .announce-nav{bottom:16px;gap:10px;}
+    .announce-arrow{width:34px;height:34px;font-size:12px;}
+  }
 </style>
 </head>
 <body>
 
-<!-- ===================== TOP BAR ===================== -->
-<div class="topbar">
-  <div class="container">
-    <div class="topbar-left">
-      <span>Welcome to the Official Website of the City Government of Manila</span>
-    </div>
-    <div class="topbar-right">
-      <a href="#"><i class="fa-solid fa-universal-access"></i> Accessibility</a>
-      <a href="#"><i class="fa-solid fa-sitemap"></i> Sitemap</a>
-      <a href="#" onclick="goTo('hotlines');return false;"><i class="fa-solid fa-phone"></i> Contact Us</a>
-      <div class="topbar-social">
-        <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
-        <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
-        <a href="#"><i class="fa-brands fa-youtube"></i></a>
-      </div>
-      <a href="#">English <i class="fa-solid fa-chevron-down" style="font-size:9px;"></i></a>
+<!-- ===================== ANNOUNCEMENT POPUP (slideshow, pulled from newsData / psaData) ===================== -->
+<div class="announce-overlay" id="announceOverlay">
+  <div class="announce-modal" role="dialog" aria-modal="true" aria-labelledby="announceTitle">
+    <button class="announce-close" id="announceClose" aria-label="Close announcement"><i class="fa-solid fa-xmark"></i></button>
+    <div class="announce-slides" id="announceSlides"></div>
+    <div class="announce-nav">
+      <button class="announce-arrow" id="announcePrev" aria-label="Previous"><i class="fa-solid fa-chevron-left"></i></button>
+      <div class="announce-dots" id="announceDots"></div>
+      <button class="announce-arrow" id="announceNext" aria-label="Next"><i class="fa-solid fa-chevron-right"></i></button>
     </div>
   </div>
 </div>
@@ -926,22 +1136,21 @@
       <div class="seal"><img src="https://cdn.jsdelivr.net/gh/JhillianBaniqued/Gov-Manila-Website@main/images/Ph_seal_ncr_manila.svg" alt="Manila logo"></div>
       <div class="name"><span>CITY GOVERNMENT OF</span><strong>MANILA</strong></div>
     </div>
-    <ul class="navlist" id="navlist">
-      <li class="mobile-search-item"><div class="search-box"><input type="text" id="site-search-mobile" placeholder="What are you looking for?" autocomplete="off"><button type="button" id="site-search-btn-mobile" aria-label="Search"><i class="fa-solid fa-magnifying-glass" style="font-size:15px;"></i></button><div class="search-results" id="site-search-results-mobile"></div></div></li>
-      <li><a href="#" data-page="home" class="active">Home</a></li>
-      <li><a href="#" data-page="about">About Us</a></li>
-      <li><a href="#" data-page="offices">Offices</a></li>
-      <li><a href="#" data-page="programs">Programs &amp; Services</a></li>
-      <li><a href="#" data-page="news">News &amp; Announcements</a></li>
-      <li><a href="#" data-page="notices">Notices &amp; Publications</a></li>
-      <li><a href="#" data-page="transparency">Transparency</a></li>
-      <li><a href="#" data-page="tourism">Tourism</a></li>
-      <li><a href="#" data-page="complaints">Feedback</a></li>
-      <li><a href="#" data-page="hotlines">Hotlines</a></li>
-    </ul>
-    <div class="nav-tools">
-      <div class="search-box"><input type="text" id="site-search-desktop" placeholder="What are you looking for?" autocomplete="off"><button type="button" id="site-search-btn-desktop" aria-label="Search"><i class="fa-solid fa-magnifying-glass" style="font-size:15px;"></i></button><div class="search-results" id="site-search-results-desktop"></div></div>
-      <button class="menu-toggle"><i class="fa-solid fa-bars"></i></button>
+    <div class="nav-right">
+      <ul class="navlist" id="navlist">
+        <li class="mobile-search-item"><div class="search-box"><input type="text" id="site-search-mobile" placeholder="What are you looking for?" autocomplete="off"><button type="button" id="site-search-btn-mobile" aria-label="Search"><i class="fa-solid fa-magnifying-glass" style="font-size:15px;"></i></button><div class="search-results" id="site-search-results-mobile"></div></div></li>
+        <li><a href="#" data-page="home" class="active">Home</a></li>
+        <li><a href="#" data-page="about">About Us</a></li>
+        <li><a href="#" data-page="offices">Offices</a></li>
+        <li><a href="#" data-page="programs">Programs &amp; Services</a></li>
+        <li><a href="#" data-page="news">News &amp; Announcements</a></li>
+        <li><a href="#" data-page="transparency">Transparency</a></li>
+        <li><a href="#" data-page="tourism">Tourism</a></li>
+      </ul>
+      <div class="nav-tools">
+        <div class="search-box"><input type="text" id="site-search-desktop" placeholder="What are you looking for?" autocomplete="off"><button type="button" id="site-search-btn-desktop" aria-label="Search"><i class="fa-solid fa-magnifying-glass" style="font-size:15px;"></i></button><div class="search-results" id="site-search-results-desktop"></div></div>
+        <button class="menu-toggle"><i class="fa-solid fa-bars"></i></button>
+      </div>
     </div>
   </div>
 </div>
@@ -956,29 +1165,44 @@
 
 <!-- ===================== HOME ===================== -->
 <section class="page active" id="page-home">
-  <div class="hero">
-    <div class="container">
-      <div class="hero-grid">
-        <div>
-          <span class="eyebrow">A World-Class City</span>
-          <h1>Serbisyong Tapat,<br>Para sa Lahat!</h1>
-          <p>The City Government of Manila is committed to delivering excellent, transparent, and accessible public service for every Manileño — anytime, anywhere.</p>
-          <div class="hero-actions">
-            <a class="btn btn-primary" href="#" onclick="goTo('programs','cityservices');return false;">Explore Services <i class="fa-solid fa-arrow-right"></i></a>
-            <a class="btn btn-outline" href="#" onclick="goTo('news','announcements');return false;">View Announcements <i class="fa-solid fa-bullhorn"></i></a>
+  <div class="hero" id="homeHero">
+
+    <div class="hero-slide is-active" style="background-image:linear-gradient(to right,#f4f8fe 0%,rgba(244,248,254,.95) 22%,rgba(244,248,254,.62) 45%,rgba(244,248,254,.15) 68%,rgba(244,248,254,.05) 100%),url('https://cdn.jsdelivr.net/gh/JhillianBaniqued/Gov-Manila-Website@main/images/755396570_1090962856924916_2670900636473447370_n.png');"></div>
+
+    <div class="hero-slide" style="background-image:linear-gradient(to right,#f4f8fe 0%,rgba(244,248,254,.95) 22%,rgba(244,248,254,.62) 45%,rgba(244,248,254,.15) 68%,rgba(244,248,254,.05) 100%),url('https://cdn.jsdelivr.net/gh/JhillianBaniqued/Gov-Manila-Website@main/images/mnl.png');"></div>
+
+    <div class="hero-slide" style="background-image:linear-gradient(to right,#f4f8fe 0%,rgba(244,248,254,.95) 22%,rgba(244,248,254,.62) 45%,rgba(244,248,254,.15) 68%,rgba(244,248,254,.05) 100%),url('https://cdn.jsdelivr.net/gh/JhillianBaniqued/Gov-Manila-Website@main/images/mnl_2.webp');"></div>
+
+    <div class="hero-slide" style="background-image:linear-gradient(to right,#f4f8fe 0%,rgba(244,248,254,.95) 22%,rgba(244,248,254,.62) 45%,rgba(244,248,254,.15) 68%,rgba(244,248,254,.05) 100%),url('https://cdn.jsdelivr.net/gh/JhillianBaniqued/Gov-Manila-Website@main/images/mnl_3.jpeg');"></div>
+
+    <div class="hero-text">
+      <div class="container">
+        <div class="hero-grid">
+          <div>
+            <span class="eyebrow">A World-Class City</span>
+            <h1>Serbisyong Tapat,<br>Para sa Lahat!</h1>
+            <p>The City Government of Manila is committed to delivering excellent, transparent, and accessible public service for every Manileño — anytime, anywhere.</p>
+            <div class="hero-actions">
+              <a class="btn btn-primary" href="#" onclick="goTo('tourism');return false;">Explore Manila <i class="fa-solid fa-compass"></i></a>
+              <a class="btn btn-outline" href="#" onclick="goTo('news','announcements');return false;">Upcoming Events <i class="fa-solid fa-calendar-days"></i></a>
+            </div>
           </div>
         </div>
       </div>
     </div>
-    <div class="hero-weather">
-      <div class="hero-weather-date">
-        <span class="hwd-dow" id="home-weather-dow">Today</span>
-        <span class="hwd-day" id="home-weather-day"></span>
-      </div>
-      <div class="hero-weather-icons" id="home-weather-icons"></div>
-    </div>
-  </div>
 
+    <div class="hero-nav">
+      <button class="hero-arrow prev" onclick="heroPrev()" aria-label="Previous slide"><i class="fa-solid fa-chevron-left"></i></button>
+      <div class="hero-dots" id="heroDots">
+        <button class="hero-dot is-active" onclick="heroGoTo(0)" aria-label="Slide 1"></button>
+        <button class="hero-dot" onclick="heroGoTo(1)" aria-label="Slide 2"></button>
+        <button class="hero-dot" onclick="heroGoTo(2)" aria-label="Slide 3"></button>
+        <button class="hero-dot" onclick="heroGoTo(3)" aria-label="Slide 4"></button>
+      </div>
+      <button class="hero-arrow next" onclick="heroNext()" aria-label="Next slide"><i class="fa-solid fa-chevron-right"></i></button>
+    </div>
+
+  </div>
 
   <div class="strip">
     <div class="container">
@@ -993,14 +1217,14 @@
         </div>
         <div class="quicklinks">
           <h4>Quick Links</h4>
-          <ul>
-            <li><a href="#" onclick="goTo('notices', 'vacancies'); return false;"> Jobs &amp; Opportunities <i class="fa-solid fa-chevron-right"></i></a></li>
-            <li><a href="#" onclick="goTo('notices','publication');return false;">Freedom of Information <i class="fa-solid fa-chevron-right"></i></a></li>
-            <li><a href="#" onclick="goTo('notices','awards');return false;">Bids &amp; Awards <i class="fa-solid fa-chevron-right"></i></a></li>
-            <li><a href="#" onclick="goTo('news','weather');return false;">Weather &amp; Hazard Advisory <i class="fa-solid fa-chevron-right"></i></a></li>
-            <li><a href="#" onclick="goTo('notices');return false;"> Citizen's Charter <i class="fa-solid fa-chevron-right"></i></a></li>
-            <li><a href="#" onclick="goTo('notices','forms');return false;">Downloadables <i class="fa-solid fa-chevron-right"></i></a></li>
-          </ul>
+          <div class="ql-grid">
+            <div class="ql-tile" onclick="goTo('faqs')"><div class="ql-icon"><i class="fa-solid fa-comment-dots"></i></div><span class="ql-label">FAQs</span></div>
+            <div class="ql-tile" onclick="goTo('hotlines')"><div class="ql-icon"><i class="fa-solid fa-phone-volume"></i></div><span class="ql-label">Hotlines</span></div>
+                        <div class="ql-tile" onclick="goTo('complaints')"><div class="ql-icon"><i class="fa-solid fa-comment"></i></div><span class="ql-label">Feedback</span></div>
+            <div class="ql-tile" onclick="goTo('vacancies')"><div class="ql-icon"><i class="fa-solid fa-briefcase"></i></div><span class="ql-label">Job Vacancies</span></div>
+            <div class="ql-tile" onclick="goTo('forms')"><div class="ql-icon"><i class="fa-solid fa-file-arrow-down"></i></div><span class="ql-label">Downloadable Forms</span></div>
+            <div class="ql-tile" onclick="goToSeal('npc')"><div class="ql-icon"><i class="fa-solid fa-shield-halved"></i></div><span class="ql-label">Privacy Notice</span></div>
+          </div>
         </div>
       </div>
     </div>
@@ -1012,14 +1236,31 @@
         <h2>Latest News</h2>
         <a class="link-arrow" href="#" onclick="goTo('news','latest');return false;">View All News <i class="fa-solid fa-arrow-right"></i></a>
       </div>
-      <div class="grid-3" id="home-news-cards"></div>
+      <div class="home-news-grid3" id="home-news-cards"></div>
     </div>
   </div>
 
-  <div class="section" style="background:var(--sky);padding-top:60px;">
+  <div class="section" style="background:var(--sky);padding:48px 0;">
     <div class="container">
-      <div class="section-head"><h2>Programs &amp; Services</h2><a class="link-arrow" href="#" onclick="goTo('programs','cityprograms');return false;">See All Programs <i class="fa-solid fa-arrow-right"></i></a></div>
-      <div class="grid-4" id="home-programs-cards"></div>
+      <div class="section-head" style="margin-bottom:22px;"><h2>Programs &amp; Services</h2></div>
+      <div class="progsvc-panels">
+        <div class="progsvc-panel" data-kind="programs">
+          <div class="progsvc-panel-head">
+            <div class="progsvc-panel-icon"><i class="fa-solid fa-hand-holding-heart"></i></div>
+            <div><h3>City Programs</h3><span>Assistance &amp; initiatives for residents</span></div>
+            <a class="link-arrow progsvc-panel-link" href="#" onclick="goTo('programs','cityprograms');return false;">View All <i class="fa-solid fa-arrow-right"></i></a>
+          </div>
+          <div class="progsvc-list" id="home-programs-cards"></div>
+        </div>
+        <div class="progsvc-panel" data-kind="services">
+          <div class="progsvc-panel-head">
+            <div class="progsvc-panel-icon"><i class="fa-solid fa-building-columns"></i></div>
+            <div><h3>City Services</h3><span>Offices &amp; transactions you can access</span></div>
+            <a class="link-arrow progsvc-panel-link" href="#" onclick="goTo('programs','cityservices');return false;">View All <i class="fa-solid fa-arrow-right"></i></a>
+          </div>
+          <div class="progsvc-list" id="home-services-cards"></div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -1032,6 +1273,7 @@
       <button class="active" data-sub="mission">Mission</button>
       <button data-sub="vision">Vision</button>
       <button data-sub="values">Core Values</button>
+      <button data-sub="awards">Awards &amp; Recognitions</button>
       <button data-sub="history">History</button>
     </div>
 
@@ -1070,15 +1312,43 @@
       </div>
     </div>
 
+    <div class="subpage" id="about-awards">
+      <span class="eyebrow">Recognized Excellence</span>
+      <h2 style="font-size:28px;margin-bottom:6px;">Awards &amp; Recognitions</h2>
+      <div class="award-grid">
+        <div class="award-item"><div class="award-icon"><i class="fa-solid fa-trophy"></i></div><h4>Seal of Good Local Governance</h4><span class="award-meta">DILG · 2024</span><p>Awarded for excellence in governance, financial administration, and delivery of basic services to residents.</p></div>
+        <div class="award-item"><div class="award-icon"><i class="fa-solid fa-award"></i></div><h4>Most Business-Friendly LGU (Highly Urbanized City)</h4><span class="award-meta">PCCI · 2023</span><p>Recognized by the Philippine Chamber of Commerce and Industry for streamlined permitting and ease of doing business.</p></div>
+        <div class="award-item"><div class="award-icon"><i class="fa-solid fa-star"></i></div><h4>National Search for Effective Local Governance</h4><span class="award-meta">DILG · 2023</span><p>Cited for outstanding performance in health, education, and social welfare programs.</p></div>
+        <div class="award-item"><div class="award-icon"><i class="fa-solid fa-shield-heart"></i></div><h4>Gawad KALASAG</h4><span class="award-meta">NDRRMC · 2022</span><p>Honored for disaster preparedness, response, and resilience initiatives across Manila's districts.</p></div>
+        <div class="award-item"><div class="award-icon"><i class="fa-solid fa-leaf"></i></div><h4>Outstanding LGU for Environmental Governance</h4><span class="award-meta">DENR · 2022</span><p>Recognized for solid waste management, urban greening, and coastal cleanup programs.</p></div>
+        <div class="award-item"><div class="award-icon"><i class="fa-solid fa-landmark"></i></div><h4>Heritage City Award</h4><span class="award-meta">NCCA · 2021</span><p>Cited for the preservation and promotion of Intramuros and Manila's historic landmarks.</p></div>
+      </div>
+    </div>
+
     <div class="subpage" id="about-history">
       <span class="eyebrow">Our Story</span>
       <h2 style="font-size:28px;margin-bottom:24px;">A City of Heritage</h2>
-      <div class="timeline">
-        <div class="tl-item"><h4>1571</h4><p>Manila is established as the capital of the Spanish East Indies by Miguel López de Legazpi.</p></div>
-        <div class="tl-item"><h4>1901</h4><p>The City of Manila is formally organized under the Philippine Commission during the American colonial period.</p></div>
-        <div class="tl-item"><h4>1945</h4><p>The Battle of Manila leaves the city devastated; post-war reconstruction begins soon after.</p></div>
-        <div class="tl-item"><h4>1975</h4><p>Manila becomes the seat of the National Capital Region (Metro Manila).</p></div>
-        <div class="tl-item"><h4>Today</h4><p>Manila continues to modernize its services while preserving its heritage as the Pearl of the Orient.</p></div>
+      <div class="heritage-timeline">
+        <div class="ht-row">
+          <div class="ht-media"><img src="https://cdn.jsdelivr.net/gh/JhillianBaniqued/Gov-Manila-Website@main/images/intramuros_uli.jpg" alt="1571 Founding of Manila"></div>
+          <div class="ht-content"><h3><span class="ht-year">1571</span>Founding of Manila</h3><p>Manila is established as the capital of the Spanish East Indies by Miguel López de Legazpi, becoming the seat of colonial government for over three centuries.</p></div>
+        </div>
+        <div class="ht-row">
+          <div class="ht-media"><img src="https://cdn.jsdelivr.net/gh/JhillianBaniqued/Gov-Manila-Website@main/images/national_musuem_out.jpg" alt="1901 A city formally organized"></div>
+          <div class="ht-content"><h3><span class="ht-year">1901</span>A city formally organized</h3><p>The City of Manila is formally organized under the Philippine Commission during the American colonial period, laying the foundations of its modern local government.</p></div>
+        </div>
+        <div class="ht-row">
+          <div class="ht-media"><img src="https://cdn.jsdelivr.net/gh/JhillianBaniqued/Gov-Manila-Website@main/images/manila_cathedral_out.jpg" alt="1945 Rising from the ruins"></div>
+          <div class="ht-content"><h3><span class="ht-year">1945</span>Rising from the ruins</h3><p>The Battle of Manila leaves the city devastated, but post-war reconstruction begins soon after, rebuilding landmarks and restoring civic life across the capital.</p></div>
+        </div>
+        <div class="ht-row">
+          <div class="ht-media"><img src="https://cdn.jsdelivr.net/gh/JhillianBaniqued/Gov-Manila-Website@main/images/clock_tower_1.jpg" alt="1975 Seat of the National Capital Region"></div>
+          <div class="ht-content"><h3><span class="ht-year">1975</span>Seat of the National Capital Region</h3><p>Manila becomes the seat of the newly created National Capital Region (Metro Manila), cementing its role as the country's center of government.</p></div>
+        </div>
+        <div class="ht-row">
+          <div class="ht-media"><img src="https://cdn.jsdelivr.net/gh/JhillianBaniqued/Gov-Manila-Website@main/images/mnl.png" alt="Today: A living heritage"></div>
+          <div class="ht-content"><h3><span class="ht-year">Today</span>A living heritage</h3><p>Manila continues to modernize its services and infrastructure while preserving its heritage as the Pearl of the Orient for generations of Manileños to come.</p></div>
+        </div>
       </div>
     </div>
   </div>
@@ -1087,7 +1357,7 @@
 
 <!-- ===================== OFFICES ===================== -->
 <section class="page" id="page-offices">
-  <div class="page-hero"><div class="container"><span class="crumb">Home / Offices</span><h1>City Offices</h1><p>Find the right office, directory, and location — from the organizational chart down to your nearest barangay hall.</p></div></div>
+  <div class="page-hero"><div class="container"><span class="crumb">Home / Offices</span><h1>City Offices</h1><p>Find the right office, directory, and location — from the organizational chart down to your nearest field office.</p></div></div>
   <div class="container">
     <div class="tabnav" id="offices-tabs">
       <button class="active" data-sub="officials">City Officials</button>
@@ -1111,10 +1381,6 @@
                 <h3 id="mayor-name"></h3>
                 <p class="featured-pos" id="mayor-pos"></p>
                 <p class="featured-bio" id="mayor-bio"></p>
-                <div class="featured-meta">
-                  <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"></path></svg><span id="mayor-contact"></span></span>
-                  <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="1"></rect><line x1="9" y1="6" x2="9" y2="6.01"></line><line x1="15" y1="6" x2="15" y2="6.01"></line><line x1="9" y1="10" x2="9" y2="10.01"></line><line x1="15" y1="10" x2="15" y2="10.01"></line><line x1="9" y1="14" x2="9" y2="14.01"></line><line x1="15" y1="14" x2="15" y2="14.01"></line><line x1="9" y1="18" x2="15" y2="18"></line></svg><span id="mayor-address"></span></span>
-                </div>
                 <span class="link-arrow view-profile-hint" onclick="event.stopPropagation();openMayorModal()">View Full Profile <i class="fa-solid fa-arrow-right"></i></span>
               </div>
             </div>
@@ -1135,10 +1401,6 @@
                 <h3 id="vicemayor-name"></h3>
                 <p class="featured-pos" id="vicemayor-pos"></p>
                 <p class="featured-bio" id="vicemayor-bio"></p>
-                <div class="featured-meta">
-                  <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"></path></svg><span id="vicemayor-contact"></span></span>
-                  <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="1"></rect><line x1="9" y1="6" x2="9" y2="6.01"></line><line x1="15" y1="6" x2="15" y2="6.01"></line><line x1="9" y1="10" x2="9" y2="10.01"></line><line x1="15" y1="10" x2="15" y2="10.01"></line><line x1="9" y1="14" x2="9" y2="14.01"></line><line x1="15" y1="14" x2="15" y2="14.01"></line><line x1="9" y1="18" x2="15" y2="18"></line></svg><span id="vicemayor-address"></span></span>
-                </div>
                 <span class="link-arrow view-profile-hint" onclick="event.stopPropagation();openVicemayorModal()">View Full Profile <i class="fa-solid fa-arrow-right"></i></span>
               </div>
             </div>
@@ -1160,16 +1422,20 @@
 
     <div class="subpage" id="offices-directory">
       <h2 style="font-size:24px;margin-bottom:16px;">Office Directory</h2>
+      <div class="doc-controls">
+        <div class="doc-search"><i class="fa-solid fa-magnifying-glass"></i><input type="text" id="directory-search" placeholder="Search offices, heads, or addresses..." oninput="filterDirectory(this.value)"></div>
+      </div>
       <div class="directory-scroll">
-      <table class="directory">
-        <tr><th>Office</th><th>Head</th><th>Contact</th><th>Address</th></tr>
-        <tr><td data-label="Office">Office of the City Mayor</td><td data-label="Head">Hon. City Mayor</td><td data-label="Contact">(02) 8527-0000</td><td data-label="Address">Padre Burgos Ave, Ermita, Manila</td></tr>
-        <tr><td data-label="Office">City Health Department</td><td data-label="Head">City Health Officer</td><td data-label="Contact">(02) 8527-1234</td><td data-label="Address">Dapitan St, Sampaloc, Manila</td></tr>
-        <tr><td data-label="Office">City Social Welfare Dept.</td><td data-label="Head">Department Head</td><td data-label="Contact">(02) 8527-2345</td><td data-label="Address">General Luna St, Intramuros, Manila</td></tr>
-        <tr><td data-label="Office">City Treasurer's Office</td><td data-label="Head">City Treasurer</td><td data-label="Contact">(02) 8527-3456</td><td data-label="Address">Padre Burgos Ave, Manila City Hall</td></tr>
-        <tr><td data-label="Office">City Engineer's Office</td><td data-label="Head">City Engineer</td><td data-label="Contact">(02) 8527-4567</td><td data-label="Address">Padre Burgos Ave, Manila City Hall</td></tr>
-        <tr><td data-label="Office">Manila Traffic &amp; Parking Bureau</td><td data-label="Head">General Manager</td><td data-label="Contact">(02) 8527-5678</td><td data-label="Address">Taft Ave, Malate, Manila</td></tr>
+      <table class="directory" id="directory-table">
+        <tr><th>Office</th><th>Head</th><th>Contact</th><th>Email</th><th>Address</th></tr>
+        <tr><td data-label="Office"><a class="directory-office-link" href="https://www.facebook.com/ManilaCityGov/" target="_blank" rel="noopener">Office of the City Mayor</a></td><td data-label="Head">Hon. City Mayor</td><td data-label="Contact">(02) 8527-0000</td><td data-label="Email"><a class="directory-email-link" href="mailto:mayor@manila.gov.ph">mayor@manila.gov.ph</a></td><td data-label="Address">Padre Burgos Ave, Ermita, Manila</td></tr>
+        <tr><td data-label="Office"><a class="directory-office-link" href="https://www.facebook.com/manilahealthdepartment/" target="_blank" rel="noopener">City Health Department</a></td><td data-label="Head">City Health Officer</td><td data-label="Contact">(02) 8527-1234</td><td data-label="Email"><a class="directory-email-link" href="mailto:healthdept@manila.gov.ph">healthdept@manila.gov.ph</a></td><td data-label="Address">Dapitan St, Sampaloc, Manila</td></tr>
+        <tr><td data-label="Office"><a class="directory-office-link" href="https://www.facebook.com/maniladsw" target="_blank" rel="noopener">City Social Welfare Dept.</a></td><td data-label="Head">Department Head</td><td data-label="Contact">(02) 8527-2345</td><td data-label="Email"><a class="directory-email-link" href="mailto:cswd@manila.gov.ph">cswd@manila.gov.ph</a></td><td data-label="Address">General Luna St, Intramuros, Manila</td></tr>
+        <tr><td data-label="Office"><a class="directory-office-link" href="https://www.facebook.com/ingatyaman.maynila/" target="_blank" rel="noopener">City Treasurer's Office</a></td><td data-label="Head">City Treasurer</td><td data-label="Contact">(02) 8527-3456</td><td data-label="Email"><a class="directory-email-link" href="mailto:treasurer@manila.gov.ph">treasurer@manila.gov.ph</a></td><td data-label="Address">Padre Burgos Ave, Manila City Hall</td></tr>
+        <tr><td data-label="Office"><a class="directory-office-link" href="https://www.facebook.com/DEPWCityOfManila/" target="_blank" rel="noopener">City Engineer's Office</a></td><td data-label="Head">City Engineer</td><td data-label="Contact">(02) 8527-4567</td><td data-label="Email"><a class="directory-email-link" href="mailto:engineering@manila.gov.ph">engineering@manila.gov.ph</a></td><td data-label="Address">Padre Burgos Ave, Manila City Hall</td></tr>
+        <tr><td data-label="Office"><a class="directory-office-link" href="https://www.facebook.com/MTPBNoToKotong/" target="_blank" rel="noopener">Manila Traffic &amp; Parking Bureau</a></td><td data-label="Head">General Manager</td><td data-label="Contact">(02) 8527-5678</td><td data-label="Email"><a class="directory-email-link" href="mailto:mtpb@manila.gov.ph">mtpb@manila.gov.ph</a></td><td data-label="Address">Taft Ave, Malate, Manila</td></tr>
       </table>
+      <p class="directory-empty" id="directory-empty" style="display:none;padding:20px;text-align:center;color:var(--gray);font-size:13.5px;">No offices match your search.</p>
       </div>
     </div>
 
@@ -1178,7 +1444,7 @@
       <p style="color:var(--gray);font-size:14px;margin-bottom:22px;">Browse office locations by category, then tap "View on Map" to pin it.</p>
       <div class="doc-search fieldmap-search" id="fieldmap-search-wrap">
         <i class="fa-solid fa-magnifying-glass"></i>
-        <input type="text" id="fieldmap-search" placeholder="Search field offices, hospitals, schools, barangays..." oninput="handleFieldmapSearch(this.value)">
+        <input type="text" id="fieldmap-search" placeholder="Search field offices, hospitals, schools..." oninput="handleFieldmapSearch(this.value)">
         <button type="button" id="fieldmap-search-clear" class="fieldmap-search-clear" aria-label="Clear search" onclick="clearFieldmapSearch()"><i class="fa-solid fa-xmark"></i></button>
       </div>
       <p class="fieldmap-search-status" id="fieldmap-search-status"></p>
@@ -1187,7 +1453,6 @@
         <button data-cat="field">Field Offices</button>
         <button data-cat="hospital">Hospitals</button>
         <button data-cat="healthcenter">Health Centers</button>
-        <button data-cat="barangay">Barangay Halls</button>
         <button data-cat="elem">Public Schools – Elementary</button>
         <button data-cat="high">Public Schools – High School</button>
         <button data-cat="univ">Public Schools – University</button>
@@ -1203,7 +1468,6 @@
             <button type="button" data-cat="field">Field Offices</button>
             <button type="button" data-cat="hospital">Hospitals</button>
             <button type="button" data-cat="healthcenter">Health Centers</button>
-            <button type="button" data-cat="barangay">Barangay Halls</button>
             <button type="button" data-cat="elem">Public Schools – Elementary</button>
             <button type="button" data-cat="high">Public Schools – High School</button>
             <button type="button" data-cat="univ">Public Schools – University</button>
@@ -1277,7 +1541,6 @@
     <div class="tabnav" id="news-tabs">
       <button class="active" data-sub="latest">Latest News</button>
       <button data-sub="announcements">Announcements</button>
-      <button data-sub="weather">Weather Report</button>
     </div>
 
     <div class="subpage active" id="news-latest">
@@ -1338,44 +1601,27 @@
       </div>
     </div>
 
-    <div class="subpage" id="news-weather">
-      <span class="eyebrow">Daily Advisory</span>
-      <div class="weather-hero">
-        <h2 style="font-size:22px;">Weather &amp; Hazard Report</h2>
-        <div class="weather-date-picker">
-          <button class="weather-date-btn" id="weatherDateBtn" onclick="toggleWeatherCalPopover()">
-            <i class="fa-solid fa-calendar-days"></i>
-            <span id="weather-date-label"></span>
-            <i class="fa-solid fa-chevron-down"></i>
-          </button>
-          <div class="weather-cal-popover" id="weatherCalPopover">
-            <div class="calendar">
-              <div class="cal-head"><button onclick="event.stopPropagation();weatherCal.changeMonth(-1)"><i class="fa-solid fa-chevron-left"></i></button><h4 id="cal-title-weather"></h4><button onclick="event.stopPropagation();weatherCal.changeMonth(1)"><i class="fa-solid fa-chevron-right"></i></button></div>
-              <div class="cal-body"><div class="cal-grid" id="cal-grid-weather"></div></div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="advisory-grid" id="advisory-grid"></div>
-      <div class="weather-note"><i class="fa-solid fa-circle-info"></i><p>Tap the date above to open the calendar. A marked date means at least one advisory was in effect that day — check the cards above for details.</p></div>
-    </div>
   </div>
   <div style="height:24px;"></div>
 </section>
 
 <!-- ===================== NOTICES & PUBLICATIONS ===================== -->
-<section class="page" id="page-notices">
-  <div class="page-hero"><div class="container"><span class="crumb">Home / Notices &amp; Publications</span><h1>Notices and Publications</h1><p>Official publications, procurement documents, and notices of award.</p></div></div>
+<!-- ===================== TRANSPARENCY & SEALS (now also includes Notices & Publications) ===================== -->
+<section class="page" id="page-transparency">
+  <div class="page-hero"><div class="container"><span class="crumb">Home / Transparency &amp; Seals</span><h1>Transparency &amp; Seals</h1><p>Manila's certifications and seals of good governance, plus official publications and notices.</p></div></div>
   <div class="container">
-    <div class="tabnav" id="notices-tabs">
-      <button class="active" data-sub="pubs">Publications</button>
+    <div class="tabnav" id="transparency-tabs">
+      <button class="active" data-sub="seals">Seals</button>
+      <button data-sub="pubs">Publications</button>
       <button data-sub="bac">Procurement / BAC</button>
       <button data-sub="awards">Notice of Awards</button>
-	  <button data-sub="vacancies">Job Vacancies</button>
-	  <button data-sub="forms">Downloadable Forms</button>
     </div>
 
-    <div class="subpage active" id="notices-pubs">
+    <div class="subpage active" id="transparency-seals" style="padding-bottom:16px;">
+      <div class="seals-grid" id="seals-grid"></div>
+    </div>
+
+    <div class="subpage" id="transparency-pubs">
       <div class="doc-controls">
         <div class="doc-search"><i class="fa-solid fa-magnifying-glass"></i><input type="text" id="pubs-search" placeholder="Search publications..." oninput="renderNotices('pubs')"></div>
         <select id="pubs-year" class="doc-year" onchange="renderNotices('pubs')"></select>
@@ -1383,7 +1629,7 @@
       <div class="doc-list" id="pubs-list"></div>
     </div>
 
-    <div class="subpage" id="notices-bac">
+    <div class="subpage" id="transparency-bac">
       <div class="doc-controls">
         <div class="doc-search"><i class="fa-solid fa-magnifying-glass"></i><input type="text" id="bac-search" placeholder="Search procurement notices..." oninput="renderNotices('bac')"></div>
         <select id="bac-year" class="doc-year" onchange="renderNotices('bac')"></select>
@@ -1391,39 +1637,49 @@
       <div class="doc-list" id="bac-list"></div>
     </div>
 
-    <div class="subpage" id="notices-awards">
+    <div class="subpage" id="transparency-awards">
       <div class="doc-controls">
         <div class="doc-search"><i class="fa-solid fa-magnifying-glass"></i><input type="text" id="awards-search" placeholder="Search notices of award..." oninput="renderNotices('awards')"></div>
         <select id="awards-year" class="doc-year" onchange="renderNotices('awards')"></select>
       </div>
       <div class="doc-list" id="awards-list"></div>
     </div>
-	
-	<div class="subpage" id="notices-vacancies">
-      <div class="doc-controls">
-        <div class="doc-search"><i class="fa-solid fa-magnifying-glass"></i><input type="text" id="vacancies-search" placeholder="Search job vacancies..." oninput="renderNotices('vacancies')"></div>
-        <select id="vacancies-year" class="doc-year" onchange="renderNotices('vacancies')"></select>
-      </div>
-      <div class="doc-list" id="vacancies-list"></div>
-    </div>
-	
-	<div class="subpage" id="notices-forms">
-      <div class="doc-controls">
-        <div class="doc-search"><i class="fa-solid fa-magnifying-glass"></i><input type="text" id="forms-search" placeholder="Search downloadable forms..." oninput="renderNotices('forms')"></div>
-        <select id="forms-year" class="doc-year" onchange="renderNotices('forms')"></select>
-      </div>
-      <div class="doc-list" id="forms-list"></div>
-    </div>
-	
   </div>
   <div style="height:60px;"></div>
 </section>
 
-<!-- ===================== TRANSPARENCY & SEALS ===================== -->
-<section class="page" id="page-transparency">
-  <div class="page-hero"><div class="container"><span class="crumb">Home / Transparency &amp; Seals</span><h1>Transparency &amp; Seals</h1><p>Manila's certifications and seals of good governance.</p></div></div>
+<!-- ===================== JOB VACANCIES (standalone — reachable only via Quick Links, not in main nav) ===================== -->
+<section class="page" id="page-vacancies">
+  <div class="page-hero"><div class="container"><span class="crumb">Home / Job Vacancies</span><h1>Job Vacancies</h1><p>Current employment opportunities with the City Government of Manila.</p></div></div>
   <div class="container section">
-    <div class="seals-grid" id="seals-grid"></div>
+    <div class="doc-controls">
+      <div class="doc-search"><i class="fa-solid fa-magnifying-glass"></i><input type="text" id="vacancies-search" placeholder="Search job vacancies..." oninput="renderNotices('vacancies')"></div>
+      <select id="vacancies-year" class="doc-year" onchange="renderNotices('vacancies')"></select>
+    </div>
+    <div class="doc-list" id="vacancies-list"></div>
+  </div>
+</section>
+
+<!-- ===================== DOWNLOADABLE FORMS (standalone — reachable only via Quick Links, not in main nav) ===================== -->
+<section class="page" id="page-forms">
+  <div class="page-hero"><div class="container"><span class="crumb">Home / Downloadable Forms</span><h1>Downloadable Forms</h1><p>Official forms you can download and prepare ahead of your visit.</p></div></div>
+  <div class="container section">
+    <div class="doc-controls">
+      <div class="doc-search"><i class="fa-solid fa-magnifying-glass"></i><input type="text" id="forms-search" placeholder="Search downloadable forms..." oninput="renderNotices('forms')"></div>
+      <select id="forms-year" class="doc-year" onchange="renderNotices('forms')"></select>
+    </div>
+    <div class="doc-list" id="forms-list"></div>
+  </div>
+</section>
+
+<!-- ===================== FAQS (standalone — reachable only via Quick Links, not in main nav; separate from the i-Tanong chatbot) ===================== -->
+<section class="page" id="page-faqs">
+  <div class="page-hero"><div class="container"><span class="crumb">Home / FAQs</span><h1>Frequently Asked Questions</h1><p>Quick answers to common questions about City of Manila services. Can't find what you need? Ask i-Tanong instead.</p></div></div>
+  <div class="container section">
+    <div class="doc-controls">
+      <div class="doc-search"><i class="fa-solid fa-magnifying-glass"></i><input type="text" id="faqs-search" placeholder="Search FAQs..." oninput="renderFaqs()"></div>
+    </div>
+    <div class="faq-list" id="faqs-list"></div>
   </div>
 </section>
 
@@ -1477,8 +1733,7 @@
     <div class="program-modal-hero">
       <a href="#" class="program-modal-back" id="program-modal-back" style="display:none;"><i class="fa-solid fa-arrow-left"></i> <span></span></a>
       <div class="program-modal-icon" id="program-modal-icon"></div>
-      <span class="tag" id="program-modal-tag"></span>
-      <h3 id="program-modal-title"></h3>
+      <span class="tag title-pill" id="program-modal-title"></span>
     </div>
     <div class="program-modal-content">
       <p class="desc" id="program-modal-desc"></p>
@@ -1496,7 +1751,7 @@
       <div class="program-modal-section">
         <h4><i class="fa-solid fa-download"></i> Forms</h4>
         <div class="program-docs">
-          <a class="program-doc-row" href="#" onclick="closeProgramModal();goTo('notices','forms');return false;"><i class="fa-solid fa-file-arrow-down"></i><span>Downloadable Forms</span><i class="fa-solid fa-arrow-right"></i></a>
+          <a class="program-doc-row" href="#" onclick="closeProgramModal();goTo('forms');return false;"><i class="fa-solid fa-file-arrow-down"></i><span>Downloadable Forms</span><i class="fa-solid fa-arrow-right"></i></a>
         </div>
       </div>
 
@@ -1504,13 +1759,9 @@
         <i class="fa-solid fa-circle-question"></i>
         <div>
           <strong class="help-label">Need more help?</strong>
-          <p>Visit the related office below, or check Downloadable Forms for the full, official requirements list. You can also ask <strong>i-Tanong</strong>, our chat assistant, for a quick answer.</p>
+          <p>Check Downloadable Forms for the full, official requirements list, or ask <strong>i-Tanong</strong>, our chat assistant, for a quick answer.</p>
           <a href="#" onclick="closeProgramModal();document.getElementById('chatPanel').classList.add('open');return false;" style="display:inline-flex;align-items:center;gap:6px;margin-top:10px;font-size:12.5px;font-weight:700;color:var(--blue);"><i class="fa-solid fa-robot"></i> Ask i-Tanong <i class="fa-solid fa-arrow-right" style="font-size:10px;"></i></a>
         </div>
-      </div>
-
-      <div class="program-modal-actions">
-        <a class="btn btn-primary btn-sm" id="program-modal-cta" href="#">Related Office <i class="fa-solid fa-arrow-right"></i></a>
       </div>
     </div>
   </div>
@@ -1522,8 +1773,7 @@
     <button class="program-modal-close" onclick="closeCategoryModal()" aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
     <div class="program-modal-hero">
       <div class="program-modal-icon" id="category-modal-icon"></div>
-      <span class="tag tag-gold">Program Category</span>
-      <h3 id="category-modal-title"></h3>
+      <span class="tag tag-gold title-pill" id="category-modal-title"></span>
     </div>
     <div class="program-modal-content">
       <p class="desc" id="category-modal-desc"></p>
@@ -1541,8 +1791,7 @@
     <button class="program-modal-close" onclick="closeServiceCategoryModal()" aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
     <div class="program-modal-hero">
       <div class="program-modal-icon" id="svccat-modal-icon"></div>
-      <span class="tag tag-gold">Service Category</span>
-      <h3 id="svccat-modal-title"></h3>
+      <span class="tag tag-gold title-pill" id="svccat-modal-title"></span>
     </div>
     <div class="program-modal-content">
       <p class="desc" id="svccat-modal-desc"></p>
@@ -1561,8 +1810,7 @@
     <div class="program-modal-hero">
       <a href="#" class="program-modal-back" id="office-modal-back"><i class="fa-solid fa-arrow-left"></i> <span></span></a>
       <div class="program-modal-icon" id="office-modal-icon"></div>
-      <span class="tag tag-blue">Office</span>
-      <h3 id="office-modal-title"></h3>
+      <span class="tag tag-blue title-pill" id="office-modal-title"></span>
       <a href="#" class="office-charter-btn" id="office-modal-charter"><i class="fa-solid fa-file-shield"></i> Citizen's Charter</a>
     </div>
     <div class="program-modal-content">
@@ -1571,6 +1819,45 @@
         <h4><i class="fa-solid fa-list-ul"></i> Services Offered</h4>
         <div class="category-program-list" id="office-modal-list"></div>
       </div>
+    </div>
+  </div>
+</div>
+
+<!-- Home: Weather & Hazard overlay — opens from the floating home widget with the day's full
+     conditions and advisories, plus a direct route to Emergency Hotlines, instead of navigating
+     away to a dedicated page. -->
+<div class="program-modal weather-modal" id="weather-modal" onclick="if(event.target===this)closeWeatherModal();">
+  <div class="program-modal-card weather-modal-card">
+    <button class="program-modal-close" onclick="closeWeatherModal()" aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
+    <div class="program-modal-hero weather-modal-hero">
+      <div class="program-modal-icon" id="weather-modal-icon"></div>
+      <span class="tag tag-blue" id="weather-modal-date"></span>
+      <h3 id="weather-modal-temp"></h3>
+      <p class="weather-modal-cond" id="weather-modal-cond"></p>
+    </div>
+    <div class="program-modal-content weather-modal-content">
+      <div class="program-modal-section">
+        <div class="weather-modal-section-head">
+          <h4><i class="fa-solid fa-triangle-exclamation"></i> <span id="weather-modal-advisory-heading">Today's Weather &amp; Hazard Advisories</span></h4>
+          <div class="weather-date-picker" id="weatherModalCalWrap">
+            <button class="weather-date-btn" id="weatherModalDateBtn" onclick="toggleWeatherModalCalPopover()">
+              <i class="fa-solid fa-calendar-days"></i>
+              <span>Browse Other Days</span>
+              <i class="fa-solid fa-chevron-down"></i>
+            </button>
+            <div class="weather-cal-popover" id="weatherModalCalPopover">
+              <div class="calendar">
+                <div class="cal-head"><button onclick="event.stopPropagation();weatherModalCal.changeMonth(-1)"><i class="fa-solid fa-chevron-left"></i></button><h4 id="cal-title-modal-weather"></h4><button onclick="event.stopPropagation();weatherModalCal.changeMonth(1)"><i class="fa-solid fa-chevron-right"></i></button></div>
+                <div class="cal-body"><div class="cal-grid" id="cal-grid-modal-weather"></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="weather-modal-grid" id="weather-modal-grid"></div>
+      </div>
+    </div>
+    <div class="weather-modal-actions">
+      <a href="#" class="btn btn-sm weather-emergency-btn" onclick="closeWeatherModal();goTo('hotlines');return false;"><i class="fa-solid fa-phone-volume"></i> Emergency Hotlines</a>
     </div>
   </div>
 </div>
@@ -1662,7 +1949,7 @@
 <!-- ===================== COMPLAINTS & FEEDBACK ===================== -->
 <section class="page" id="page-complaints">
   <div class="page-hero"><div class="container"><span class="crumb">Home / Complaints &amp; Feedback</span><h1>Complaints and Feedback</h1><p>Help us improve our service. Report issues or share your experience with the City Government.</p></div></div>
-  <div class="container section" style="display:flex;flex-direction:column;gap:24px;">
+  <div class="container section fb-grid">
     <div class="fb-card">
       <img class="qr" src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://forms.google.com/bilis-kilos-manila" alt="Bilis Kilos QR Code" style="cursor:pointer;" onclick="openImgLightbox(this.src,this.alt);">
       <div>
@@ -1739,10 +2026,29 @@
     </div>
     <div class="foot-bottom">
       <span>© 2026 City Government of Manila. All Rights Reserved. (Mockup design)</span>
-      <span><a href="#" onclick="goToSeal('npc');return false;" style="color:#fff;font-weight:700;text-decoration:underline;"><i class="fa-solid fa-shield-halved" style="margin-right:4px;"></i>Privacy Policy</a> · Terms of Use · Sitemap</span>
     </div>
   </div>
 </footer>
+
+<!-- ===================== WEATHER WIDGET (global, all pages) ===================== -->
+<div class="hero-weather">
+  <div class="hero-weather-card" id="home-weather-card" onclick="openWeatherModal()" tabindex="0" role="button" aria-label="View weather and hazard details">
+    <div class="hwc-icon" id="hwc-icon"><i class="fa-solid fa-cloud-sun"></i></div>
+    <div class="hwc-body">
+      <div class="hwc-toprow">
+        <span class="hwc-date"><span class="hwd-dow" id="home-weather-dow">Today</span> <span class="hwd-day" id="home-weather-day"></span></span>
+      </div>
+      <div class="hwc-main">
+        <div class="hwc-details">
+          <span class="hwc-cond" id="hwc-cond">--</span>
+          <span class="hwc-sub"><span class="hwc-temp" id="hwc-temp">--&deg;C</span><span class="hwc-feels" id="hwc-feels">Feels like --&deg;C</span></span>
+        </div>
+      </div>
+    </div>
+    <i class="fa-solid fa-chevron-right hwc-arrow"></i>
+  </div>
+  <div class="hero-weather-hazards" id="home-weather-hazards"></div>
+</div>
 
 <!-- ===================== CHATBOT ===================== -->
 <button class="chat-fab" id="chatFab"><span class="pulse"></span><i class="fa-solid fa-robot"></i> i-Tanong</button>
@@ -1833,7 +2139,7 @@ function setupTabs(navId, subPrefix){
 setupTabs('about-tabs','about');
 setupTabs('offices-tabs','offices');
 setupTabs('programs-tabs','programs');
-setupTabs('notices-tabs','notices');
+setupTabs('transparency-tabs','transparency');
 setupTabs('news-tabs','news');
 
 /* ============ DATA ============ */
@@ -1851,13 +2157,17 @@ function newsCard(n, featured, i){
   }
   return `<div class="card clickable-card" onclick="openArticleModal('news',${i})"><div class="thumb"><img src="${n.img}" alt=""><div class="date-badge"><div class="m">${n.m}</div><div class="d">${n.d}</div></div></div><div class="body"><h4>${n.title}</h4><p>${n.desc}</p></div></div>`;
 }
-document.getElementById('home-news-cards').innerHTML = newsData.slice(0,3).map((n,i)=>newsCard(n,false,i)).join('');
+function newsTagClass(tag){return tag==='Event' ? 'tag-gold' : tag==='Advisory' ? 'tag-navy' : 'tag-blue';}
+function homeNewsCard(n,i){
+  return `<div class="home-news-card" onclick="openArticleModal('news',${i})"><div class="thumb"><img src="${n.img}" alt=""><div class="date-badge"><div class="m">${n.m}</div><div class="d">${n.d}</div></div></div><div class="body"><h3>${n.title}</h3><p>${n.desc}</p><span class="link-arrow">Read More <i class="fa-solid fa-arrow-right"></i></span></div></div>`;
+}
+document.getElementById('home-news-cards').innerHTML = newsData.slice(0,3).map((n,i)=>homeNewsCard(n,i)).join('');
 document.getElementById('news-featured-cards').innerHTML = newsData.slice(0,2).map((n,i)=>newsCard(n,true,i)).join('');
 document.getElementById('news-cards').innerHTML = newsData.slice(2).map((n,i)=>newsCard(n,false,i+2)).join('');
 
 
 const psaData = [
-  {img:"https://images.unsplash.com/photo-1584515933487-779824d29309?w=200&q=80",cat:"Health",title:"Dengue Prevention: Clear stagnant water this rainy season",desc:"CHD teams are conducting barangay-level clean-up drives and fogging operations citywide as dengue cases rise this monsoon season.",date:"July 18, 2026"},
+  {img:"https://images.unsplash.com/photo-1584515933487-779824d29309?w=200&q=80",cat:"Health",title:"Grabeng Ganda",desc:"Kumbaga sobrang ganda e mapapa wow ka",date:"July 18, 2026"},
   {img:"https://images.unsplash.com/photo-1560250097-0b93528c311a?w=200&q=80",cat:"Traffic",title:"Traffic rerouting along Quezon Boulevard until August",desc:"Expect lane closures and alternate routes near Quezon Boulevard as road widening works continue through next month.",date:"July 15, 2026"},
   {img:"https://images.unsplash.com/photo-1580377968103-3ecf6f45e2a4?w=200&q=80",cat:"Events",title:"Free anti-rabies vaccination for pets, all barangays",desc:"Bring your dogs and cats to your barangay hall for free anti-rabies shots — schedule varies per barangay, check with your barangay office.",date:"July 12, 2026"},
   {img:"https://images.unsplash.com/photo-1581093458791-9d42e3f8e2a2?w=200&q=80",cat:"Others",title:"Scheduled water interruption in Sampaloc and Sta. Mesa",desc:"Maynilad will conduct maintenance work resulting in low to no water pressure in parts of Sampaloc and Sta. Mesa for 24 hours.",date:"July 10, 2026"},
@@ -2086,7 +2396,10 @@ const servicesData = [
 ];
 
 function progCard(p,i){return `<div class="card clickable-card" onclick="openCategoryModal(${i})"><div class="body" style="text-align:center;padding-top:26px;"><div style="width:52px;height:52px;border-radius:50%;background:var(--sky);display:flex;align-items:center;justify-content:center;margin:0 auto 14px;color:var(--blue);font-size:20px;"><i class="fa-solid ${p.icon}"></i></div><h4>${p.title}</h4><p>${p.desc}</p><a class="link-arrow" href="#" onclick="return false;" style="margin-top:10px;justify-content:center;">Learn More <i class="fa-solid fa-arrow-right"></i></a></div></div>`;}
-document.getElementById('home-programs-cards').innerHTML = programsData.slice(0,4).map(progCard).join('');
+function homeProgItem(p,i){return `<div class="progsvc-item" onclick="openCategoryModal(${i})"><div class="progsvc-item-row"><div class="progsvc-item-icon"><i class="fa-solid ${p.icon}"></i></div><div class="progsvc-item-text"><h4>${p.title}</h4></div></div><div class="progsvc-item-text"><p>${p.desc}</p></div><i class="fa-solid fa-arrow-right progsvc-item-arrow"></i></div>`;}
+function homeSvcItem(p,i){return `<div class="progsvc-item" onclick="openServiceCategoryModal(${i})"><div class="progsvc-item-row"><div class="progsvc-item-icon"><i class="fa-solid ${p.icon}"></i></div><div class="progsvc-item-text"><h4>${p.title}</h4></div></div><div class="progsvc-item-text"><p>${p.desc}</p></div><i class="fa-solid fa-arrow-right progsvc-item-arrow"></i></div>`;}
+document.getElementById('home-programs-cards').innerHTML = programsData.slice(0,4).map(homeProgItem).join('');
+document.getElementById('home-services-cards').innerHTML = servicesData.slice(0,4).map(homeSvcItem).join('');
 function renderProgSvcCards(){
   const q = (document.getElementById('progsvc-search').value||'').trim().toLowerCase();
   const matches = item => !q || item.title.toLowerCase().includes(q) || item.desc.toLowerCase().includes(q);
@@ -2128,9 +2441,8 @@ function openProgramModal(i, source, subIndex, subSubIndex){
     : source==='office-service'
       ? servicesData[i].offices[subIndex].services[subSubIndex]
       : servicesData[i];
-  document.getElementById('program-modal-tag').textContent = source==='program' ? 'Program' : 'Service';
-  document.getElementById('program-modal-tag').className = 'tag ' + (source==='program' ? 'tag-gold' : 'tag-blue');
   document.getElementById('program-modal-icon').innerHTML = `<i class="fa-solid ${item.icon}"></i>`;
+  document.getElementById('program-modal-title').className = 'tag title-pill ' + (source==='program' ? 'tag-gold' : 'tag-blue');
   document.getElementById('program-modal-title').textContent = item.title;
   document.getElementById('program-modal-desc').textContent = item.details || item.desc;
   const backEl = document.getElementById('program-modal-back');
@@ -2149,7 +2461,6 @@ function openProgramModal(i, source, subIndex, subSubIndex){
   document.getElementById('program-modal-steps').innerHTML = steps.map((s,idx)=>`<li><span class="stepnum">${idx+1}</span><span>${s}</span></li>`).join('');
   const docs = item.documents || genericDocs(item);
   document.getElementById('program-modal-docs').innerHTML = docs.map(d=>`<a class="program-doc-row" href="#" onclick="return false;"><i class="fa-solid ${d.icon}"></i><span>${d.name}</span><i class="fa-solid fa-download"></i></a>`).join('');
-  document.getElementById('program-modal-cta').onclick = function(){ closeProgramModal(); goTo('offices','directory'); return false; };
   document.getElementById('program-modal').classList.add('open');
 }
 function closeProgramModal(){
@@ -2200,7 +2511,7 @@ function openOfficeModal(catIndex, officeIndex){
   document.getElementById('office-modal-icon').innerHTML = `<i class="fa-solid ${office.icon}"></i>`;
   document.getElementById('office-modal-title').textContent = office.title;
   document.getElementById('office-modal-desc').textContent = office.desc;
-  document.getElementById('office-modal-charter').onclick = function(){ closeOfficeModal(); goTo('notices'); return false; };
+  document.getElementById('office-modal-charter').onclick = function(){ closeOfficeModal(); goTo('transparency'); return false; };
   document.getElementById('office-modal-list').innerHTML = office.services.map((s,si)=>
     `<div class="category-program-row" onclick="closeOfficeModal();openProgramModal(${catIndex},'office-service',${officeIndex},${si});">
       <div class="icon"><i class="fa-solid ${s.icon}"></i></div>
@@ -2367,7 +2678,7 @@ document.addEventListener('keydown', e=>{
 /* City Officials */
 const officialsData = {
   mayor:[
-    {name:'HON. FRANCISCO “ISKO” DOMAGOSO',pos:'City Mayor, City Government of Manila',bio:'Leads the executive branch of the City Government of Manila, overseeing all departments and citywide programs on public health, social services, infrastructure, and disaster resilience.',term:'Term: 2025–2028',contact:'(02) 8527-0000',address:'Padre Burgos Ave, Manila City Hall',img:'https://cdn.jsdelivr.net/gh/JhillianBaniqued/Gov-Manila-Website@main/images/mayor.jpg',
+    {name:'HON. FRANCISCO “ISKO” DOMAGOSO',pos:'City Mayor, City Government of Manila',bio:'Leads the executive branch of the City Government of Manila, overseeing all departments and citywide programs on public health, social services, infrastructure, and disaster resilience.',img:'https://cdn.jsdelivr.net/gh/JhillianBaniqued/Gov-Manila-Website@main/images/mayor.jpg',
       background:['(born October 24, 1974) – popularly known as “Isko Moreno” and colloquially as Yorme Isko – will comeback as the 29th Mayor of Manila this 30th of June 2025.','Married to Diana Lynn Ditan, they have 5 children including Patrick, Frances, Drake, Franco and Manila’s 1st District Councilor-elect Joaquin Domagoso.','Prior to becoming mayor, Mayor Domagoso was Manila’s vice mayor from 2007 – 2016 and served in Manila’s City Council representing the ancient, densely populated, and economically challenged urban district of Tondo. He was first elected to The Manila City Council in 1998.','Moreno later regained the mayoralty through a landslide victory following the May 12, 2025 elections, garnering 59.02% of the votes.','Manila Mayor-elect Francisco “Isko Moreno” Domagoso took his oath of office as the new mayor of the Capital City before Supreme Court Associate Justice Antonio T. Kho, Jr. on May 19, 2025, at exactly 2:00 P.M. at the Supreme Court En Banc Session Hall in Ermita, Manila.'],
       facebook:'https://www.facebook.com/iskomorenodomagoso',
       legislative:['Reviews and approves executive orders and administrative issuances for citywide implementation.','Endorses proposed city ordinances and budget measures to the Sanggunian Panlungsod.'],
@@ -2384,7 +2695,7 @@ const officialsData = {
 
 /* Legislative branch: Vice Mayor sidebar + district-tabbed councilor roster */
 const councilData = {
-  vicemayor:{name:'HON. ANGELA LEI “CHI” ATIENZA',pos:'City Vice Mayor, Presiding Officer of the Sanggunian Panlungsod',bio:'Presides over the City Council and leads the legislative branch of Manila, working with district councilors on city ordinances, budget review, and legislative oversight.',term:'Term: 2025–2028',contact:'(02) 8527-0100',address:'Padre Burgos Ave, Manila City Hall',img:'https://cdn.jsdelivr.net/gh/JhillianBaniqued/Gov-Manila-Website@main/images/vice_mayor.jpg',
+  vicemayor:{name:'HON. ANGELA LEI “CHI” ATIENZA',pos:'City Vice Mayor, Presiding Officer of the Sanggunian Panlungsod',bio:'Presides over the City Council and leads the legislative branch of Manila, working with district councilors on city ordinances, budget review, and legislative oversight.',img:'https://cdn.jsdelivr.net/gh/JhillianBaniqued/Gov-Manila-Website@main/images/vice_mayor.jpg',
     background:['(born July 26, 1981) Angela Lei “Chi” Atienza Valdepeñas is a Filipino politician who is the vice mayor-elect of Manila, the capital city of the Philippines, having been elected in 2025. A daughter of former Manila Mayor and Congressman Lito Atienza and Ma. Evelina Ilagan, the younger sister of broadcaster and former councilors Kim, Ali and incumbent councilor Maile. She is a graduate of De La Salle University.','Atienza will begin her term as the 29th vice mayor of Manila on June 30, 2025.'],
     education:[{level:'',years:'',school:'De La Salle University'}],
     facebook:'https://www.facebook.com/OVMManila',
@@ -2466,8 +2777,6 @@ function renderFeaturedOfficial(key){
   document.getElementById(key+'-name').textContent = head.name;
   document.getElementById(key+'-pos').textContent = head.pos;
   document.getElementById(key+'-bio').textContent = head.bio || '';
-  document.getElementById(key+'-contact').textContent = head.contact || '';
-  document.getElementById(key+'-address').textContent = head.address || '';
   const groups = new Map();
   rest.forEach(o=>{
     const cat = o.cat || 'Officials';
@@ -2500,15 +2809,20 @@ document.querySelectorAll('.official-featured').forEach(card=>{
     toggleOfficialGroup(key);
   });
 });
-/* Category tab switching inside the officials expand panel (event delegation, since panels are built dynamically) */
-document.addEventListener('click', e=>{
-  const btn = e.target.closest('.official-subtabs button');
-  if(!btn) return;
-  const wrap = btn.closest('.official-group-wrap');
-  wrap.querySelectorAll('.official-subtabs button').forEach(b=>b.classList.remove('active'));
-  btn.classList.add('active');
-  const cat = btn.dataset.cat;
-  wrap.querySelectorAll('.official-subpanel').forEach(p=>p.classList.toggle('active', p.dataset.cat===cat));
+/* Category tab switching inside the officials expand panel (event delegation, since panels are built dynamically).
+   Attached directly to each .official-group-wrap (not document) because that wrap has its own
+   onclick="event.stopPropagation()" to stop clicks from re-triggering the parent card's collapse toggle —
+   stopPropagation blocks the click from ever reaching a document-level listener, which was why the
+   Department Head / Council category buttons weren't responding. */
+document.querySelectorAll('.official-group-wrap').forEach(wrap=>{
+  wrap.addEventListener('click', e=>{
+    const btn = e.target.closest('.official-subtabs button');
+    if(!btn) return;
+    wrap.querySelectorAll('.official-subtabs button').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    const cat = btn.dataset.cat;
+    wrap.querySelectorAll('.official-subpanel').forEach(p=>p.classList.toggle('active', p.dataset.cat===cat));
+  });
 });
 renderFeaturedOfficial('mayor');
 const mayorModalIdx = registerOfficial(officialsData.mayor[0]);
@@ -2522,8 +2836,6 @@ function renderVicemayorSidebar(){
   document.getElementById('vicemayor-name').textContent = v.name;
   document.getElementById('vicemayor-pos').textContent = v.pos;
   document.getElementById('vicemayor-bio').textContent = v.bio;
-  document.getElementById('vicemayor-contact').textContent = v.contact;
-  document.getElementById('vicemayor-address').textContent = v.address || '';
 }
 function renderDistrictGrid(d){
   document.getElementById('district-grid').innerHTML = councilData.districts[d].map(councilCard).join('');
@@ -2561,7 +2873,6 @@ const officeData = {
   field:[{n:'BPLO Satellite Office – Divisoria',a:'Tabora St, Tondo'},{n:'City Health Field Office – Sampaloc',a:'Dapitan St, Sampaloc'},{n:'Traffic Bureau Substation – Malate',a:'Taft Ave, Malate'}],
   hospital:[{n:'Ospital ng Maynila Medical Center',a:'Quirino Ave cor. San Marcelino St, Malate'},{n:'Gat Andres Bonifacio Memorial Medical Center',a:'Radial Rd 10, Tondo'},{n:'Dr. Jose Fabella Memorial Hospital',a:'Lope de Vega St, Sta. Cruz'},{n:'Jose R. Reyes Memorial Medical Center',a:'Rizal Ave, Sta. Cruz'}],
   healthcenter:[{n:'Tondo Health Center',a:'Balut, Tondo, Manila'},{n:'Sampaloc Health Center',a:'Dapitan St, Sampaloc, Manila'},{n:'Sta. Ana Health Center',a:'Pedro Gil St, Sta. Ana, Manila'},{n:'Malate Health Center',a:'Adriatico St, Malate, Manila'},{n:'Paco Health Center',a:'San Marcelino St, Paco, Manila'}],
-  barangay:[{n:'Barangay 1 Hall',a:'Zone 1, District I'},{n:'Barangay 384 Hall',a:'Zone 39, Sampaloc'},{n:'Barangay 649 Hall',a:'Zone 70, San Andres'}],
   elem:[{n:'Manila North Elementary School',a:'Tondo, Manila'},{n:'Justo Lukban Elementary School',a:'Paco, Manila'}],
   high:[{n:'Manila Science High School',a:'Ermita, Manila'},{n:'Araullo High School',a:'Sta. Cruz, Manila'}],
   univ:[{n:'Pamantasan ng Lungsod ng Maynila',a:'Intramuros, Manila'},{n:'Universidad de Manila',a:'Ermita, Manila'}]
@@ -2605,10 +2916,24 @@ function handleFieldmapSearch(query){
   });
   document.getElementById('office-list').innerHTML = results.length
     ? results.map(o=>officeRowHTML(o,true)).join('')
-    : '<div class="fieldmap-empty">No field offices, hospitals, schools, or barangay halls match your search.</div>';
+    : '<div class="fieldmap-empty">No field offices, hospitals, or schools match your search.</div>';
   attachOfficeMapHandlers();
   status.textContent = `${results.length} result${results.length===1?'':'s'} found for "${query.trim()}" across all categories`;
   status.classList.add('show');
+}
+function filterDirectory(query){
+  const q = query.trim().toLowerCase();
+  const table = document.getElementById('directory-table');
+  const rows = table.querySelectorAll('tr');
+  let visibleCount = 0;
+  rows.forEach((row, i)=>{
+    if(i === 0) return; // header row
+    const text = row.textContent.toLowerCase();
+    const match = !q || text.includes(q);
+    row.style.display = match ? '' : 'none';
+    if(match) visibleCount++;
+  });
+  document.getElementById('directory-empty').style.display = (q && visibleCount === 0) ? '' : 'none';
 }
 function clearFieldmapSearch(){
   const input = document.getElementById('fieldmap-search');
@@ -2635,7 +2960,7 @@ function closeOfficeMap(){
 }
 document.getElementById('map-close').addEventListener('click', closeOfficeMap);
 renderOffices('main');
-const officeCatLabels = {main:'Main Offices', field:'Field Offices', hospital:'Hospitals', healthcenter:'Health Centers', barangay:'Barangay Halls', elem:'Public Schools – Elementary', high:'Public Schools – High School', univ:'Public Schools – University'};
+const officeCatLabels = {main:'Main Offices', field:'Field Offices', hospital:'Hospitals', healthcenter:'Health Centers', elem:'Public Schools – Elementary', high:'Public Schools – High School', univ:'Public Schools – University'};
 function switchOfficeCat(cat){
   document.getElementById('office-cat-tabs').querySelectorAll('button').forEach(x=>x.classList.toggle('active', x.dataset.cat===cat));
   document.getElementById('officeCatDdList').querySelectorAll('button').forEach(x=>x.classList.toggle('active', x.dataset.cat===cat));
@@ -2779,6 +3104,41 @@ function renderNotices(cat){
     : '<p class="doc-empty">No results found. Try a different search term or year.</p>';
 }
 Object.keys(noticesData).forEach(cat=>{ populateNoticeYears(cat); renderNotices(cat); });
+
+/* ---- FAQs (standalone page — content lives here, separate from the i-Tanong chatbot) ---- */
+const faqsData = [
+  {cat:'Permits & Business', q:'How do I renew my Business Permit?', a:'Visit the Business One-Stop Shop (BOSS) at Manila City Hall or use the online Business Permit renewal portal. Bring your previous permit, proof of gross sales, and barangay clearance. Renewal is open every January.'},
+  {cat:'Permits & Business', q:'What are the requirements for a new Business Permit?', a:'You will need a DTI/SEC registration, barangay clearance, lease contract or land title, community tax certificate, and a sketch/location plan. Check the Downloadable Forms page for the full checklist.'},
+  {cat:'Civil Registry', q:'How do I request a copy of my birth certificate?', a:'You can request a copy through the Office of the City Civil Registrar or via the PSA Serbilis / PSA Helpline outreach. Bring a valid ID and the requestor\u2019s relationship to the record owner if requesting on behalf of someone else.'},
+  {cat:'Civil Registry', q:'Where do I apply for a marriage license?', a:'Marriage license applications are filed at the Office of the City Civil Registrar. Both parties must appear with valid IDs, birth certificates, and a Certificate of No Marriage (CENOMAR) from the PSA.'},
+  {cat:'Taxes & Payments', q:'How do I pay my real property tax?', a:'Real property tax can be paid at the City Treasurer\u2019s Office, authorized payment centers, or online through the City\u2019s e-payment portal. Early payment before the deadline may qualify for a discount.'},
+  {cat:'Taxes & Payments', q:'What happens if I miss the real property tax deadline?', a:'Late payments accrue a monthly interest surcharge. Visit the City Treasurer\u2019s Office as soon as possible to settle your balance and avoid additional penalties.'},
+  {cat:'Health & Social Services', q:'How do I avail of free vaccination for my child?', a:'Free vaccinations are available at your barangay health center or the Manila Health Department. Bring your child\u2019s health record or barangay ID and check the posted immunization schedule.'},
+  {cat:'Health & Social Services', q:'Who can apply for the City\u2019s social welfare assistance programs?', a:'Programs administered by the City Social Welfare and Development Office are generally open to indigent residents of Manila. Requirements vary by program \u2014 visit your barangay office or the CSWD for eligibility details.'},
+  {cat:'Reporting & Complaints', q:'How do I report a complaint about a city service?', a:'You can file a complaint through the Complaints & Feedback page on this website, call the appropriate hotline, or visit the concerned office directly. Include as much detail as possible so it can be routed correctly.'},
+  {cat:'Reporting & Complaints', q:'Who do I contact for emergencies?', a:'For emergencies, check the Emergency & Service Hotlines page for the correct number to call \u2014 numbers are grouped by type of emergency (fire, medical, police, disaster response, etc.).'},
+];
+function renderFaqs(){
+  const list = document.getElementById('faqs-list');
+  if(!list) return;
+  const search = (document.getElementById('faqs-search')?.value || '').trim().toLowerCase();
+  const filtered = faqsData.filter(f => !search || f.q.toLowerCase().includes(search) || f.a.toLowerCase().includes(search) || f.cat.toLowerCase().includes(search));
+  if(!filtered.length){
+    list.innerHTML = '<div class="faq-empty">No results found. Try a different search term, or ask <strong>i-Tanong</strong> for help.</div>';
+    return;
+  }
+  let html = '';
+  let lastCat = null;
+  filtered.forEach((f,i)=>{
+    if(f.cat !== lastCat){ html += `<div class="faq-cat">${f.cat}</div>`; lastCat = f.cat; }
+    html += `<div class="faq-item" id="faq-${i}"><div class="faq-q" onclick="toggleFaq(${i})"><span>${f.q}</span><i class="fa-solid fa-chevron-down"></i></div><div class="faq-a"><p>${f.a}</p></div></div>`;
+  });
+  list.innerHTML = html;
+}
+function toggleFaq(i){
+  document.getElementById('faq-'+i)?.classList.toggle('open');
+}
+renderFaqs();
 
 /* ---- Embedded PDF preview for "View" actions ---- */
 function openDocModal(cat, i){
@@ -2944,7 +3304,7 @@ const advisoryTypes = [
     {level:'grey', text:'No Incident'},
     {level:'orange', text:'Incident — Affected Areas'}
   ]},
-  {key:'fire', label:'Fire Risk', icon:'fa-fire', render:d=>{
+  {key:'fire', label:'Fire Incidents', icon:'fa-fire', render:d=>{
     const f = d.fire;
     return f ? {level:'orange', value:'Affected Areas', desc:f.desc, link:f.link} : {level:'grey', value:'No Incident', desc:'No elevated fire risk reported.'};
   }, legend:[
@@ -2969,8 +3329,6 @@ const weatherData = {
   22: { system:{level:'red', name:'Low Pressure Area (LPA)', desc:'LPA intensifying monsoon rains; severe flooding warning citywide.', link:{url:'https://www.pagasa.dost.gov.ph/', label:'PAGASA bulletin'}}, rainChance:92, air:55, flood:{desc:'Street-level flooding reported in Tondo, Sta. Ana, and Paco.', link:{url:'#', label:'MDRRMO flood report'}} },
   27: { air:120 }
 };
-let weatherSelectedDay = new Date().getDate();
-
 // Compute the worst level among all readings for a given day (used for the calendar dot and the home status pill).
 function dayWorstLevel(dayData){
   const ranks = advisoryTypes.map(t=>levelRank[t.render(dayData).level]);
@@ -2978,96 +3336,130 @@ function dayWorstLevel(dayData){
   return Object.keys(levelRank).find(k=>levelRank[k]===maxRank);
 }
 
-function weatherDayClass(d,m,y){
-  let cls = 'day';
-  const now = new Date();
-  const inDemoMonth = (m===now.getMonth() && y===now.getFullYear());
-  if(inDemoMonth && weatherData[d]){
-    cls += ' adv-mark sev-'+dayWorstLevel(weatherData[d]);
-  }
-  if(inDemoMonth && d===weatherSelectedDay) cls += ' selected';
-  return cls;
-}
-
-// Full text+icon cards — used on the Weather Report tab only.
-function advisoryCardsHtml(dayData){
+// Compact cards — same data as advisoryCardsHtml, sized down for the home weather overlay.
+function advisoryCardsHtmlCompact(dayData){
   return advisoryTypes.map(t=>{
     const r = t.render(dayData);
-    const legendHtml = t.legend.map(l=>
-      `<span class="cl-item${l.level===r.level?' active':''}"><span class="legend-dot ld-${l.level}"></span>${l.text}</span>`
-    ).join('');
     const linkHtml = r.link ? `<a class="card-link" href="${r.link.url}" target="_blank" rel="noopener">${r.link.label} <i class="fa-solid fa-arrow-up-right-from-square"></i></a>` : '';
-    return `<div class="advisory-card adv-${r.level}"><div class="ac-left"><div class="aicon"><i class="fa-solid ${t.icon}"></i></div><span class="status">${r.value}</span></div><div class="ac-right"><h4>${t.label}</h4><p>${r.desc}</p>${linkHtml}<div class="card-legend">${legendHtml}</div></div></div>`;
+    return `<div class="advisory-card advisory-card-compact adv-${r.level}"><div class="ac-left"><div class="aicon"><i class="fa-solid ${t.icon}"></i></div><span class="status">${r.value}</span></div><div class="ac-right"><h4>${t.label}</h4><p>${r.desc}</p>${linkHtml}</div></div>`;
   }).join('');
 }
 
-function renderAdvisories(day, m, y){
-  const dateObj = new Date(y,m,day);
-  document.getElementById('weather-date-label').textContent =
-    dateObj.toLocaleDateString('default',{month:'long',day:'numeric',year:'numeric'});
-  const nowRA = new Date();
-  const dayData = (m===nowRA.getMonth() && y===nowRA.getFullYear()) ? (weatherData[day] || {}) : {};
-  document.getElementById('advisory-grid').innerHTML = advisoryCardsHtml(dayData);
+/* Home weather overlay: shows today's full conditions + advisories in-place, with a direct
+   link to Emergency Hotlines, and a "Browse Other Days" calendar to check past advisories
+   without leaving the popup. */
+let weatherModalSelectedDay = new Date().getDate();
+
+// Fills in the modal's icon/date/temp/condition/grid/heading for a given day. Only the real
+// current month has any recorded data (weatherData); other months show default "fair" readings.
+function renderWeatherModalForDay(day, m, y){
+  const now = new Date();
+  const isCurrentMonth = (m===now.getMonth() && y===now.getFullYear());
+  const dayData = isCurrentMonth ? (weatherData[day] || {}) : {};
+  const dateObj = new Date(y, m, day);
+  const isToday = isCurrentMonth && day===now.getDate();
+  const cw = currentWeatherFromDay(dayData);
+  document.getElementById('weather-modal-icon').innerHTML = `<i class="fa-solid ${cw.icon}"></i>`;
+  document.getElementById('weather-modal-date').textContent = dateObj.toLocaleDateString('default',{weekday:'long', month:'long', day:'numeric', year:'numeric'});
+  document.getElementById('weather-modal-temp').innerHTML = cw.temp+'&deg;C &middot; '+cw.condition;
+  document.getElementById('weather-modal-cond').innerHTML = 'Feels like '+cw.feelsLike+'&deg;C';
+  document.getElementById('weather-modal-grid').innerHTML = advisoryCardsHtmlCompact(dayData);
+  document.getElementById('weather-modal-advisory-heading').textContent =
+    isToday ? "Today's Weather & Hazard Advisories" : dateObj.toLocaleDateString('default',{month:'long', day:'numeric', year:'numeric'})+' Weather & Hazard Advisories';
 }
-const weatherCal = makeCalendar({
-  gridId:'cal-grid-weather', titleId:'cal-title-weather', date:new Date(new Date().getFullYear(), new Date().getMonth(), 1),
-  dayClassFn:weatherDayClass,
-  onRender:(m,y)=>renderAdvisories(weatherSelectedDay, m, y)
+
+function weatherModalDayClass(d,m,y){
+  let cls = 'day';
+  const now = new Date();
+  const inDataMonth = (m===now.getMonth() && y===now.getFullYear());
+  if(inDataMonth && weatherData[d]) cls += ' adv-mark sev-'+dayWorstLevel(weatherData[d]);
+  if(d===weatherModalSelectedDay && m===weatherModalCal.date.getMonth() && y===weatherModalCal.date.getFullYear()) cls += ' selected';
+  return cls;
+}
+
+const weatherModalCal = makeCalendar({
+  gridId:'cal-grid-modal-weather', titleId:'cal-title-modal-weather', date:new Date(new Date().getFullYear(), new Date().getMonth(), 1),
+  dayClassFn:weatherModalDayClass
 });
-weatherCal.render();
-document.getElementById('cal-grid-weather').addEventListener('click', e=>{
+document.getElementById('cal-grid-modal-weather').addEventListener('click', e=>{
   const el = e.target.closest('.day[data-day]');
   if(!el) return;
-  weatherSelectedDay = parseInt(el.dataset.day, 10);
-  weatherCal.render();
-  closeWeatherCalPopover();
+  weatherModalSelectedDay = parseInt(el.dataset.day, 10);
+  weatherModalCal.render();
+  renderWeatherModalForDay(weatherModalSelectedDay, weatherModalCal.date.getMonth(), weatherModalCal.date.getFullYear());
+  closeWeatherModalCalPopover();
 });
-
-/* Calendar-as-overlay: hidden by default, opens as a popover anchored to the date button. */
-function toggleWeatherCalPopover(){
-  const pop = document.getElementById('weatherCalPopover'), btn = document.getElementById('weatherDateBtn');
+function toggleWeatherModalCalPopover(){
+  const pop = document.getElementById('weatherModalCalPopover'), btn = document.getElementById('weatherModalDateBtn');
   const opening = !pop.classList.contains('open');
   pop.classList.toggle('open', opening);
   btn.classList.toggle('open', opening);
 }
-function closeWeatherCalPopover(){
-  document.getElementById('weatherCalPopover').classList.remove('open');
-  document.getElementById('weatherDateBtn').classList.remove('open');
+function closeWeatherModalCalPopover(){
+  document.getElementById('weatherModalCalPopover').classList.remove('open');
+  document.getElementById('weatherModalDateBtn').classList.remove('open');
 }
 document.addEventListener('click', e=>{
-  const picker = document.getElementById('weatherDateBtn')?.closest('.weather-date-picker');
-  if(picker && !picker.contains(e.target)) closeWeatherCalPopover();
+  const picker = document.getElementById('weatherModalDateBtn')?.closest('.weather-date-picker');
+  if(picker && !picker.contains(e.target)) closeWeatherModalCalPopover();
 });
 
-/* Jump from a Home widget straight to today on the Weather Report calendar/tab. */
-function goToWeatherReportTab(){
-  weatherSelectedDay = new Date().getDate();
-  weatherCal.date = new Date(new Date().getFullYear(), new Date().getMonth(), 1);
-  weatherCal.render();
-  closeWeatherCalPopover();
-  goTo('news','weather');
+function openWeatherModal(){
+  const now = new Date();
+  weatherModalSelectedDay = now.getDate();
+  weatherModalCal.date = new Date(now.getFullYear(), now.getMonth(), 1);
+  weatherModalCal.render();
+  renderWeatherModalForDay(weatherModalSelectedDay, now.getMonth(), now.getFullYear());
+  document.getElementById('weather-modal').classList.add('open');
+}
+function closeWeatherModal(){
+  document.getElementById('weather-modal').classList.remove('open');
+  closeWeatherModalCalPopover();
 }
 
-// Icon-only, color-coded circles — used on the Home hero widget. No labels/status/description
-// shown directly; a native tooltip (title) carries the detail on hover, and tapping jumps to
-// the Weather Report tab for the full write-up. Grey ("no incident") entries are skipped here —
-// flood/fire/earthquake only earn a spot on the home screen when something's actually going on;
-// the full Weather Report tab still lists all of them regardless of level.
-function heroWeatherIconsHtml(dayData){
-  return advisoryTypes.filter(t=>t.render(dayData).level!=='grey').map(t=>{
-    const r = t.render(dayData);
-    const tip = `${t.label}: ${r.value}`.replace(/"/g,'&quot;');
-    return `<div class="hw-icon adv-${r.level}" onclick="goToWeatherReportTab()" tabindex="0" role="button" title="${tip}" aria-label="${tip}"><i class="fa-solid ${t.icon}"></i></div>`;
-  }).join('');
+// Derives a concise "current conditions" snapshot (icon/condition/temp/feels-like) from a day's
+// raw advisory data, so the home widget can show immediate info at a glance instead of icons
+// the visitor has to hover or click to decode.
+function currentWeatherFromDay(dayData){
+  const rainPct = dayData.rainChance!=null ? dayData.rainChance : 20;
+  const hi = dayData.heatIndex || {min:27, max:31};
+  let condition, icon;
+  if(dayData.system && (dayData.system.level==='red')){ condition='Torrential Rain'; icon='fa-cloud-showers-heavy'; }
+  else if(dayData.system && dayData.system.level==='orange'){ condition='Heavy Rain'; icon='fa-cloud-showers-heavy'; }
+  else if(dayData.system && dayData.system.level==='yellow'){ condition='Rain Showers'; icon='fa-cloud-rain'; }
+  else if(rainPct>=61){ condition='Rain Showers'; icon='fa-cloud-rain'; }
+  else if(rainPct>=31){ condition='Light Rain'; icon='fa-cloud-rain'; }
+  else if(rainPct>=15){ condition='Partly Cloudy'; icon='fa-cloud-sun'; }
+  else { condition='Sunny'; icon='fa-sun'; }
+  return {icon, condition, temp:hi.min, feelsLike:hi.max};
 }
 
-/* ---- Home hero weather widget: icons only, color-coded per severity legend, bottom-center of hero ---- */
+/* ---- Home hero weather widget: concise current-conditions card, plus a hazard-icon row that only
+   appears when something's actually active (flood/fire/quake/severe readings) — floats bottom-right,
+   docked directly above the i-Tanong chat launcher ---- */
 function renderHomeWeatherWidget(){
   const now = new Date();
   const dayData = weatherData[now.getDate()] || {};
-  document.getElementById('home-weather-dow').textContent = now.toLocaleDateString('default',{weekday:'long'});
-  document.getElementById('home-weather-day').textContent = now.toLocaleDateString('default',{month:'long',day:'numeric',year:'numeric'});
-  document.getElementById('home-weather-icons').innerHTML = heroWeatherIconsHtml(dayData);
+  document.getElementById('home-weather-dow').textContent = now.toLocaleDateString('default',{weekday:'short'});
+  document.getElementById('home-weather-day').textContent = now.toLocaleDateString('default',{month:'short',day:'numeric'});
+
+  const cw = currentWeatherFromDay(dayData);
+  document.getElementById('hwc-icon').innerHTML = `<i class="fa-solid ${cw.icon}"></i>`;
+  document.getElementById('hwc-temp').innerHTML = cw.temp+'&deg;C';
+  document.getElementById('hwc-cond').textContent = cw.condition;
+  document.getElementById('hwc-feels').innerHTML = 'Feels like '+cw.feelsLike+'&deg;C';
+
+  // Only surface a hazard icon when it's a genuine advisory (worse than plain "Fair"/green) —
+  // flood/fire/quake incidents, or an elevated system/rain/heat/air reading — so normal days
+  // show just the conditions card with nothing extra to decode.
+  const hazardsEl = document.getElementById('home-weather-hazards');
+  const hazardsHtml = advisoryTypes.filter(t=>levelRank[t.render(dayData).level] > levelRank.green).map(t=>{
+    const r = t.render(dayData);
+    const tip = `${t.label}: ${r.value}`.replace(/"/g,'&quot;');
+    return `<div class="hw-icon adv-${r.level}" onclick="openWeatherModal()" tabindex="0" role="button" title="${tip}" aria-label="${tip}"><i class="fa-solid ${t.icon}"></i></div>`;
+  }).join('');
+  hazardsEl.innerHTML = hazardsHtml;
+  hazardsEl.style.display = hazardsHtml ? 'flex' : 'none';
 }
 renderHomeWeatherWidget();
 
@@ -3075,8 +3467,30 @@ renderHomeWeatherWidget();
 const chatFab = document.getElementById('chatFab');
 const chatPanel = document.getElementById('chatPanel');
 const chatBody = document.getElementById('chatBody');
+const heroWeatherEl = document.querySelector('.hero-weather');
 chatFab.addEventListener('click',()=>chatPanel.classList.toggle('open'));
 document.getElementById('chatClose').addEventListener('click',()=>chatPanel.classList.remove('open'));
+
+/* Keep the weather widget in sync with the chat panel, no matter what opens/closes it
+   (the fab, the FAQ link, the "Ask i-Tanong" link inside program modals, etc.) — shift it
+   up out of the way whenever the panel is open, and drop it back down when it's closed. */
+if(heroWeatherEl){
+  const CHAT_GAP = 12; /* space between the widget and the top of the open chat panel */
+  const positionWeatherAboveChat = ()=>{
+    if(chatPanel.classList.contains('open')){
+      const panelHeight = chatPanel.getBoundingClientRect().height;
+      const panelBottom = parseFloat(getComputedStyle(chatPanel).bottom) || 0;
+      heroWeatherEl.style.setProperty('--chat-panel-offset', (panelBottom + panelHeight + CHAT_GAP) + 'px');
+      heroWeatherEl.classList.add('chat-open');
+    } else {
+      heroWeatherEl.classList.remove('chat-open');
+    }
+  };
+  new MutationObserver(positionWeatherAboveChat).observe(chatPanel,{attributes:true,attributeFilter:['class']});
+  new ResizeObserver(positionWeatherAboveChat).observe(chatPanel);
+  window.addEventListener('resize', positionWeatherAboveChat);
+  positionWeatherAboveChat();
+}
 
 function addBubble(text,who){
   const b=document.createElement('div');
@@ -3119,7 +3533,7 @@ document.querySelectorAll('.navlist a').forEach(a=>{
   a.addEventListener('click',()=>document.getElementById('navlist').classList.remove('mobile-open'));
 });
 window.addEventListener('resize',()=>{
-  if(window.innerWidth>900) document.getElementById('navlist').classList.remove('mobile-open');
+  if(window.innerWidth>1260) document.getElementById('navlist').classList.remove('mobile-open');
 });
 
 /* ===================== GLOBAL SITE SEARCH ===================== */
@@ -3134,8 +3548,8 @@ addSearchEntry('About Us','Page','about us history mission vision mayor vice may
 addSearchEntry('Offices','Page','offices departments bureaus directory',()=>goTo('offices'));
 addSearchEntry('Programs & Services','Page','programs services benefits assistance',()=>goTo('programs'));
 addSearchEntry('News & Announcements','Page','news announcements updates events',()=>goTo('news'));
-addSearchEntry('Notices & Publications','Page','notices publications procurement bac awards vacancies jobs forms',()=>goTo('notices'));
-addSearchEntry('Transparency','Page','transparency seal of good governance budget disclosure',()=>goTo('transparency'));
+addSearchEntry('Notices & Publications','Page','notices publications procurement bac awards',()=>goTo('transparency'));
+addSearchEntry('Transparency','Page','transparency seal of good governance budget disclosure notices publications',()=>goTo('transparency'));
 addSearchEntry('Tourism','Page','tourism intramuros heritage attractions travel visit',()=>goTo('tourism'));
 addSearchEntry('Feedback','Page','feedback complaints suggestions concerns',()=>goTo('complaints'));
 addSearchEntry('Hotlines','Page','hotlines emergency contact numbers phone',()=>goTo('hotlines'));
@@ -3252,6 +3666,122 @@ function setHeroFillHeight(){
 setHeroFillHeight();
 window.addEventListener('resize', setHeroFillHeight);
 window.addEventListener('load', setHeroFillHeight);
+
+/* ===== Home hero carousel ===== */
+(function(){
+  const hero = document.getElementById('homeHero');
+  if(!hero) return;
+  const slides = Array.from(hero.querySelectorAll('.hero-slide'));
+  const dots = Array.from(document.querySelectorAll('#heroDots .hero-dot'));
+  let current = 0;
+  let timer = null;
+
+  function heroGoTo(i){
+    current = (i + slides.length) % slides.length;
+    slides.forEach((s,idx)=> s.classList.toggle('is-active', idx === current));
+    dots.forEach((d,idx)=> d.classList.toggle('is-active', idx === current));
+    resetAutoplay();
+  }
+  function heroNext(){ heroGoTo(current + 1); }
+  function heroPrev(){ heroGoTo(current - 1); }
+  function resetAutoplay(){
+    if(timer) clearInterval(timer);
+    timer = setInterval(()=> heroGoTo(current + 1), 7000);
+  }
+  hero.addEventListener('mouseenter', ()=>{ if(timer) clearInterval(timer); });
+  hero.addEventListener('mouseleave', resetAutoplay);
+  resetAutoplay();
+
+  // expose to inline onclick handlers
+  window.heroGoTo = heroGoTo;
+  window.heroNext = heroNext;
+  window.heroPrev = heroPrev;
+})();
+
+/* ===== Announcement popup — auto-playing slideshow pulled straight from newsData / psaData ===== */
+(function(){
+  const overlay = document.getElementById('announceOverlay');
+  if(!overlay) return;
+  const closeBtn = document.getElementById('announceClose');
+  const slidesEl = document.getElementById('announceSlides');
+  const dotsEl = document.getElementById('announceDots');
+  const prevBtn = document.getElementById('announcePrev');
+  const nextBtn = document.getElementById('announceNext');
+
+  // Pull the latest public service announcements — real site content, never hardcoded
+  // copy — so the popup always reflects what's newest on the News & Announcements page.
+  const psaItems = (typeof psaData !== 'undefined' ? psaData : []).slice(0,5)
+    .map((p,i)=>({type:'psa', idx:i, img:p.img, title:p.title, desc:p.desc}));
+  const slides = psaItems;
+  if(!slides.length) return;
+
+  slidesEl.innerHTML = slides.map((s,i)=>`
+    <div class="announce-slide${i===0?' is-active':''}" data-idx="${i}">
+      <div class="announce-media"><img src="${s.img}" alt=""></div>
+      <div class="announce-body">
+        <h3>${s.title}</h3>
+        <p>${s.desc}</p>
+        <div class="announce-actions">
+          <button class="btn btn-primary btn-sm" data-type="${s.type}" data-idx2="${s.idx}">Learn More</button>
+        </div>
+      </div>
+    </div>`).join('');
+  dotsEl.innerHTML = slides.map((_,i)=>`<button class="announce-dot${i===0?' is-active':''}" data-dot="${i}" aria-label="Go to slide ${i+1}"></button>`).join('');
+
+  const slideEls = Array.from(slidesEl.querySelectorAll('.announce-slide'));
+  const dotEls = Array.from(dotsEl.querySelectorAll('.announce-dot'));
+  let current = 0;
+  let timer = null;
+
+  function goTo_(i){
+    current = (i + slideEls.length) % slideEls.length;
+    slideEls.forEach((s,idx)=> s.classList.toggle('is-active', idx === current));
+    dotEls.forEach((d,idx)=> d.classList.toggle('is-active', idx === current));
+    resetAutoplay();
+  }
+  function next(){ goTo_(current + 1); }
+  function prev(){ goTo_(current - 1); }
+  function resetAutoplay(){
+    if(timer) clearInterval(timer);
+    timer = setInterval(next, 6000);
+  }
+
+  prevBtn.addEventListener('click', prev);
+  nextBtn.addEventListener('click', next);
+  dotEls.forEach(d=> d.addEventListener('click', ()=> goTo_(Number(d.dataset.dot))));
+  slidesEl.querySelectorAll('[data-type]').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      const type = btn.dataset.type, idx = Number(btn.dataset.idx2);
+      closePopup();
+      if(typeof openArticleModal === 'function') openArticleModal(type, idx);
+      else if(typeof goTo === 'function') goTo('news');
+    });
+  });
+
+  function openPopup(){
+    overlay.classList.add('is-open');
+    document.body.style.overflow = 'hidden';
+    resetAutoplay();
+  }
+  function closePopup(){
+    overlay.classList.remove('is-open');
+    document.body.style.overflow = '';
+    if(timer) clearInterval(timer);
+  }
+
+  window.addEventListener('load', ()=> setTimeout(openPopup, 400));
+
+  closeBtn.addEventListener('click', closePopup);
+  overlay.addEventListener('click', (e)=>{ if(e.target === overlay) closePopup(); });
+  document.addEventListener('keydown', (e)=>{
+    if(!overlay.classList.contains('is-open')) return;
+    if(e.key === 'Escape') closePopup();
+    else if(e.key === 'ArrowRight') next();
+    else if(e.key === 'ArrowLeft') prev();
+  });
+  overlay.addEventListener('mouseenter', ()=>{ if(timer) clearInterval(timer); });
+  overlay.addEventListener('mouseleave', ()=>{ if(overlay.classList.contains('is-open')) resetAutoplay(); });
+})();
 </script>
 
 </body>
